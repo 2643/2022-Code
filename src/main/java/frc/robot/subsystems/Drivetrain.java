@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
@@ -26,17 +27,18 @@ public class Drivetrain extends SubsystemBase {
     // TalonFX[] drivetrainMasterMotors = {drivetrainFrontLeftMotor, drivetrainFrontRightMotor};
     // TalonFX[] drivetrainFollowerMotors = {drivetrainBackLeftMotor, drivetrainBackRightMotor};
 
-    for (TalonFX motor: drivetrainMotors) {
-      motor.configFactoryDefault();
-      motor.configNominalOutputForward(0);
-      motor.configNominalOutputReverse(0);
+    for (TalonFX talon: drivetrainMotors) {
+      talon.configFactoryDefault();
+      talon.configNominalOutputForward(0);
+      talon.configNominalOutputReverse(0);
 
-      motor.configPeakOutputForward(0.75);
-      motor.configPeakOutputReverse(-0.75);
+      talon.configPeakOutputForward(0.75);
+      talon.configPeakOutputReverse(-0.75);
 
-      motor.configNeutralDeadband(0.01, 50);
-      motor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 50);
-      motor.setSensorPhase(true);
+      talon.configNeutralDeadband(0.01, 50);
+      talon.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 50);
+      talon.setSensorPhase(true);
+      talon.setNeutralMode(NeutralMode.Coast);
     }
     drivetrainBackLeftMotor.follow(drivetrainFrontLeftMotor);
     drivetrainBackLeftMotor.setInverted(InvertType.FollowMaster);
