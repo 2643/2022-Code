@@ -41,12 +41,12 @@ public class Drivetrain extends SubsystemBase {
       talon.setNeutralMode(NeutralMode.Coast);
     }
     drivetrainBackLeftMotor.follow(drivetrainFrontLeftMotor);
-    drivetrainBackLeftMotor.setInverted(InvertType.FollowMaster);
+    // drivetrainBackLeftMotor.setInverted(InvertType.FollowMaster);
 
     // INVERTING RIGHT SIDE SO BOTH SIDES ARE POSITIVE FOR THE SAME DIRECTION
     drivetrainFrontRightMotor.setInverted(InvertType.InvertMotorOutput);
     drivetrainBackRightMotor.follow(drivetrainFrontRightMotor);
-    drivetrainBackRightMotor.setInverted(InvertType.FollowMaster);
+    // drivetrainBackRightMotor.setInverted(InvertType.FollowMaster);
     
   }
 
