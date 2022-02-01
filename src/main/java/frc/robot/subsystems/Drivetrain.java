@@ -35,7 +35,7 @@ public class Drivetrain extends SubsystemBase {
       talon.configPeakOutputForward(0.75);
       talon.configPeakOutputReverse(-0.75);
 
-      talon.configNeutralDeadband(0.01, 50);
+      talon.configNeutralDeadband(0.001, 50);
       talon.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 50);
       talon.setSensorPhase(true);
       talon.setNeutralMode(NeutralMode.Coast);
@@ -46,7 +46,7 @@ public class Drivetrain extends SubsystemBase {
     // INVERTING RIGHT SIDE SO BOTH SIDES ARE POSITIVE FOR THE SAME DIRECTION
     drivetrainFrontRightMotor.setInverted(InvertType.InvertMotorOutput);
     drivetrainBackRightMotor.follow(drivetrainFrontRightMotor);
-    // drivetrainBackRightMotor.setInverted(InvertType.FollowMaster);
+    drivetrainBackRightMotor.setInverted(InvertType.FollowMaster);
     
   }
 
