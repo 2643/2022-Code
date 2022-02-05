@@ -54,9 +54,8 @@ public class Tankdrive extends CommandBase {
       rightSpeed = 0;
     }
     
-    RobotContainer.m_drivetrain.setLeftMotorSpeed(leftSpeed);
-    RobotContainer.m_drivetrain.setRightMotorSpeed(rightSpeed);
-    
+    RobotContainer.m_drivetrain.setLeftMotorVelocity(leftSpeed*44000);
+    RobotContainer.m_drivetrain.setRightMotorVelocity(rightSpeed*44000);
   }
 
   // Called once the command ends or is interrupted.
