@@ -24,4 +24,7 @@ public final class Constants {
     public static final double JOYSITCK_DEADBAND = 0.025;
     public static boolean slowMode = false;
     public static final double SLOW_MODE_MULTIPLIER = 0.5;
+
+    public static final int rightClimberPort = /*add port num later*/ ;
+    public static final int letfClimberPort = /*add port num later*/ ;
 }
