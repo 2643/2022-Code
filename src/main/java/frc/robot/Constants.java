@@ -26,5 +26,7 @@ public final class Constants {
     public static final double SLOW_MODE_MULTIPLIER = 0.5;
 
     public static final int rightClimberPort = /*add port num later*/ ;
-    public static final int letfClimberPort = /*add port num later*/ ;
+    public static final int leftClimberPort = /*add port num later*/ ;
+
+    public static final int potentiometerChannel = /*add port num later, needs to be 0-3*/;
 }
