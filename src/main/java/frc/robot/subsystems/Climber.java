@@ -15,6 +15,7 @@ import frc.robot.Constants;
 
 
 public class Climber extends SubsystemBase {
+  
   TalonFX rightClimber = new TalonFX(Constants.rightClimberPort);
   TalonFX leftClimber = new TalonFX(Constants.leftClimberPort);
 
@@ -32,13 +33,16 @@ public class Climber extends SubsystemBase {
   public void Speed(double speed){
     rightClimber.set(ControlMode.PercentOutput,speed);
   }
+  public double potPosition()
+  {
+    return pot.get();
+  }
 
   
 
 
   @Override
   public void periodic() {
-    double position = pot.get();
-    System.out.println(position);
+    potPosition();
   }
 }
