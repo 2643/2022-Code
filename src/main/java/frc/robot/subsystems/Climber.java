@@ -8,8 +8,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 
@@ -18,45 +20,46 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 
 public class Climber extends SubsystemBase {
 
-  private final double TalonMotorP = 0.02;
-  private final double TalonkMotorI = 0.00001;
-  private final double TalonMotorD = 0;
+  private final double CANSparkMotorP = 0.02;
+  private final double CANSparkMotorI = 0.00001;
+  private final double CANSparkMotorD = 0;
   
-  public static final int timeoutSecondsTalonFX = 1;
+  double CanSparkMotorP = 0.00002;
+  double CanSparkMotorI= 0.0000000000;
+  double CanSparkMotorD= 0.000000;
+  int PIDSlot = 0;
+  double resetPosition = 0;
+  double MaxOutput = 0.75;
+  double MinOutput = -0.75;
+  double ConversionFactor = 4096;
   
-  TalonFX rightClimber = new TalonFX(Constants.rightClimberPort);
-  TalonFX leftClimber = new TalonFX(Constants.leftClimberPort);
+  CANSparkMax rightClimber = new CANSparkMax(Constants.rightClimberPort,MotorType.kBrushless);
+  CANSparkMax leftClimber = new CANSparkMax(Constants.leftClimberPort, MotorType.kBrushless);
 
   AnalogPotentiometer pot = new AnalogPotentiometer(Constants.potentiometerChannel, 180, 30);
   double gearBoxRatio = 0.0/*gear ratio*/;
   public Climber() {
-    rightClimber.configFactoryDefault();
-    rightClimber.setSelectedSensorPosition(0,0,30);
-    rightClimber.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0,30);
-    rightClimber.config_kP(0,TalonMotorP);
-    rightClimber.config_kI(0,TalonkMotorI);
-    rightClimber.config_kD(0,TalonMotorD);
-    rightClimber.set(ControlMode.MotionMagic,2048);
-    rightClimber.configPeakOutputForward(0.5);
-    rightClimber.configPeakOutputReverse(-0.5);
 
-    rightClimber.configMotionAcceleration(500);
-    rightClimber.configMotionCruiseVelocity(1000);
+    
+  rightClimber.getPIDController().setP(CanSparkMotorP);
+  rightClimber.getPIDController().setI(CanSparkMotorI);
+  rightClimber.getPIDController().setD(CanSparkMotorD);
+  rightClimber.getPIDController().setOutputRange(MinOutput, MaxOutput);
+  rightClimber.getEncoder().setPosition(resetPosition);
+  rightClimber.getEncoder().setPositionConversionFactor(ConversionFactor);
+  rightClimber.setIdleMode(IdleMode.kCoast);
 
-    rightClimber.configNeutralDeadband(0.001);
-    leftClimber.set(ControlMode.Follower,Constants.rightClimberPort);
+  rightClimber.getEncoder().setPositionConversionFactor(ConversionFactor);
+  leftClimber.follow(rightClimber);
   }
 
   public void speedClimb(double speed){
-    rightClimber.set(ControlMode.PercentOutput,speed);
+    rightClimber.getPIDController().setReference(speed, ControlType.kSmartVelocity, PIDSlot);
   }
   public double potPosition()
   {
     return pot.get()*gearBoxRatio;
   }
-
-  
-
 
   @Override
   public void periodic() {
