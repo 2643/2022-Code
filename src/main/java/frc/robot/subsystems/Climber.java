@@ -7,7 +7,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
@@ -24,10 +23,10 @@ public class Climber extends SubsystemBase {
   private final double CANSparkMotorI = 0.00001;
   private final double CANSparkMotorD = 0;
   
-  double CanSparkMotorP = 0.00002;
-  double CanSparkMotorI= 0.0000000000;
-  double CanSparkMotorD= 0.000000;
-  int PIDSlot = 0;
+  double CanSparkMotorP = 0.00002; //need to test 
+  double CanSparkMotorI= 0.0000000000; //need to test
+  double CanSparkMotorD= 0.000000; //need to test
+  int PIDSlot = 0; 
   double resetPosition = 0;
   double MaxOutput = 0.75;
   double MinOutput = -0.75;
