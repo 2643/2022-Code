@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.Climber;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
@@ -12,7 +12,7 @@ public class ClimbUp extends CommandBase {
   /** Creates a new ClimbUp. */
   public ClimbUp() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.hangclimb);
+    addRequirements(RobotContainer.m_climber);
   }
 
   // Called when the command is initially scheduled.
@@ -26,19 +26,20 @@ public class ClimbUp extends CommandBase {
   }
 
   public void speedClimb (double speed) {
-    RobotContainer.hangclimb.speedClimb(speed);
+    RobotContainer.m_climber.speedClimb(speed);
   }
+  
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(RobotContainer.hangclimb.potPosition()<Constants.abovsecondrung){
+    if(RobotContainer.m_climber.potPosition() < Constants.abovesecondrung) {
       speedClimb(0); //test for a good speed
     }
-    else if (RobotContainer.hangclimb.potPosition()==Constants.secondrung)
-
-      setMotorSpeed(0);// move the robot a bit so that it can align with the rungs
+    else if (RobotContainer.m_climber.potPosition() == Constants.secondrung) {
+      setMotorSpeed(0); // move the robot a bit so that it can align with the rungs
       speedClimb(-10); // test for a good inverted speed
     }
+  }
 
   // Called once the command ends or is interrupted.
   @Override

@@ -28,7 +28,7 @@ public class RobotContainer {
 
   public static Joystick driveStick = new Joystick(0);
 
-  public static final Climber hangclimb = new Climber();
+  public static final Climber m_climber = new Climber();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {

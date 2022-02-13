@@ -14,18 +14,13 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 
-
-
-
 public class Climber extends SubsystemBase {
 
+  // need to test PID values
   private final double CANSparkMotorP = 0.02;
   private final double CANSparkMotorI = 0.00001;
   private final double CANSparkMotorD = 0;
-  
-  double CanSparkMotorP = 0.00002; //need to test 
-  double CanSparkMotorI= 0.0000000000; //need to test
-  double CanSparkMotorD= 0.000000; //need to test
+
   int PIDSlot = 0; 
   double resetPosition = 0;
   double MaxOutput = 0.75;
@@ -36,28 +31,29 @@ public class Climber extends SubsystemBase {
   CANSparkMax leftClimber = new CANSparkMax(Constants.leftClimberPort, MotorType.kBrushless);
 
   AnalogPotentiometer pot = new AnalogPotentiometer(Constants.potentiometerChannel, 180, 30);
-  double gearBoxRatio = 0.0/*gear ratio*/;
+  double gearBoxRatio = 0.0; // gear ratio
+
   public Climber() {
 
-    
-  rightClimber.getPIDController().setP(CanSparkMotorP);
-  rightClimber.getPIDController().setI(CanSparkMotorI);
-  rightClimber.getPIDController().setD(CanSparkMotorD);
-  rightClimber.getPIDController().setOutputRange(MinOutput, MaxOutput);
-  rightClimber.getEncoder().setPosition(resetPosition);
-  rightClimber.getEncoder().setPositionConversionFactor(ConversionFactor);
-  rightClimber.setIdleMode(IdleMode.kCoast);
+    rightClimber.getPIDController().setP(CANSparkMotorP);
+    rightClimber.getPIDController().setI(CANSparkMotorI);
+    rightClimber.getPIDController().setD(CANSparkMotorD);
+    rightClimber.getPIDController().setOutputRange(MinOutput, MaxOutput);
+    rightClimber.getEncoder().setPosition(resetPosition);
+    rightClimber.getEncoder().setPositionConversionFactor(ConversionFactor);
+    rightClimber.setIdleMode(IdleMode.kCoast);
 
-  rightClimber.getEncoder().setPositionConversionFactor(ConversionFactor);
-  leftClimber.follow(rightClimber);
+    rightClimber.getEncoder().setPositionConversionFactor(ConversionFactor);
+    leftClimber.follow(rightClimber);
+
   }
 
   public void speedClimb(double speed){
     rightClimber.getPIDController().setReference(speed, ControlType.kSmartVelocity, PIDSlot);
   }
-  public double potPosition()
-  {
-    return pot.get()*gearBoxRatio;
+
+  public double potPosition() {
+    return pot.get() * gearBoxRatio;
   }
 
   @Override

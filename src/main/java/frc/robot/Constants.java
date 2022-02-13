@@ -30,6 +30,6 @@ public final class Constants {
 
     public static final int potentiometerChannel = /*add port num later, needs to be 0-3*/;
     
-    public static final double abovsecondrung  = /* test for a value that is slight over the second rung*/;
+    public static final double abovesecondrung  = /* test for a value that is slight over the second rung*/;
     public static final double secondrung = /*Second rung height*/;
 }
