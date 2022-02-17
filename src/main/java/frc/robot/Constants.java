@@ -25,11 +25,10 @@ public final class Constants {
     public static boolean slowMode = false;
     public static final double SLOW_MODE_MULTIPLIER = 0.5;
 
-    public static final int rightClimberPort = /*add port num later*/ ;
-    public static final int leftClimberPort = /*add port num later*/ ;
-
-    public static final int potentiometerChannel = /*add port num later, needs to be 0-3*/;
+    public static final int rightClimberPort = 0; //add port num later
+    public static final int leftClimberPort = 0; //add port num later
+    public static final double maxpos = 0; //test for max speed later
     
-    public static final double abovesecondrung  = /* test for a value that is slight over the second rung*/;
-    public static final double secondrung = /*Second rung height*/;
+
+
 }

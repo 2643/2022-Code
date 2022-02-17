@@ -20,26 +20,30 @@ public class ClimbUp extends CommandBase {
   public void initialize() {
 
   }
-  
-  public void setMotorSpeed(double speed){
-    RobotContainer.m_drivetrain.setMotorSpeed(speed);
+  public void speedClimb(double speed){
+    RobotContainer.m_climber.rightClimber(speed);
   }
-
-  public void speedClimb (double speed) {
-    RobotContainer.m_climber.speedClimb(speed);
+  public void resetPosition(){
+    while(RobotContainer.m_climber.limitswitch()){
+      RobotContainer.m_climber.rightClimber(0);// set speed
+    }
   }
   
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(RobotContainer.m_climber.potPosition() < Constants.abovesecondrung) {
-      speedClimb(0); //test for a good speed
+    resetPosition();
+    if(!RobotContainer.m_climber.limitswitch()){
+      RobotContainer.m_climber.setPosition(0);
     }
-    else if (RobotContainer.m_climber.potPosition() == Constants.secondrung) {
-      setMotorSpeed(0); // move the robot a bit so that it can align with the rungs
-      speedClimb(-10); // test for a good inverted speed
+    else if(RobotContainer.button1()==true){
+      RobotContainer.m_climber.rightClimber(0);// set speed
+      RobotContainer.m_climber.setPosition(Constants.maxpos);
+    else if(RobotContainer.button2()==true){
+      resetPosition();
     }
-  }
+    }
+
 
   // Called once the command ends or is interrupted.
   @Override

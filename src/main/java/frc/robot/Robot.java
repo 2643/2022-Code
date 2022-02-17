@@ -48,6 +48,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_drivetrain, new Tankdrive());
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_climber, new ClimbUp());
+    
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
