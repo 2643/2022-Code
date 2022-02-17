@@ -71,7 +71,9 @@ public class Climber extends SubsystemBase {
     rightClimber.getPIDController().setReference(movePos, ControlType.kSmartMotion);
   }
  
-  
+  public double getPosition(){
+    return rightClimber.getEncoder().getPosition();
+  }
 
   @Override
   public void periodic() {

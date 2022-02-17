@@ -5,25 +5,36 @@
 package frc.robot.commands.Climber;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class climbUp extends CommandBase {
-  /** Creates a new climbUp. */
-  public climbUp() {
+public class resetPosition extends CommandBase {
+  /** Creates a new ClimbUp. */
+  public resetPosition() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.m_climber);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
 
+  }
+  }
+  
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute()
+  public void execute() {
+    if(!RobotContainer.m_climber.limitswitch())
     {
-        double pos = RobotContainer.m_climber.getPosition();
-        RobotContainer.m_climber.movePosition(pos + 10);
+        RobotContainer.m_climber.setPosition(0);
     }
+    else
+    {
+        RobotContainer.m_climber.movePosition(-100000);
+    }
+    }
+
 
   // Called once the command ends or is interrupted.
   @Override
@@ -32,6 +43,13 @@ public class climbUp extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    if(!RobotContainer.m_climber.limitswitch())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
   }
 }
