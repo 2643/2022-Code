@@ -85,6 +85,23 @@ public class Drivetrain extends SubsystemBase {
     setRightMotorVelocity(velocity);
   }
 
+  public void setLeftMotorPercentOutput(double percent) {
+    drivetrainFrontLeftMotor.set(ControlMode.PercentOutput, percent);
+    drivetrainBackLeftMotor.set(ControlMode.PercentOutput, percent);
+  }
+
+  public void setRightMotorPercentOutput(double percent) {
+    drivetrainFrontRightMotor.set(ControlMode.PercentOutput, percent);
+    drivetrainBackRightMotor.set(ControlMode.PercentOutput, percent);
+  }
+
+  public void setMotorPercentOutput(double percent){
+    setLeftMotorPercentOutput(percent);
+    setRightMotorPercentOutput(percent);
+  }
+
+  
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

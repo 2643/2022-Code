@@ -32,30 +32,60 @@ public class Tankdrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS)) > Constants.JOYSITCK_DEADBAND) {
-      if(Constants.slowMode == true){
-        leftSpeed = Constants.SLOW_MODE_MULTIPLIER*(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS));
-      } else {
-        leftSpeed = (RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS));
+    if(Constants.percentOutputControl){
+      if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS)) > Constants.JOYSITCK_DEADBAND) {
+      
+        if(Constants.slowMode == true){
+          leftSpeed = Constants.SLOW_MODE_MULTIPLIER*(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS));
+        } else {
+          leftSpeed = (RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS));
+        }
       }
+      else{
+        leftSpeed = 0;
+      }
+  
+      if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS)) > Constants.JOYSITCK_DEADBAND) {
+        if(Constants.slowMode == true){
+          rightSpeed = Constants.SLOW_MODE_MULTIPLIER*(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS));
+        } else {
+          rightSpeed = (RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS));
+        }
+      }
+      else {
+        rightSpeed = 0;
+      }
+      
+      RobotContainer.m_drivetrain.setLeftMotorVelocity(leftSpeed);
+      RobotContainer.m_drivetrain.setRightMotorVelocity(rightSpeed);
     }
     else{
-      leftSpeed = 0;
-    }
-
-    if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS)) > Constants.JOYSITCK_DEADBAND) {
-      if(Constants.slowMode == true){
-        rightSpeed = Constants.SLOW_MODE_MULTIPLIER*(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS));
-      } else {
-        rightSpeed = (RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS));
+      if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS)) > Constants.JOYSITCK_DEADBAND) {
+      
+        if(Constants.slowMode == true){
+          leftSpeed = Constants.SLOW_MODE_MULTIPLIER*(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS));
+        } else {
+          leftSpeed = (RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS));
+        }
       }
+      else{
+        leftSpeed = 0;
+      }
+  
+      if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS)) > Constants.JOYSITCK_DEADBAND) {
+        if(Constants.slowMode == true){
+          rightSpeed = Constants.SLOW_MODE_MULTIPLIER*(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS));
+        } else {
+          rightSpeed = (RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS));
+        }
+      }
+      else {
+        rightSpeed = 0;
+      }
+      
+      RobotContainer.m_drivetrain.setLeftMotorVelocity(leftSpeed*44000);
+      RobotContainer.m_drivetrain.setRightMotorVelocity(rightSpeed*44000);
     }
-    else {
-      rightSpeed = 0;
-    }
-    
-    RobotContainer.m_drivetrain.setLeftMotorVelocity(leftSpeed*44000);
-    RobotContainer.m_drivetrain.setRightMotorVelocity(rightSpeed*44000);
   }
 
   // Called once the command ends or is interrupted.
