@@ -29,6 +29,8 @@ public final class Constants {
     public static final int leftClimberPort = 0; //add port num later
     public static final double maxpos = 0; //test for max speed later
     
-
+    public static final int leftShooterPort = 5;
+    public static final int rightShooterPort = 6;
+    public static final int conveyorBeltMotorPort = 15;
 
 }

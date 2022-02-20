@@ -15,6 +15,7 @@ import frc.robot.commands.Climber.climbUp;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -38,6 +39,8 @@ public class RobotContainer {
   public static Joystick driveStick = new Joystick(0);
 
   public static final Climber m_climber = new Climber();
+
+  public static final Shooter m_shooter = new Shooter();
 
   public static Joystick opboard = new Joystick(0);
   public static JoystickButton button1 = new JoystickButton(opboard, 1); //check ports later(raise climber)
