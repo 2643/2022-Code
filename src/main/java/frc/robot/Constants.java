@@ -25,9 +25,8 @@ public final class Constants {
     public static boolean slowMode = false;
     public static final double SLOW_MODE_MULTIPLIER = 0.5;
 
-    public static final int rightClimberPort = 0; //add port num later
-    public static final int leftClimberPort = 0; //add port num later
-    public static final double maxpos = 0; //test for max speed later
+    public static final int rightClimberPort = 1; //add port num later
+    public static final int leftClimberPort = 6; //add port num later
     
 
 

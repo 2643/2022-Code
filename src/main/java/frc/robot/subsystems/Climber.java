@@ -18,10 +18,10 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class Climber extends SubsystemBase {
 
   // need to test PID and FF values
-  private final double CANSparkMotorP = 0.02;
+  private final double CANSparkMotorP = 0.0;
   private final double CANSparkMotorI = 0.0000;
   private final double CANSparkMotorD = 0;
-  private final double CANSparkMotorFF = 0.0001;
+  private final double CANSparkMotorFF = 0.000;
 
   int PIDSlot = 0; 
   double resetPosition = 0;
@@ -31,7 +31,7 @@ public class Climber extends SubsystemBase {
   
   CANSparkMax rightClimber = new CANSparkMax(Constants.rightClimberPort,MotorType.kBrushless);
   CANSparkMax leftClimber = new CANSparkMax(Constants.leftClimberPort, MotorType.kBrushless);
-  DigitalInput climberLimitSwitch = new DigitalInput(0);//need to figure out port number later
+  DigitalInput climberLimitSwitch = new DigitalInput(4);//need to figure out port number later
 
   
 
@@ -39,7 +39,7 @@ public class Climber extends SubsystemBase {
 
 
 
-  double gearBoxRatio = 0.0; // gear ratio
+  double gearBoxRatio = 1; // gear ratio
   public Object m_climber;
 
   public Climber() {
@@ -52,6 +52,8 @@ public class Climber extends SubsystemBase {
     rightClimber.getEncoder().setPosition(resetPosition);
     rightClimber.getEncoder().setPositionConversionFactor(ConversionFactor);
     rightClimber.setIdleMode(IdleMode.kCoast);
+    rightClimber.getPIDController().setSmartMotionMaxAccel(50, 0);
+    rightClimber.getPIDController().setSmartMotionMaxVelocity(100, 0);
 
     rightClimber.getEncoder().setPositionConversionFactor(ConversionFactor);
     leftClimber.follow(rightClimber);
@@ -66,14 +68,19 @@ public class Climber extends SubsystemBase {
   public void setPosition(double pos){
     rightClimber.getEncoder().setPosition(pos);
   }
+  public void velocitycontrol(double speed){
+    rightClimber.getPIDController().setReference(speed, ControlType.kSmartVelocity);
+
+  }
   public void movePosition(double movePos)
   {
     rightClimber.getPIDController().setReference(movePos, ControlType.kSmartMotion);
   }
  
   public double getPosition(){
-    return rightClimber.getEncoder().getPosition();
+    return rightClimber.getEncoder().getPosition()*gearBoxRatio;
   }
+
 
   @Override
   public void periodic() {

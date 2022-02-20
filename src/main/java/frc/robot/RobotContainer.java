@@ -40,8 +40,9 @@ public class RobotContainer {
   public static final Climber m_climber = new Climber();
 
   public static Joystick opboard = new Joystick(0);
-  public static JoystickButton button1 = new JoystickButton(opboard, 1); //check ports later(raise climber)
-  public static JoystickButton button2 = new JoystickButton(opboard, 2); //check ports later(lower climber)
+  public static JoystickButton button1 = new JoystickButton(opboard, 8); //check ports later(raise climber)
+  public static JoystickButton button2 = new JoystickButton(opboard, 15); //check ports later(lower climber)
+  
   
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */

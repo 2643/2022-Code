@@ -20,14 +20,17 @@ public class climbDown extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
+  public void execute() 
+  {
     double pos = RobotContainer.m_climber.getPosition();
     RobotContainer.m_climber.movePosition(pos - 10);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) 
+  {
+  }
 
   // Returns true when the command should end.
   @Override
