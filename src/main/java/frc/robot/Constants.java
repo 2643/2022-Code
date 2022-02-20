@@ -33,4 +33,7 @@ public final class Constants {
     public static final int rightShooterPort = 6;
     public static final int conveyorBeltMotorPort = 15;
 
+    public static final int TurretMotorPort = 7;
+    public static final int turretLimitSwitchPort = 0;
+    public static int visionTurretError = 0;
 }

@@ -9,15 +9,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.Climber.climbDown;
-import frc.robot.commands.Climber.climbUp;
-import frc.robot.subsystems.Climber;
+import frc.robot.commands.Turret.turretShoot;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Turret;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -30,22 +25,16 @@ public class RobotContainer {
 
 
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   public static final Drivetrain m_drivetrain = new Drivetrain();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  public static Turret m_turret = new Turret();
 
   public static Joystick driveStick = new Joystick(0);
 
-  public static final Climber m_climber = new Climber();
+  public static Joystick opboard = new Joystick(1);
+  public static JoystickButton shootButton = new JoystickButton(opboard, 3);
 
-  public static final Shooter m_shooter = new Shooter();
-
-  public static Joystick opboard = new Joystick(0);
-  public static JoystickButton button1 = new JoystickButton(opboard, 1); //check ports later(raise climber)
-  public static JoystickButton button2 = new JoystickButton(opboard, 2); //check ports later(lower climber)
-  
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -61,10 +50,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() 
   {
-    button1.whenHeld(new climbUp());
-    button2.whenHeld(new climbDown());
-
- 
+    shootButton.whileHeld(new turretShoot());
   }
 
   /**
@@ -74,7 +60,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return null;
   }
 
   public static boolean button1() {

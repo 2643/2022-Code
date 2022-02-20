@@ -2,16 +2,18 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.Climber;
+package frc.robot.commands.Turret;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class climbDown extends CommandBase {
-  /** Creates a new climbUpDown. */
-  public climbDown() {
+public class turretShoot extends CommandBase {
+  /** Creates a new turretShoot. */
+  boolean turretReady = false;
+
+  public turretShoot() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.m_climber);
   }
 
   // Called when the command is initially scheduled.
@@ -20,9 +22,20 @@ public class climbDown extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    double pos = RobotContainer.m_climber.getPosition();
-    RobotContainer.m_climber.movePosition(pos - 10);
+  public void execute() 
+  {
+    if(Constants.visionTurretError <= 10 || Constants.visionTurretError >= -10)
+    {
+      turretReady = true;
+    }
+    else if(Constants.visionTurretError > 10)
+    {
+      RobotContainer.m_turret.turretCanTurn(RobotContainer.m_turret.getPosition() - 20);
+    }
+    else if(Constants.visionTurretError < -10)
+    {
+      RobotContainer.m_turret.turretCanTurn(RobotContainer.m_turret.getPosition() + 20);
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -32,6 +45,13 @@ public class climbDown extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    if(turretReady)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
   }
 }
