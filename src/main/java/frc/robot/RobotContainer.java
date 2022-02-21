@@ -31,6 +31,8 @@ public class RobotContainer {
 
   public static JoystickButton percentOutputControl = new JoystickButton(opboard, 6);
 
+  
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings

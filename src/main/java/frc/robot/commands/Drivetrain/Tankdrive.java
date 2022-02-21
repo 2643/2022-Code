@@ -56,8 +56,8 @@ public class Tankdrive extends CommandBase {
         rightSpeed = 0;
       }
       
-      RobotContainer.m_drivetrain.setLeftMotorVelocity(leftSpeed);
-      RobotContainer.m_drivetrain.setRightMotorVelocity(rightSpeed);
+      RobotContainer.m_drivetrain.setLeftMotorPercentOutput(leftSpeed);
+      RobotContainer.m_drivetrain.setRightMotorPercentOutput(rightSpeed);
     }
     else{
       if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS)) > Constants.JOYSITCK_DEADBAND) {

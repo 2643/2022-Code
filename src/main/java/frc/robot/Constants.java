@@ -23,7 +23,7 @@ public final class Constants {
     public static final int JOYSTICK_RIGHT_AXIS = 5;
     public static final double JOYSITCK_DEADBAND = 0.025;
     public static boolean slowMode = false;
-    public static final double SLOW_MODE_MULTIPLIER = 0.5;
+    public static double SLOW_MODE_MULTIPLIER = 1;
 
     public static boolean percentOutputControl = false;
 }
