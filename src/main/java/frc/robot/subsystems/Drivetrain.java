@@ -25,6 +25,8 @@ public class Drivetrain extends SubsystemBase {
   public static final double TalonFX_P = 0.025;
   public static final double TalonFX_I = 0.0000;
   public static final double TalonFX_D = 0.0075;
+
+  public final double allowedError = 2048; // should be one rotation, needs testing
   
   public Drivetrain() {
     TalonFX[] drivetrainMotors = {drivetrainFrontLeftMotor, drivetrainBackLeftMotor,drivetrainFrontRightMotor, drivetrainBackRightMotor};
@@ -87,20 +89,46 @@ public class Drivetrain extends SubsystemBase {
 
   public void setLeftMotorPercentOutput(double percent) {
     drivetrainFrontLeftMotor.set(ControlMode.PercentOutput, percent);
-    drivetrainBackLeftMotor.set(ControlMode.PercentOutput, percent);
   }
 
   public void setRightMotorPercentOutput(double percent) {
     drivetrainFrontRightMotor.set(ControlMode.PercentOutput, percent);
-    drivetrainBackRightMotor.set(ControlMode.PercentOutput, percent);
   }
 
   public void setMotorPercentOutput(double percent){
     setLeftMotorPercentOutput(percent);
     setRightMotorPercentOutput(percent);
+    }
+
+  public void setLeftMotorPosition(double position) {
+    drivetrainFrontLeftMotor.set(ControlMode.MotionMagic, position);
+    drivetrainFrontLeftMotor.configMotionCruiseVelocity(Constants.DRIVETRAIN_VELOCITY);
+    drivetrainFrontLeftMotor.configMotionAcceleration(Constants.DRIVETRAIN_ACCELERATION);
   }
 
-  
+  public void setRightMotorPosition(double position) {
+    drivetrainFrontRightMotor.set(ControlMode.MotionMagic, position);
+    drivetrainFrontRightMotor.configMotionCruiseVelocity(Constants.DRIVETRAIN_VELOCITY);
+    drivetrainFrontRightMotor.configMotionAcceleration(Constants.DRIVETRAIN_ACCELERATION);
+  }
+
+  public void setMotorPosition(double position) {
+    setLeftMotorPosition(position);
+    setRightMotorPosition(position);
+  }
+
+  public double getLeftMotorPosition() {
+    return drivetrainFrontLeftMotor.getSelectedSensorPosition();
+  }
+
+  public double getRightMotorPosition() {
+    return drivetrainFrontRightMotor.getSelectedSensorPosition();
+  }
+
+  public void resetMotorEncoders() {
+    drivetrainFrontLeftMotor.setSelectedSensorPosition(0);
+    drivetrainFrontRightMotor.setSelectedSensorPosition(0);
+  }
 
   @Override
   public void periodic() {
