@@ -15,75 +15,75 @@ import frc.robot.Constants;
 
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
-  TalonFX drivetrainFrontLeftMotor = new TalonFX(Constants.DRIVETRAIN_FRONT_LEFT_MOTOR);
-  TalonFX drivetrainBackLeftMotor = new TalonFX(Constants.DRIVETRAIN_BACK_LEFT_MOTOR);
+   TalonFX drivetrainFrontLeftMotor = new TalonFX(Constants.DRIVETRAIN_FRONT_LEFT_MOTOR);
+   TalonFX drivetrainBackLeftMotor = new TalonFX(Constants.DRIVETRAIN_BACK_LEFT_MOTOR);
 
-  TalonFX drivetrainFrontRightMotor = new TalonFX(Constants.DRIVETRAIN_FRONT_RIGHT_MOTOR);
-  TalonFX drivetrainBackRightMotor = new TalonFX(Constants.DRIVETRAIN_BACK_RIGHT_MOTOR);
+   TalonFX drivetrainFrontRightMotor = new TalonFX(Constants.DRIVETRAIN_FRONT_RIGHT_MOTOR);
+   TalonFX drivetrainBackRightMotor = new TalonFX(Constants.DRIVETRAIN_BACK_RIGHT_MOTOR);
 
-  public static final double TalonFX_F = 0;
-  public static final double TalonFX_P = 0.025;
-  public static final double TalonFX_I = 0.0000;
-  public static final double TalonFX_D = 0.0075;
+   public static final double TalonFX_F = 0;
+   public static final double TalonFX_P = 0.025;
+   public static final double TalonFX_I = 0.0000;
+   public static final double TalonFX_D = 0.0075;
   
-  public Drivetrain() {
-    TalonFX[] drivetrainMotors = {drivetrainFrontLeftMotor, drivetrainBackLeftMotor,drivetrainFrontRightMotor, drivetrainBackRightMotor};
-    // TalonFX[] drivetrainMasterMotors = {drivetrainFrontLeftMotor, drivetrainFrontRightMotor};
-    // TalonFX[] drivetrainFollowerMotors = {drivetrainBackLeftMotor, drivetrainBackRightMotor};
+   public Drivetrain() {
+      TalonFX[] drivetrainMotors = {drivetrainFrontLeftMotor, drivetrainBackLeftMotor,drivetrainFrontRightMotor, drivetrainBackRightMotor};
+      TalonFX[] drivetrainMasterMotors = {drivetrainFrontLeftMotor, drivetrainFrontRightMotor};
+      TalonFX[] drivetrainFollowerMotors = {drivetrainBackLeftMotor, drivetrainBackRightMotor};
 
-    for (TalonFX talon: drivetrainMotors) {
-      talon.configFactoryDefault();
-      talon.configNominalOutputForward(0);
-      talon.configNominalOutputReverse(0);
+  for (TalonFX talon: drivetrainMotors) {
+       talon.configFactoryDefault();
+       talon.configNominalOutputForward(0);
+       talon.configNominalOutputReverse(0);
 
-      talon.configPeakOutputForward(1);
-      talon.configPeakOutputReverse(-1);
+       talon.configPeakOutputForward(1);
+       talon.configPeakOutputReverse(-1);
 
-      talon.configNeutralDeadband(0.001, 50);
-      talon.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 50);
-      talon.setSensorPhase(true);
-      talon.setNeutralMode(NeutralMode.Coast);
+       talon.configNeutralDeadband(0.001, 50);
+       talon.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0, 50);
+       talon.setSensorPhase(true);
+       talon.setNeutralMode(NeutralMode.Coast);
 
-      talon.config_kP(0, TalonFX_P, 1);
-      talon.config_kI(0, TalonFX_I, 1);
-      talon.config_kD(0, TalonFX_D, 1);
+       talon.config_kP(0, TalonFX_P, 1);
+       talon.config_kI(0, TalonFX_I, 1);
+       talon.config_kD(0, TalonFX_D, 1);
     }
-    drivetrainBackRightMotor.follow(drivetrainFrontRightMotor);
-    // drivetrainBackLeftMotor.setInverted(InvertType.FollowMaster);
+     drivetrainBackRightMotor.follow(drivetrainFrontRightMotor);
+     drivetrainBackLeftMotor.setInverted(InvertType.FollowMaster);
 
-    // INVERTING RIGHT SIDE SO BOTH SIDES ARE POSITIVE FOR THE SAME DIRECTION
-    drivetrainFrontLeftMotor.setInverted(InvertType.InvertMotorOutput);
-    drivetrainBackLeftMotor.follow(drivetrainFrontLeftMotor);
-    drivetrainBackLeftMotor.setInverted(InvertType.FollowMaster);
+  //   // INVERTING RIGHT SIDE SO BOTH SIDES ARE POSITIVE FOR THE SAME DIRECTION
+     drivetrainFrontLeftMotor.setInverted(InvertType.InvertMotorOutput);
+     drivetrainBackLeftMotor.follow(drivetrainFrontLeftMotor);
+     drivetrainBackLeftMotor.setInverted(InvertType.FollowMaster);
     
-  }
+   }
 
-  public void setLeftMotorSpeed(double speed) {
-    drivetrainFrontLeftMotor.set(ControlMode.PercentOutput, speed);
-  }
+   public void setLeftMotorSpeed(double speed) {
+     drivetrainFrontLeftMotor.set(ControlMode.PercentOutput, speed);
+   }
 
-  public void setRightMotorSpeed(double speed) {
-    drivetrainFrontRightMotor.set(ControlMode.PercentOutput, speed);
-  }
+   public void setRightMotorSpeed(double speed) {
+     drivetrainFrontRightMotor.set(ControlMode.PercentOutput, speed);
+   }
 
-  public void setMotorSpeed(double speed) {
-    setLeftMotorSpeed(speed);
-    setRightMotorSpeed(speed);
-  }
+   public void setMotorSpeed(double speed) {
+     setLeftMotorSpeed(speed);
+     setRightMotorSpeed(speed);
+   }
 
-  public void setLeftMotorVelocity(double velocity) {
-    drivetrainFrontLeftMotor.set(ControlMode.Velocity, velocity);
-    System.out.println(velocity);
-  }
+   public void setLeftMotorVelocity(double velocity) {
+     drivetrainFrontLeftMotor.set(ControlMode.Velocity, velocity);
+     System.out.println(velocity);
+   }
 
-  public void setRightMotorVelocity(double velocity) {
-    drivetrainFrontRightMotor.set(ControlMode.Velocity, velocity);
-  }
+   public void setRightMotorVelocity(double velocity) {
+     drivetrainFrontRightMotor.set(ControlMode.Velocity, velocity);
+   }
 
-  public void setMotorVelocity(double velocity) {
-    setLeftMotorVelocity(velocity);
-    setRightMotorVelocity(velocity);
-  }
+   public void setMotorVelocity(double velocity) {
+     setLeftMotorVelocity(velocity);
+     setRightMotorVelocity(velocity);
+   }
 
   @Override
   public void periodic() {

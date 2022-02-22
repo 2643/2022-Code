@@ -3,89 +3,90 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.RobotContainer;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.ControlType;
-import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 public class Climber extends SubsystemBase {
+  /** Creates a new Falcon_500. */
+  //TalonFX falcon_motor_dev1 = new TalonFX(3);
+  //private static WPI_TalonFX falcon_motor_dev2 = new WPI_TalonFX(3);
+  
 
-  // need to test PID and FF values
-  private final double CANSparkMotorP = 0.0;
-  private final double CANSparkMotorI = 0.0000;
-  private final double CANSparkMotorD = 0;
-  private final double CANSparkMotorFF = 0.000;
+
+  private final double TalonMotorP = 0.1;
+  private final double TalonMotorI = 0.0000;
+  private final double TalonMotorD = 0.2;
+  // 0 is overshooting
+  private final double TalonMotorFF = 0.000;
 
   int PIDSlot = 0; 
   double resetPosition = 0;
   double MaxOutput = 0.75;
   double MinOutput = -0.75;
-  double ConversionFactor = 4096;
+  double ConversionFactor = 2048;
   
-  CANSparkMax rightClimber = new CANSparkMax(Constants.rightClimberPort,MotorType.kBrushless);
-  CANSparkMax leftClimber = new CANSparkMax(Constants.leftClimberPort, MotorType.kBrushless);
-  DigitalInput climberLimitSwitch = new DigitalInput(4);//need to figure out port number later
-
+  TalonFX rightClimber = new TalonFX(Constants.rightClimberPort);
+  //TalonFX leftClimber = new TalonFX(Constants.leftClimberPort);
+  DigitalInput climberLimitSwitch = new DigitalInput(4);
   
-
+  public static final int timeoutSecondsTalonFX = 1;
+  double gearBoxRatio = 1;
   
-
-
-
-  double gearBoxRatio = 1; // gear ratio
-  public Object m_climber;
-
   public Climber() {
 
-    rightClimber.getPIDController().setP(CANSparkMotorP, 0);
-    rightClimber.getPIDController().setI(CANSparkMotorI, 0);
-    rightClimber.getPIDController().setD(CANSparkMotorD, 0);
-    rightClimber.getPIDController().setFF(CANSparkMotorFF, 0);
-    rightClimber.getPIDController().setOutputRange(MinOutput, MaxOutput);
-    rightClimber.getEncoder().setPosition(resetPosition);
-    rightClimber.getEncoder().setPositionConversionFactor(ConversionFactor);
-    rightClimber.setIdleMode(IdleMode.kCoast);
-    rightClimber.getPIDController().setSmartMotionMaxAccel(50, 0);
-    rightClimber.getPIDController().setSmartMotionMaxVelocity(100, 0);
+    rightClimber.setSelectedSensorPosition(0,0,30);
+    rightClimber.set(ControlMode.Position, 0);
+    rightClimber.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0,30);
+    rightClimber.config_kP(0,TalonMotorP);
+    rightClimber.config_kI(0,TalonMotorI);
+    rightClimber.config_kD(0,TalonMotorD);
+    rightClimber.config_kF(0, TalonMotorFF);
+    //rightClimber.set(ControlMode.MotionMagic,ConversionFactor);
+    rightClimber.configPeakOutputForward(1);
+    rightClimber.configPeakOutputReverse(-1);
 
-    rightClimber.getEncoder().setPositionConversionFactor(ConversionFactor);
-    leftClimber.follow(rightClimber);
+    //rightClimber.configMotionAcceleration(250);
+    //rightClimber.configMotionCruiseVelocity(500);
 
+    rightClimber.configNeutralDeadband(0.001);
+    //leftClimber.set(ControlMode.Follower,Constants.rightClimberPort);
   }
-
   public boolean limitswitch(){
     
     return climberLimitSwitch.get();
     
   }
   public void setPosition(double pos){
-    rightClimber.getEncoder().setPosition(pos);
+    rightClimber.setSelectedSensorPosition(pos);
   }
   public void velocitycontrol(double speed){
-    rightClimber.getPIDController().setReference(speed, ControlType.kSmartVelocity);
+    rightClimber.set(TalonFXControlMode.Velocity,speed);
 
   }
   public void movePosition(double movePos)
   {
-    rightClimber.getPIDController().setReference(movePos, ControlType.kSmartMotion);
+    rightClimber.set(TalonFXControlMode.Position,movePos);
   }
  
   public double getPosition(){
-    return rightClimber.getEncoder().getPosition()*gearBoxRatio;
+    return rightClimber.getSelectedSensorPosition();
   }
 
-
+    
   @Override
   public void periodic() {
+    // This method will be called once per scheduler run
+    //ok lol
+    //falcon_motor_dev1.getSelectedSensorPosition();
+    //System.out.println(rightClimber.getSelectedSensorPosition());
+    //rightClimber.set(ControlMode.MotionMagic, 10000);
   }
 
-public void rightClimber(double speed) {
-}
+  
+
 }

@@ -22,10 +22,10 @@ public class Tankdrive extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS)) < Constants.JOYSITCK_DEADBAND) {
-      if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS)) < Constants.JOYSITCK_DEADBAND) {
-        finished = true;
-      }
+  if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS)) < Constants.JOYSITCK_DEADBAND) {
+    if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS)) < Constants.JOYSITCK_DEADBAND) {
+      finished = true;
+    }
     }
   }
 
