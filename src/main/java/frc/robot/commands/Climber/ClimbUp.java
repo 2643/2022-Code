@@ -5,41 +5,50 @@
 package frc.robot.commands.Climber;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class climbUp extends CommandBase {
   /** Creates a new climbUp. */
-
-  double position;
-  double pos = RobotContainer.m_climber.getPosition();
-
+  double pos;
+  double posR;
+  double posL;
+  double currentPos;
+  double diffErr;
+  double gain;
   public climbUp() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.m_climber);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    pos = RobotContainer.m_climber.getPosition();
+    gain=10; //test for gain later
+    posR = RobotContainer.m_climber.getPositionR();
+    posL = RobotContainer.m_climber.getPositionL();
+    currentPos=(posL+posR)/2;
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute()
     {
-    position -= RobotContainer.m_climber.getPosition();
-    pos += 100;
-    RobotContainer.m_climber.movePosition(pos);
-    System.out.println("Pos: " + pos + "PositionCurrent: " + RobotContainer.m_climber.getPosition());
+    diffErr=(posL-posR)*gain;
+    pos=currentPos+20-diffErr;
+    RobotContainer.m_climber.movePositionR(pos);
+    RobotContainer.m_climber.movePositionL(pos);
+    //System.out.println("Pos: " + pos + "PositionCurrent: " + RobotContainer.m_climber.getPosition());
     }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) 
   {
-    double endPos = RobotContainer.m_climber.getPosition();
-    RobotContainer.m_climber.movePosition(endPos);
+    double endPosR = RobotContainer.m_climber.getPositionR();
+    double endPosL = RobotContainer.m_climber.getPositionL();
+    RobotContainer.m_climber.movePositionR(endPosR);
+    RobotContainer.m_climber.movePositionL(endPosL);
   }
 
   // Returns true when the command should end.

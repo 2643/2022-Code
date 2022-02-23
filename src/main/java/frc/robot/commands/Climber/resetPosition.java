@@ -30,7 +30,8 @@ public class resetPosition extends CommandBase {
     }
     else
     {
-        RobotContainer.m_climber.movePosition(0);
+        RobotContainer.m_climber.movePositionR(0);
+        RobotContainer.m_climber.movePositionL(0);
     }
     }
 
