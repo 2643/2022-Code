@@ -26,19 +26,20 @@ public class turretShoot extends CommandBase {
   public void execute() 
   {
     error = (double)Constants.visionTable.getEntry("Degrees").getNumber(Constants.defaultVisionTurretError);
-    if(error <= 1 || error >= -1)
+    if(Math.floor(error) == 0)
     {
       turretReady = true;
     }
-    else if(error > 1)
+    else if(error >= 1)
     {
       RobotContainer.m_turret.turretCanTurn(RobotContainer.m_turret.getPosition() - 20);
     }
-    else if(error < -1)
+    else if(error <= -1)
     {
       RobotContainer.m_turret.turretCanTurn(RobotContainer.m_turret.getPosition() + 20);
     }
   }
+
 
   // Called once the command ends or is interrupted.
   @Override
