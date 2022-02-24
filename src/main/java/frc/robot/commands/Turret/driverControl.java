@@ -21,16 +21,13 @@ public class driverControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(RobotContainer.driveStick.getPOV() == 270)
-    {
+    if(RobotContainer.driveStick.getPOV() == 270){
       RobotContainer.m_turret.turretTurnLeft();
     }
-    else if(RobotContainer.driveStick.getPOV() == 90)
-    {
+    else if(RobotContainer.driveStick.getPOV() == 90){
       RobotContainer.m_turret.turretTurnRight();
     }
-    else
-    {
+    else{
       RobotContainer.m_turret.stopTurret();
     }
   }

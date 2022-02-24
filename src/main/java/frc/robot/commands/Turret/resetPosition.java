@@ -17,55 +17,36 @@ public class resetPosition extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() 
-  {
+  public void initialize() {
     //timer.schedule(timeForReset, 0L, 4000L);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() 
-  {
-    if(RobotContainer.m_turret.turretLimitSwitchReflected())
-    {
-      
+  public void execute() {
+    if(RobotContainer.m_turret.turretLimitSwitchReflected()) { 
       RobotContainer.m_turret.stopTurret();
       RobotContainer.m_turret.resetEncoder();
-    }
-    else
-    {
+    } 
+    else {
       RobotContainer.m_turret.turretTurnLeft();
     }
   }
-  //   if(RobotContainer.m_turret.turretLimitSwitchReflected())
-  //   {
-  //     RobotContainer.m_turret.stopTurret();
-  //     RobotContainer.m_turret.resetEncoder();
-  //   }
-  //   else
-  //   {
-  //     RobotContainer.m_turret.turretTurnLeft();
-  //   }
-  // }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) 
-  {
+  public void end(boolean interrupted) {
     RobotContainer.m_turret.stopTurret();
     RobotContainer.m_turret.resetEncoder(); 
   }
 
   // Returns true when the command should end.
   @Override
-  public boolean isFinished() 
-  {
-    if(RobotContainer.m_turret.turretLimitSwitchReflected())
-    {
+  public boolean isFinished() {
+    if(RobotContainer.m_turret.turretLimitSwitchReflected()) {
       return true;
     }
-    else
-    {
+    else {
       return false;
     }
   }

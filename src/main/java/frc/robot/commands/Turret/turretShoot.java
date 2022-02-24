@@ -26,16 +26,13 @@ public class turretShoot extends CommandBase {
   public void execute() 
   {
     error = (double)Constants.visionTable.getEntry("Degrees").getNumber(Constants.defaultVisionTurretError);
-    if()
-    {
+    if(error <= 1 || error >= -1) {
       turretReady = true;
     }
-    else if(error >= 5)
-    {
+    else if(error >= 1) {
       RobotContainer.m_turret.turretCanTurn(RobotContainer.m_turret.getPosition() - 20);
     }
-    else if(error <= -5)
-    {
+    else if(error <= -1) {
       RobotContainer.m_turret.turretCanTurn(RobotContainer.m_turret.getPosition() + 20);
     }
   }
@@ -48,12 +45,10 @@ public class turretShoot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(turretReady)
-    {
+    if(turretReady) {
       return true;
     }
-    else
-    {
+    else {
       return false;
     }
   }
