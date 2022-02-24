@@ -4,14 +4,11 @@
 
 package frc.robot;
 
-
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.Climber.climbDown;
-import frc.robot.commands.Climber.climbUp;
+import frc.robot.commands.Climber.moveClimber;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -52,8 +49,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() 
   {
-    button1.whenHeld(new climbUp());
-    button2.whenHeld(new climbDown());
+    button1.whenHeld(new moveClimber(Climber.climbDirection.Up));
+    button2.whenHeld(new moveClimber(Climber.climbDirection.Down));
   }
 
   /**

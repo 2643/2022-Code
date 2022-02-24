@@ -4,8 +4,10 @@
 
 package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
+import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -17,11 +19,11 @@ public class Climber extends SubsystemBase {
   //private static WPI_TalonFX falcon_motor_dev2 = new WPI_TalonFX(3);
   
   //test later
-  private final double TalonMotorP = 0.1;
-  private final double TalonMotorI = 0.0000;
-  private final double TalonMotorD = 0.2;
+  private static final double TalonMotorP = 0.25;
+  private static final double TalonMotorI = 0.000008;
+  private static final double TalonMotorD = 0;
   // 0 is overshooting
-  private final double TalonMotorFF = 0.000;
+  private static final double TalonMotorFF = 0.000;
 
   int PIDSlot = 0; 
   double resetPosition = 0;
@@ -43,7 +45,12 @@ public class Climber extends SubsystemBase {
   double upHardLimit = 1000000;
 
   boolean softLimitEnable = true;
-  
+
+  public static enum climbDirection {
+    Up,
+    Down
+  }
+
   public Climber() {
 
     rightClimber.setSelectedSensorPosition(0,0,30);
@@ -56,6 +63,8 @@ public class Climber extends SubsystemBase {
     //rightClimber.set(ControlMode.MotionMagic,ConversionFactor);
     rightClimber.configPeakOutputForward(1);
     rightClimber.configPeakOutputReverse(-1);
+
+    rightClimber.setInverted(TalonFXInvertType.CounterClockwise);
 
     //rightClimber.configMotionAcceleration(250);
     //rightClimber.configMotionCruiseVelocity(500);

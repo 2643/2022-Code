@@ -3,8 +3,9 @@ package frc.robot.commands.Climber;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.Climber;
 
-public class climbUp extends CommandBase {
+public class moveClimber extends CommandBase {
   /** Creates a new climbUp. */
 
   private double position;
@@ -13,11 +14,13 @@ public class climbUp extends CommandBase {
   private double targetl;
   private double targetr;
   private double diffErr;
- 
 
-  public climbUp() {
+  private Climber.climbDirection m_direction;
+ 
+  public moveClimber(Climber.climbDirection direction) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.m_climber);
+    m_direction = direction;
   }
 
   // Called when the command is initially scheduled.
@@ -35,8 +38,13 @@ public class climbUp extends CommandBase {
     position = (posl + posr) / 2;
     diffErr = (posl - posr) * Constants.climberGain;
 
-    targetr = position + Constants.climberSpeed + diffErr;
-    targetl = position + Constants.climberSpeed - diffErr;
+    if (m_direction == Climber.climbDirection.Up) {
+      targetr = position + Constants.climberSpeed + diffErr;
+      targetl = position + Constants.climberSpeed - diffErr;
+    } else if (m_direction == Climber.climbDirection.Down) {
+      targetr = position - Constants.climberSpeed + diffErr;
+      targetl = position - Constants.climberSpeed - diffErr;
+    }
 
     RobotContainer.m_climber.movePositionl(targetl);
     RobotContainer.m_climber.movePositionr(targetr);
