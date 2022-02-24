@@ -16,7 +16,6 @@ public class Climber extends SubsystemBase {
   //TalonFX falcon_motor_dev1 = new TalonFX(3);
   //private static WPI_TalonFX falcon_motor_dev2 = new WPI_TalonFX(3);
   
-
   //test later
   private final double TalonMotorP = 0.1;
   private final double TalonMotorI = 0.0000;
@@ -44,6 +43,7 @@ public class Climber extends SubsystemBase {
   double upHardLimit = 1000000;
 
   boolean softLimitEnable = true;
+  
   public Climber() {
 
     rightClimber.setSelectedSensorPosition(0,0,30);
@@ -77,24 +77,31 @@ public class Climber extends SubsystemBase {
     leftClimber.configPeakOutputForward(1);
     leftClimber.configPeakOutputReverse(-1);
   }
+
   public boolean limitswitch(){
     return climberLimitSwitch.get();
   }
+
   public void setPositionR(double pos){
     rightClimber.setSelectedSensorPosition(pos);
   }
+
   public void setPositionL(double pos){
     leftClimber.setSelectedSensorPosition(pos);
   }
+
   public void percentOutputControlResetR(double speed){
     rightClimber.set(ControlMode.PercentOutput, speed);
   }
+
   public void percentOutputControlResetL(double speed){
     leftClimber.set(ControlMode.PercentOutput, speed);
   }
+
   public double getPositionR(){
     return rightClimber.getSelectedSensorPosition();
   }
+
   public double getPositionL(){
     return leftClimber.getSelectedSensorPosition();
   }
@@ -106,16 +113,13 @@ public class Climber extends SubsystemBase {
   public void movePositionl(double movepos){
     leftClimber.set(TalonFXControlMode.Position, movepos);
   }
+
   @Override
   public void periodic() {
-
     // This method will be called once per scheduler run
     //ok lol
     //falcon_motor_dev1.getSelectedSensorPosition();
     //System.out.println(rightClimber.getSelectedSensorPosition());
     //rightClimber.set(ControlMode.MotionMagic, 10000);
   }
-
-  
-
 }

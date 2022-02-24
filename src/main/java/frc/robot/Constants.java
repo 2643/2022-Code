@@ -14,10 +14,9 @@ package frc.robot;
  */
 public final class Constants {
 
-
     public static final int rightClimberPort = 3; //add port num later
     public static final int leftClimberPort = 4; //add port num later
-    
 
-
+    public static final double climberGain = 0.5;
+    public static final double climberSpeed = 300; // not really speed, but treat this like it
 }

@@ -65,12 +65,4 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
     return m_autoCommand;
   }
-
-  public static boolean button1() {
-    return false;
-  }
-
-public static boolean button2() {
-    return false;
-}
 }
