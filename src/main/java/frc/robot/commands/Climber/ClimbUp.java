@@ -7,8 +7,9 @@ public class climbUp extends CommandBase {
   /** Creates a new climbUp. */
 
   double position;
-  double posr = RobotContainer.m_climber.getPositionR();
-  double posl =RobotContainer.m_climber.getPositionL();
+  double posl;
+  double posr;
+ 
 
   public climbUp() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -18,7 +19,8 @@ public class climbUp extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
+    posr = RobotContainer.m_climber.getPositionR();
+    posl = RobotContainer.m_climber.getPositionL();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

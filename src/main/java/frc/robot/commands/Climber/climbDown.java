@@ -5,10 +5,10 @@ import frc.robot.RobotContainer;
 
 public class climbDown extends CommandBase {
   /** Creates a new climbUp. */
-
+  double posr;
+  double posl;
   double position;
-  double posr = RobotContainer.m_climber.getPositionR();
-  double posl =RobotContainer.m_climber.getPositionL();
+  
 
   public climbDown() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -18,6 +18,8 @@ public class climbDown extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    posr = RobotContainer.m_climber.getPositionR();
+    posl =RobotContainer.m_climber.getPositionL();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
