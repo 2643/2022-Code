@@ -14,17 +14,6 @@ package frc.robot;
  */
 public final class Constants {
 
-   /* public static final int DRIVETRAIN_FRONT_LEFT_MOTOR = 3;
-    public static final int DRIVETRAIN_BACK_LEFT_MOTOR = 4;
-
-    public static final int DRIVETRAIN_FRONT_RIGHT_MOTOR = 1;
-    public static final int DRIVETRAIN_BACK_RIGHT_MOTOR = 2;
-
-    public static final int JOYSTICK_LEFT_AXIS = 1;
-    public static final int JOYSTICK_RIGHT_AXIS = 5;
-    public static final double JOYSITCK_DEADBAND = 0.025;
-    public static boolean slowMode = false;
-    public static final double SLOW_MODE_MULTIPLIER = 0.5;*/
 
     public static final int rightClimberPort = 3; //add port num later
     public static final int leftClimberPort = 4; //add port num later

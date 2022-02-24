@@ -60,9 +60,12 @@ public class Climber extends SubsystemBase {
     //rightClimber.configMotionAcceleration(250);
     //rightClimber.configMotionCruiseVelocity(500);
 
-    leftClimber.configNeutralDeadband(0.001);
+    
 
+    //rightClimber.configMotionAcceleration(250);
+    //rightClimber.configMotionCruiseVelocity(500);
 
+    
     leftClimber.setSelectedSensorPosition(0,0,30);
     leftClimber.set(ControlMode.Position, 0);
     leftClimber.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0,30);
@@ -70,22 +73,24 @@ public class Climber extends SubsystemBase {
     leftClimber.config_kI(0,TalonMotorI);
     leftClimber.config_kD(0,TalonMotorD);
     leftClimber.config_kF(0, TalonMotorFF);
+    //rightClimber.set(ControlMode.MotionMagic,ConversionFactor);
     leftClimber.configPeakOutputForward(1);
     leftClimber.configPeakOutputReverse(-1);
-    leftClimber.configNeutralDeadband(0.001);
-    
   }
   public boolean limitswitch(){
-    
     return climberLimitSwitch.get();
-    
   }
-  public void setPosition(double pos){
+  public void setPositionR(double pos){
     rightClimber.setSelectedSensorPosition(pos);
   }
-  public void velocitycontrol(double speed){
-    rightClimber.set(TalonFXControlMode.Velocity,speed);
-
+  public void setPositionL(double pos){
+    leftClimber.setSelectedSensorPosition(pos);
+  }
+  public void percentOutputControlResetR(double speed){
+    rightClimber.set(ControlMode.PercentOutput, speed);
+  }
+  public void percentOutputControlResetL(double speed){
+    leftClimber.set(ControlMode.PercentOutput, speed);
   }
   public double getPositionR(){
     return rightClimber.getSelectedSensorPosition();
@@ -93,30 +98,17 @@ public class Climber extends SubsystemBase {
   public double getPositionL(){
     return leftClimber.getSelectedSensorPosition();
   }
-  public void movePositionR(double movePos){
-    if(getPositionR() >= upSoftLimit || getPositionR() <= downSoftLimit){
-      if(getPositionR() >= upHardLimit || getPositionR() <= downHardLimit){
-        rightClimber.set(ControlMode.Disabled, 0);
-      }
-    }
-    rightClimber.set(TalonFXControlMode.Position,movePos);
-  }
-  public void movePositionL(double movePos){
-    if(getPositionR() >= upSoftLimit || getPositionR() <= downSoftLimit){
-      if(getPositionR() >= upHardLimit || getPositionR() <= downHardLimit){
-        rightClimber.set(ControlMode.Disabled, 0);
-      }
-    }
-    leftClimber.set(TalonFXControlMode.Position,movePos);
-  }
-    
-  {
-    
-  }
- 
   
+  public void movePositionr(double movePos){
+    rightClimber.set(TalonFXControlMode.Position, movePos);
+  }
+
+  public void movePositionl(double movepos){
+    leftClimber.set(TalonFXControlMode.Position, movepos);
+  }
   @Override
   public void periodic() {
+
     // This method will be called once per scheduler run
     //ok lol
     //falcon_motor_dev1.getSelectedSensorPosition();

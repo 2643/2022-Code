@@ -28,16 +28,11 @@ public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-
-  //public static final Drivetrain m_drivetrain = new Drivetrain();
-
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  public static Joystick driveStick = new Joystick(0);
-
+  //public static Joystick joystick = new Joystick(0);
   public static final Climber m_climber = new Climber();
-
-  public static Joystick opboard = new Joystick(1);
+  public static Joystick opboard = new Joystick(0);
   public static JoystickButton button1 = new JoystickButton(opboard, 8); //check ports later(raise climber)
   public static JoystickButton button2 = new JoystickButton(opboard, 15); //check ports later(lower climber)
   

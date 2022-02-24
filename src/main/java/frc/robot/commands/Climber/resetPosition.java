@@ -24,32 +24,40 @@ public class resetPosition extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(!RobotContainer.m_climber.limitswitch())
-    {
-        RobotContainer.m_climber.setPosition(0);
-    }
-    else
-    {
-        RobotContainer.m_climber.movePositionR(0);
-        RobotContainer.m_climber.movePositionL(0);
-    }
+      if(RobotContainer.m_climber.limitswitch())
+      {
+        RobotContainer.m_climber.setPositionR(0);
+        RobotContainer.m_climber.setPositionL(0);
+
+      }
+      else
+      {
+        RobotContainer.m_climber.percentOutputControlResetR(-0.1);
+        RobotContainer.m_climber.percentOutputControlResetL(-0.1);
+        
+      }
     }
 
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) 
+  {
+    RobotContainer.m_climber.movePositionr(0);
+    RobotContainer.m_climber.movePositionl(0);
+
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(!RobotContainer.m_climber.limitswitch())
+    if(RobotContainer.m_climber.limitswitch())
     {
-        return true;
+      return true;
     }
     else
     {
-        return false;
+      return false;
     }
   }
 }
