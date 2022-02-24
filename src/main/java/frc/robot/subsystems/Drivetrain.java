@@ -10,6 +10,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -20,6 +21,8 @@ public class Drivetrain extends SubsystemBase {
 
   TalonFX drivetrainFrontRightMotor = new TalonFX(Constants.DRIVETRAIN_FRONT_RIGHT_MOTOR);
   TalonFX drivetrainBackRightMotor = new TalonFX(Constants.DRIVETRAIN_BACK_RIGHT_MOTOR);
+
+  ADIS16470_IMU imu = new ADIS16470_IMU();
 
   public static final double TalonFX_F = 0;
   public static final double TalonFX_P = 0.025;
@@ -85,6 +88,61 @@ public class Drivetrain extends SubsystemBase {
     setRightMotorVelocity(velocity);
   }
 
+<<<<<<< Updated upstream
+=======
+  public void setLeftMotorPercentOutput(double percent) {
+    drivetrainFrontLeftMotor.set(ControlMode.PercentOutput, percent);
+  }
+
+  public void setRightMotorPercentOutput(double percent) {
+    drivetrainFrontRightMotor.set(ControlMode.PercentOutput, percent);
+  }
+
+  public void setMotorPercentOutput(double percent){
+    setLeftMotorPercentOutput(percent);
+    setRightMotorPercentOutput(percent);
+    }
+
+  public void setLeftMotorPosition(double position) {
+    drivetrainFrontLeftMotor.set(ControlMode.MotionMagic, position);
+    drivetrainFrontLeftMotor.configMotionCruiseVelocity(Constants.DRIVETRAIN_VELOCITY);
+    drivetrainFrontLeftMotor.configMotionAcceleration(Constants.DRIVETRAIN_ACCELERATION);
+  }
+
+  public void setRightMotorPosition(double position) {
+    drivetrainFrontRightMotor.set(ControlMode.MotionMagic, position);
+    drivetrainFrontRightMotor.configMotionCruiseVelocity(Constants.DRIVETRAIN_VELOCITY);
+    drivetrainFrontRightMotor.configMotionAcceleration(Constants.DRIVETRAIN_ACCELERATION);
+  }
+
+  public void setMotorPosition(double position) {
+    setLeftMotorPosition(position);
+    setRightMotorPosition(position);
+  }
+
+  public double getLeftMotorPosition() {
+    return drivetrainFrontLeftMotor.getSelectedSensorPosition();
+  }
+
+  public double getRightMotorPosition() {
+    return drivetrainFrontRightMotor.getSelectedSensorPosition();
+  }
+
+  public void resetMotorEncoders() {
+    drivetrainFrontLeftMotor.setSelectedSensorPosition(0);
+    drivetrainFrontRightMotor.setSelectedSensorPosition(0);
+  }
+
+  public void turndegrees(double degrees){
+    if((  degrees >= imu.getAngle())){
+
+    }
+    else{
+
+    }
+  }
+
+>>>>>>> Stashed changes
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
