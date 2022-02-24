@@ -11,6 +11,7 @@ import frc.robot.RobotContainer;
 public class turretShoot extends CommandBase {
   /** Creates a new turretShoot. */
   boolean turretReady = false;
+  double error;
 
   public turretShoot() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -24,15 +25,16 @@ public class turretShoot extends CommandBase {
   @Override
   public void execute() 
   {
-    if(Constants.visionTurretError <= 10 || Constants.visionTurretError >= -10)
+    error = (double)Constants.visionTable.getEntry("Degrees").getNumber(Constants.defaultVisionTurretError);
+    if(error <= 1 || error >= -1)
     {
       turretReady = true;
     }
-    else if(Constants.visionTurretError > 10)
+    else if(error > 1)
     {
       RobotContainer.m_turret.turretCanTurn(RobotContainer.m_turret.getPosition() - 20);
     }
-    else if(Constants.visionTurretError < -10)
+    else if(error < -1)
     {
       RobotContainer.m_turret.turretCanTurn(RobotContainer.m_turret.getPosition() + 20);
     }

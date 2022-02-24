@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -35,5 +38,6 @@ public final class Constants {
 
     public static final int TurretMotorPort = 7;
     public static final int turretLimitSwitchPort = 0;
-    public static int visionTurretError = 0;
+    public static final double defaultVisionTurretError = 0;
+    public static NetworkTable visionTable = NetworkTableInstance.getDefault().getTable("vision-movement");
 }
