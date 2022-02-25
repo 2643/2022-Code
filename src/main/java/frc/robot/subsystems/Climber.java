@@ -40,10 +40,10 @@ public class Climber extends SubsystemBase {
   double gearBoxRatio = 1;//gear box ratio is 100:1 change later
   
   double downSoftLimit = 0;
-  double upSoftLimit = 1000000;
+  double upSoftLimit = 1400000;
 
-  double downHardLimit = -2000;
-  double upHardLimit = 1000000;
+  double downHardLimit = -9000;
+  double upHardLimit = 1409000;
 
   boolean softLimitEnable = true;
 
