@@ -48,8 +48,8 @@ public class moveClimber extends CommandBase {
 
     RobotContainer.m_climber.movePositionLimitL(targetl);
     RobotContainer.m_climber.movePositionLimitR(targetr);
-    //System.out.println("error L : " + (targetl - posl) + " " + "error R : " + (targetr - posr));
-    //System.out.println(posl - posr);
+    System.out.println("error R : " + (targetr - posr));
+    System.out.println(Climber.rightClimber.getStatorCurrent());
   }
 
   // Called once the command ends or is interrupted.

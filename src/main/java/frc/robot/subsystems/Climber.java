@@ -26,9 +26,9 @@ public class Climber extends SubsystemBase {
   // 0 is overshooting
   private static final double TalonMotorFF = 0.000;
   
-  TalonFX rightClimber = new TalonFX(Constants.rightClimberPort);
-  TalonFX leftClimber = new TalonFX(Constants.leftClimberPort);
-  DigitalInput climberLimitSwitch = new DigitalInput(4);
+  public static final TalonFX rightClimber = new TalonFX(Constants.rightClimberPort);
+  public static final TalonFX leftClimber = new TalonFX(Constants.leftClimberPort);
+  public static final DigitalInput climberLimitSwitch = new DigitalInput(4);
   
   public static final int timeoutSecondsTalonFX = 1;
 
@@ -130,6 +130,12 @@ public class Climber extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    System.out.println(getPositionL());
+    // Last resort safety measure for motors by measuring output current
+    if (Math.abs(rightClimber.getStatorCurrent()) > 40) {
+      rightClimber.set(ControlMode.Disabled, 0);
+    }
+    if (Math.abs(leftClimber.getStatorCurrent()) > 40) {
+      leftClimber.set(ControlMode.Disabled, 0);
+    }
   }
 }
