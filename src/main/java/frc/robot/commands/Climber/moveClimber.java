@@ -39,17 +39,17 @@ public class moveClimber extends CommandBase {
     diffErr = (posl - posr) * Constants.climberGain;
 
     if (m_direction == Climber.climbDirection.Up) {
-      targetr = position + Constants.climberSpeed + diffErr;
+      targetr = position + Constants.climberSpeed / 300 + diffErr;
       targetl = position + Constants.climberSpeed - diffErr;
     } else if (m_direction == Climber.climbDirection.Down) {
-      targetr = position - Constants.climberSpeed + diffErr;
+      targetr = position - Constants.climberSpeed / 300 + diffErr;
       targetl = position - Constants.climberSpeed - diffErr;
     }
 
-    RobotContainer.m_climber.movePositionl(targetl);
-    RobotContainer.m_climber.movePositionr(targetr);
-    System.out.println("error L : " + (targetl - posl) + " " + "error R : " + (targetr - posr));
-    System.out.println(posl - posr);
+    RobotContainer.m_climber.movePositionLimitL(targetl);
+    RobotContainer.m_climber.movePositionLimitR(targetr);
+    //System.out.println("error L : " + (targetl - posl) + " " + "error R : " + (targetr - posr));
+    //System.out.println(posl - posr);
   }
 
   // Called once the command ends or is interrupted.

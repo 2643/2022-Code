@@ -17,6 +17,14 @@ public final class Constants {
     public static final int rightClimberPort = 3; //add port num later
     public static final int leftClimberPort = 4; //add port num later
 
+    public static final double gearBoxRatio = 100; //gear box ratio is 100:1 
+  
+    public static final double downSoftLimit = 0;
+    public static final double upSoftLimit = 1250000;
+  
+    public static final double downHardLimit = -9000;
+    public static final double upHardLimit = 1259000;
+
     public static final double climberGain = 0.5;
-    public static final double climberSpeed = 300*30; // not really speed, but treat this like it
+    public static final double climberSpeed = 300 * 30; // not really speed, but treat this like it
 }
