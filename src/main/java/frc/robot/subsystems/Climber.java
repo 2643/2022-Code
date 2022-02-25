@@ -10,6 +10,7 @@ import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import frc.robot.commands.Climber.*;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -20,7 +21,7 @@ public class Climber extends SubsystemBase {
   
   //test later
   private static final double TalonMotorP = 0.25;
-  private static final double TalonMotorI = 0.000008;
+  private static final double TalonMotorI = 0.0000;
   private static final double TalonMotorD = 0;
   // 0 is overshooting
   private static final double TalonMotorFF = 0.000;
@@ -38,10 +39,10 @@ public class Climber extends SubsystemBase {
   public static final int timeoutSecondsTalonFX = 1;
   double gearBoxRatio = 1;//gear box ratio is 100:1 change later
   
-  double downSoftLimit = -1000000;
+  double downSoftLimit = 0;
   double upSoftLimit = 1000000;
 
-  double downHardLimit = -1000000;
+  double downHardLimit = -2000;
   double upHardLimit = 1000000;
 
   boolean softLimitEnable = true;
@@ -64,7 +65,7 @@ public class Climber extends SubsystemBase {
     rightClimber.configPeakOutputForward(1);
     rightClimber.configPeakOutputReverse(-1);
 
-    rightClimber.setInverted(TalonFXInvertType.CounterClockwise);
+    rightClimber.setInverted(TalonFXInvertType.Clockwise);
 
     //rightClimber.configMotionAcceleration(250);
     //rightClimber.configMotionCruiseVelocity(500);
@@ -85,7 +86,10 @@ public class Climber extends SubsystemBase {
     //rightClimber.set(ControlMode.MotionMagic,ConversionFactor);
     leftClimber.configPeakOutputForward(1);
     leftClimber.configPeakOutputReverse(-1);
+
+    leftClimber.setInverted(TalonFXInvertType.Clockwise);
   }
+  
 
   public boolean limitswitch(){
     return climberLimitSwitch.get();
@@ -116,10 +120,33 @@ public class Climber extends SubsystemBase {
   }
   
   public void movePositionr(double movePos){
-    rightClimber.set(TalonFXControlMode.Position, movePos);
+    if((moveClimber.targetr >= upSoftLimit || moveClimber.targetr <= downSoftLimit)){
+      if(getPositionR() >= upHardLimit || getPositionR() <= downHardLimit){
+        rightClimber.set(ControlMode.Disabled, 0);
+      }
+    }
+    else{
+      rightClimber.set(TalonFXControlMode.Position,movePos);
+    }
   }
 
   public void movePositionl(double movepos){
+    leftClimber.set(TalonFXControlMode.Position, movepos);
+    if((moveClimber.targetl >= upSoftLimit || moveClimber.targetl <= downSoftLimit)){
+      if(getPositionR() >= upHardLimit || getPositionR() <= downHardLimit){
+        leftClimber.set(ControlMode.Disabled, 0);
+      }
+    }
+    else{
+      leftClimber.set(TalonFXControlMode.Position,movepos);
+    }
+  }
+
+  public void moveResetPositionr(double movePos){
+    rightClimber.set(TalonFXControlMode.Position, movePos);
+  }
+
+  public void moveResetPositionl(double movepos){
     leftClimber.set(TalonFXControlMode.Position, movepos);
   }
 
@@ -128,7 +155,7 @@ public class Climber extends SubsystemBase {
     // This method will be called once per scheduler run
     //ok lol
     //falcon_motor_dev1.getSelectedSensorPosition();
-    //System.out.println(rightClimber.getSelectedSensorPosition());
+    System.out.println(rightClimber.getSelectedSensorPosition());
     //rightClimber.set(ControlMode.MotionMagic, 10000);
   }
 }

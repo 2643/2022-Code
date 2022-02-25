@@ -11,8 +11,8 @@ public class moveClimber extends CommandBase {
   private double position;
   private double posl;
   private double posr;
-  private double targetl;
-  private double targetr;
+  public static double targetl;
+  public static double targetr;
   private double diffErr;
 
   private Climber.climbDirection m_direction;
