@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Turret.turretShoot;
-import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Turret;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -26,7 +25,7 @@ public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
 
-  public static final Drivetrain m_drivetrain = new Drivetrain();
+  //public static final Drivetrain m_drivetrain = new Drivetrain();
 
   public static Turret m_turret = new Turret();
 

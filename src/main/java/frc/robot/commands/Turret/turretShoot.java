@@ -10,7 +10,7 @@ import frc.robot.RobotContainer;
 
 public class turretShoot extends CommandBase {
   /** Creates a new turretShoot. */
-  boolean turretReady = false;
+  boolean turretReady;
   double error;
 
   public turretShoot() {
@@ -19,7 +19,10 @@ public class turretShoot extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() 
+  {
+    turretReady = false;
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
