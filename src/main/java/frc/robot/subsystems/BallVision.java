@@ -20,12 +20,22 @@ public class BallVision extends SubsystemBase {
       Alliance color = DriverStation.getAlliance();
       String colorString;
       if(color == Alliance.Red)
+      {
         colorString = "Red";
+      }
       else if(color == Alliance.Blue)
+      {
         colorString = "Blue";
+      }
       else
+      {
         colorString = "Can't find color";
-    table.getEntry("color").setString(colorString);
+      }
+      table.getEntry("color").setString(colorString);
+  }
+  public double getCenter()
+  {
+    return table.getEntry("center").getDouble(-1);
   }
   @Override
   public void periodic() {

@@ -5,15 +5,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.BallVision;
+import frc.robot.RobotContainer;
 
 public class FindBall extends CommandBase {
-  private final BallVision m_ballvision;
 
-  public FindBall(BallVision subsystem) 
+  public FindBall() 
   {
-    m_ballvision = subsystem;
-    addRequirements(subsystem);
+    addRequirements(RobotContainer.m_ballvision);
   }
 
   // Called when the command is initially scheduled.
@@ -22,9 +20,12 @@ public class FindBall extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
-
-  // Called once the command ends or is interrupted.
+  public void execute() 
+  {
+    RobotContainer.m_ballvision.sendColor();
+    double center = RobotContainer.m_ballvision.getCenter();
+    System.out.println(center);
+  }
   @Override
   public void end(boolean interrupted) {}
 
