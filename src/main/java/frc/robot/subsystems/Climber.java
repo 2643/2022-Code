@@ -28,7 +28,8 @@ public class Climber extends SubsystemBase {
   
   public static final TalonFX rightClimber = new TalonFX(Constants.rightClimberPort);
   public static final TalonFX leftClimber = new TalonFX(Constants.leftClimberPort);
-  public static final DigitalInput climberLimitSwitch = new DigitalInput(4);
+  public static final DigitalInput climberLimitSwitchR = new DigitalInput(4);
+  public static final DigitalInput climberLimitSwitchL = new DigitalInput(3);
   
   public static final int timeoutSecondsTalonFX = 1;
 
@@ -49,7 +50,7 @@ public class Climber extends SubsystemBase {
     rightClimber.configPeakOutputForward(1);
     rightClimber.configPeakOutputReverse(-1);
 
-    rightClimber.setInverted(TalonFXInvertType.Clockwise);
+    //rightClimber.setInverted(TalonFXInvertType.CounterClockwise);
 
     //rightClimber.configMotionAcceleration(250);
     //rightClimber.configMotionCruiseVelocity(500);
@@ -71,12 +72,16 @@ public class Climber extends SubsystemBase {
     leftClimber.configPeakOutputForward(1);
     leftClimber.configPeakOutputReverse(-1);
 
-    //leftClimber.setInverted(TalonFXInvertType.Clockwise);
+    leftClimber.setInverted(TalonFXInvertType.Clockwise);
   }
   
 
-  public boolean limitswitch(){
-    return climberLimitSwitch.get();
+  public boolean limitswitchR(){
+    return climberLimitSwitchR.get();
+  }
+
+  public boolean limitswitchL(){
+    return climberLimitSwitchL.get();
   }
 
   public void setPositionR(double pos){

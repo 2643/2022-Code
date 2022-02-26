@@ -14,8 +14,8 @@ package frc.robot;
  */
 public final class Constants {
 
-    public static final int rightClimberPort = 3; //add port num later
-    public static final int leftClimberPort = 4; //add port num later
+    public static final int rightClimberPort = 4; //add port num later
+    public static final int leftClimberPort = 3; //add port num later
 
     public static final double gearBoxRatio = 100; //gear box ratio is 100:1 
   
