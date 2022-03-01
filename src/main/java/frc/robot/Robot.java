@@ -64,7 +64,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-    Constants.slowMode = false;
+    //Constants.slowMode = false;
   }
 
   /** This function is called periodically during autonomous. */
@@ -77,7 +77,7 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    Constants.slowMode = true;
+    //Constants.slowMode = true;
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
