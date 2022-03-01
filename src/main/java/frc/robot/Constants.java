@@ -26,5 +26,5 @@ public final class Constants {
     public static final double upHardLimit = 1259000;
 
     public static final double climberGain = 0.5;
-    public static final double climberSpeed = 300 * 30; // not really speed, but treat this like it
+    public static final double climberSpeed = 500 * 100; // not really speed, but treat this like it
 }

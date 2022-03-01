@@ -8,8 +8,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
 public class resetPosition extends CommandBase {
-  private double upr=RobotContainer.m_climber.getPositionR() + 115000;
-  private double upl=RobotContainer.m_climber.getPositionL() + 115000;
+  private double upr = RobotContainer.m_climber.getPositionR() + 115000;
+  private double upl = RobotContainer.m_climber.getPositionL() + 115000;
+
+  private boolean zeroedPositionR = false;
+  private boolean zeroedPositionL = false;
+
 
   /** Creates a new ClimbUp. */
   public resetPosition() {
@@ -29,15 +33,25 @@ public class resetPosition extends CommandBase {
   public void execute() {
     if(!RobotContainer.m_climber.limitswitchR()) {
       RobotContainer.m_climber.percentOutputControlResetR(0.0);
+      if (!zeroedPositionR) {
+        RobotContainer.m_climber.setPositionR(20000);
+        RobotContainer.m_climber.movePositionR(0);
+        zeroedPositionR = true;
+      }
     }
     if(!RobotContainer.m_climber.limitswitchL()){
       RobotContainer.m_climber.percentOutputControlResetL(0.0);
+      if (!zeroedPositionL) {
+        RobotContainer.m_climber.setPositionL(20000);
+        RobotContainer.m_climber.movePositionL(0);
+        zeroedPositionL = true;
+      }
     }
     else if(upr-RobotContainer.m_climber.getPositionR() <= 400 & upr-RobotContainer.m_climber.getPositionR() >= -400) {
-      RobotContainer.m_climber.percentOutputControlResetR(-0.5);
+      RobotContainer.m_climber.percentOutputControlResetR(-0.9);
     }
     else if(upl-RobotContainer.m_climber.getPositionL() <=400 & upl-RobotContainer.m_climber.getPositionL() >= -400){
-      RobotContainer.m_climber.percentOutputControlResetL(-0.5);   
+      RobotContainer.m_climber.percentOutputControlResetL(-0.9);   
     }
   }
 
@@ -46,20 +60,17 @@ public class resetPosition extends CommandBase {
   public void end(boolean interrupted) {
     RobotContainer.m_climber.percentOutputControlResetR(0.0);
     RobotContainer.m_climber.percentOutputControlResetL(0.0);
-    RobotContainer.m_climber.setPositionR(20000);
-    RobotContainer.m_climber.setPositionL(20000);
-    RobotContainer.m_climber.movePositionR(0);
-    RobotContainer.m_climber.movePositionL(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     if(!RobotContainer.m_climber.limitswitchR() && !RobotContainer.m_climber.limitswitchL()) {
-      return true;
-    }
-    else {
+      if(zeroedPositionL && zeroedPositionR){
+        return true;
+      }
       return false;
     }
+    return false;
   }
 }

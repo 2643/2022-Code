@@ -40,7 +40,6 @@ public class Climber extends SubsystemBase {
 
   public Climber() {
     rightClimber.setSelectedSensorPosition(0,0,30);
-    rightClimber.set(ControlMode.Position, 0);
     rightClimber.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0,30);
     rightClimber.config_kP(0,TalonMotorP);
     rightClimber.config_kI(0,TalonMotorI);
@@ -62,7 +61,6 @@ public class Climber extends SubsystemBase {
 
     
     leftClimber.setSelectedSensorPosition(0,0,30);
-    leftClimber.set(ControlMode.Position, 0);
     leftClimber.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0,30);
     leftClimber.config_kP(0,TalonMotorP);
     leftClimber.config_kI(0,TalonMotorI);
