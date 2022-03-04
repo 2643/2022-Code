@@ -33,25 +33,19 @@ public class resetPosition extends CommandBase {
   public void execute() {
     if(!RobotContainer.m_climber.limitswitchR()) {
       RobotContainer.m_climber.percentOutputControlResetR(0.0);
-      if (!zeroedPositionR) {
-        RobotContainer.m_climber.setPositionR(20000);
-        RobotContainer.m_climber.movePositionR(0);
-        zeroedPositionR = true;
-      }
+      RobotContainer.m_climber.setPositionR(20000);
+      RobotContainer.m_climber.movePositionR(20000);
     }
-    if(!RobotContainer.m_climber.limitswitchL()){
+    else if(upr-RobotContainer.m_climber.getPositionR() <= 750 & upr-RobotContainer.m_climber.getPositionR() >= -750) {
+      RobotContainer.m_climber.percentOutputControlResetR(-0.5);
+    }
+    if(!RobotContainer.m_climber.limitswitchL()) {
       RobotContainer.m_climber.percentOutputControlResetL(0.0);
-      if (!zeroedPositionL) {
-        RobotContainer.m_climber.setPositionL(20000);
-        RobotContainer.m_climber.movePositionL(0);
-        zeroedPositionL = true;
-      }
+      RobotContainer.m_climber.setPositionL(20000);
+      RobotContainer.m_climber.movePositionL(20000);
     }
-    else if(upr-RobotContainer.m_climber.getPositionR() <= 400 & upr-RobotContainer.m_climber.getPositionR() >= -400) {
-      RobotContainer.m_climber.percentOutputControlResetR(-0.9);
-    }
-    else if(upl-RobotContainer.m_climber.getPositionL() <=400 & upl-RobotContainer.m_climber.getPositionL() >= -400){
-      RobotContainer.m_climber.percentOutputControlResetL(-0.9);   
+    else if(upl-RobotContainer.m_climber.getPositionL() <= 750 & upl-RobotContainer.m_climber.getPositionL() >= -750) {
+      RobotContainer.m_climber.percentOutputControlResetL(-0.5);   
     }
   }
 
@@ -60,6 +54,8 @@ public class resetPosition extends CommandBase {
   public void end(boolean interrupted) {
     RobotContainer.m_climber.percentOutputControlResetR(0.0);
     RobotContainer.m_climber.percentOutputControlResetL(0.0);
+    RobotContainer.m_climber.movePositionR(0);
+    RobotContainer.m_climber.movePositionL(0);
   }
 
   // Returns true when the command should end.
