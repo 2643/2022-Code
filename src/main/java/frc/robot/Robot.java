@@ -29,7 +29,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    CommandScheduler.getInstance().schedule(new FindBall());
+   // CommandScheduler.getInstance().schedule(new FindBall());
   }
 
   /**
@@ -81,12 +81,14 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    RobotContainer.m_findball.initialize();
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() 
   {
+    RobotContainer.m_findball.execute();
   }
 
   @Override

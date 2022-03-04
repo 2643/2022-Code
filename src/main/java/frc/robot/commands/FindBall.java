@@ -16,13 +16,15 @@ public class FindBall extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() 
+  {
+    RobotContainer.m_ballvision.sendColor();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() 
   {
-    RobotContainer.m_ballvision.sendColor();
     double center = RobotContainer.m_ballvision.getCenter();
     System.out.println(center);
   }
