@@ -81,6 +81,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    RobotContainer.m_findball.initialize();
   }
 
   /** This function is called periodically during operator control. */
@@ -99,6 +100,7 @@ public class Robot extends TimedRobot {
         Constants.percentOutputControl = false;
       }
     }
+    RobotContainer.m_findball.execute();
   }
 
   @Override
