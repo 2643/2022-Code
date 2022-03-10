@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.Climber.moveClimber;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -20,11 +22,13 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+
+
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  public static final Drivetrain m_drivetrain = new Drivetrain();
-
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+
+  public static final Drivetrain m_drivetrain = new Drivetrain();
 
   public static Joystick driveStick = new Joystick(0);
   public static Joystick opboard = new Joystick(1);
@@ -33,6 +37,13 @@ public class RobotContainer {
 
   
 
+  //public static Joystick joystick = new Joystick(0);
+  public static final Climber m_climber = new Climber();
+  public static JoystickButton button1 = new JoystickButton(opboard, 8); //check ports later(raise climber)
+  public static JoystickButton button2 = new JoystickButton(opboard, 15); //check ports later(lower climber)
+  
+  
+  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -58,6 +69,8 @@ public class RobotContainer {
         Constants.percentOutputControl = false;
       }
     }
+    button1.whenHeld(new moveClimber(Climber.climbDirection.Up));
+    button2.whenHeld(new moveClimber(Climber.climbDirection.Down));
   }
 
   /**
