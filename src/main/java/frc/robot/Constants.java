@@ -21,7 +21,11 @@ public final class Constants {
 
     public static final int JOYSTICK_LEFT_AXIS = 1;
     public static final int JOYSTICK_RIGHT_AXIS = 5;
-    public static final double JOYSITCK_DEADBAND = 0.025;
+    public static final double JOYSITCK_DEADBAND = 0.05;
     public static boolean slowMode = false;
     public static final double SLOW_MODE_MULTIPLIER = 0.5;
+    
+    // Max output set speed point to 66k
+    public static double TANKDRIVE_SETPOINT = 33000;
+    public static final double TANKDRIVE_SLEW_RATE = 1980/TANKDRIVE_SETPOINT;
 }

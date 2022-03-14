@@ -6,6 +6,7 @@ package frc.robot.commands.Drivetrain;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class Tankdrive extends CommandBase {
@@ -13,6 +14,7 @@ public class Tankdrive extends CommandBase {
   private double leftSpeed = 0;
   private double rightSpeed = 0;
   private boolean finished = false;
+  private int loopcounter = 0;
 
   public Tankdrive() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -32,30 +34,67 @@ public class Tankdrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    double left_input = RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS);
+    double right_input = RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS);
+
     if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS)) > Constants.JOYSITCK_DEADBAND) {
       if(Constants.slowMode == true){
         leftSpeed = Constants.SLOW_MODE_MULTIPLIER*(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS));
       } else {
-        leftSpeed = (RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS));
+        if (leftSpeed - left_input > Constants.TANKDRIVE_SLEW_RATE) {
+          leftSpeed -= Constants.TANKDRIVE_SLEW_RATE;
+        }
+        else if (leftSpeed - left_input < -Constants.TANKDRIVE_SLEW_RATE) {
+          leftSpeed += Constants.TANKDRIVE_SLEW_RATE;
+        }
+        else {
+          leftSpeed = left_input;
+        }
       }
-    }
-    else{
-      leftSpeed = 0;
+    } else {
+      if (leftSpeed > Constants.TANKDRIVE_SLEW_RATE) {
+        leftSpeed -= Constants.TANKDRIVE_SLEW_RATE;
+      }
+      else if (leftSpeed < -Constants.TANKDRIVE_SLEW_RATE) {
+        leftSpeed += Constants.TANKDRIVE_SLEW_RATE;
+      }
+      else {
+        leftSpeed = 0;
+      }
     }
 
     if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS)) > Constants.JOYSITCK_DEADBAND) {
       if(Constants.slowMode == true){
         rightSpeed = Constants.SLOW_MODE_MULTIPLIER*(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS));
       } else {
-        rightSpeed = (RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS));
+        if (rightSpeed - right_input > Constants.TANKDRIVE_SLEW_RATE) {
+          rightSpeed -= Constants.TANKDRIVE_SLEW_RATE;
+        }
+        else if (rightSpeed - right_input < -Constants.TANKDRIVE_SLEW_RATE) {
+          rightSpeed += Constants.TANKDRIVE_SLEW_RATE;
+        }
+        else {
+          rightSpeed = right_input;
+        }
+      }
+    } else {
+      if (rightSpeed > Constants.TANKDRIVE_SLEW_RATE) {
+        rightSpeed -= Constants.TANKDRIVE_SLEW_RATE;
+      }
+      else if (rightSpeed < -Constants.TANKDRIVE_SLEW_RATE) {
+        rightSpeed += Constants.TANKDRIVE_SLEW_RATE;
+      }
+      else {
+        rightSpeed = 0;
       }
     }
-    else {
-      rightSpeed = 0;
+
+    RobotContainer.m_drivetrain.setLeftMotorVelocity(leftSpeed*Constants.TANKDRIVE_SETPOINT);
+    RobotContainer.m_drivetrain.setRightMotorVelocity(rightSpeed*Constants.TANKDRIVE_SETPOINT);
+
+    if (++loopcounter%50 == 0) {
+      System.out.println(RobotContainer.driveStick.getAxisCount());
     }
-    
-    RobotContainer.m_drivetrain.setLeftMotorVelocity(leftSpeed*44000);
-    RobotContainer.m_drivetrain.setRightMotorVelocity(rightSpeed*44000);
   }
 
   // Called once the command ends or is interrupted.

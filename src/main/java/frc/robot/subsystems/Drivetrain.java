@@ -25,6 +25,8 @@ public class Drivetrain extends SubsystemBase {
   public static final double TalonFX_P = 0.025;
   public static final double TalonFX_I = 0.0000;
   public static final double TalonFX_D = 0.0075;
+
+  public static int loopcounter = 0;
   
   public Drivetrain() {
     TalonFX[] drivetrainMotors = {drivetrainFrontLeftMotor, drivetrainBackLeftMotor,drivetrainFrontRightMotor, drivetrainBackRightMotor};
@@ -73,6 +75,7 @@ public class Drivetrain extends SubsystemBase {
 
   public void setLeftMotorVelocity(double velocity) {
     drivetrainFrontLeftMotor.set(ControlMode.Velocity, velocity);
+    if (loopcounter%50 == 0)
     System.out.println(velocity);
   }
 
@@ -88,6 +91,9 @@ public class Drivetrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    System.out.println(drivetrainBackLeftMotor.getSelectedSensorVelocity() + " " + drivetrainBackLeftMotor.getStatorCurrent());
+    if (++loopcounter%50 == 0) {
+      // System.out.println("Actual Output: " + drivetrainBackLeftMotor.getSelectedSensorVelocity() + " " + drivetrainBackLeftMotor.getStatorCurrent());
+      loopcounter = 0;
+    }
   }
 }
