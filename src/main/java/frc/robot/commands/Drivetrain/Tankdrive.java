@@ -6,7 +6,6 @@ package frc.robot.commands.Drivetrain;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class Tankdrive extends CommandBase {
@@ -24,8 +23,8 @@ public class Tankdrive extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS)) < Constants.JOYSITCK_DEADBAND) {
-      if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS)) < Constants.JOYSITCK_DEADBAND) {
+    if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS)) < Constants.JOYSITCK_DEADBAND && leftSpeed == 0) {
+      if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS)) < Constants.JOYSITCK_DEADBAND && rightSpeed == 0) {
         finished = true;
       }
     }
@@ -38,7 +37,7 @@ public class Tankdrive extends CommandBase {
     double right_input = RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS);
 
     if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS)) > Constants.JOYSITCK_DEADBAND) {
-      if(Constants.slowMode == true){
+      if(Constants.slowMode == true) {
         leftSpeed = Constants.SLOW_MODE_MULTIPLIER*(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS));
       } else {
         if (leftSpeed - left_input > Constants.TANKDRIVE_SLEW_RATE) {
@@ -64,7 +63,7 @@ public class Tankdrive extends CommandBase {
     }
 
     if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS)) > Constants.JOYSITCK_DEADBAND) {
-      if(Constants.slowMode == true){
+      if(Constants.slowMode == true) {
         rightSpeed = Constants.SLOW_MODE_MULTIPLIER*(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS));
       } else {
         if (rightSpeed - right_input > Constants.TANKDRIVE_SLEW_RATE) {
