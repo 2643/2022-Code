@@ -25,15 +25,15 @@ public final class Constants {
     public static final double SLOW_MODE_MULTIPLIER = 0.5;
     
     // Max output set speed point to 66k
-    public static double TANKDRIVE_SETPOINT = 33000;
+    public static double TANKDRIVE_SETPOINT = 66000;
     public static final double TANKDRIVE_SLEW_RATE = 1980/TANKDRIVE_SETPOINT;
 
     public static final double DRIVETRAIN_ALLOWED_ERROR = 2048;
     public static final double DRIVETRAIN_VELOCITY = 22000;
     public static final double DRIVETRAIN_ACCELERATION = 2200;
 
-    public static final int rightClimberPort = 4; //add port num later
-    public static final int leftClimberPort = 3; //add port num later
+    public static final int rightClimberPort = 6; //add port num later
+    public static final int leftClimberPort = 5; //add port num later
 
     public static final double gearBoxRatio = 100; //gear box ratio is 100:1 
   

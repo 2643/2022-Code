@@ -78,8 +78,6 @@ public class Drivetrain extends SubsystemBase {
 
   public void setLeftMotorVelocity(double velocity) {
     drivetrainFrontLeftMotor.set(ControlMode.Velocity, velocity);
-    if (loopcounter%50 == 0)
-    System.out.println(velocity);
   }
 
   public void setRightMotorVelocity(double velocity) {
@@ -156,9 +154,9 @@ public class Drivetrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    if (++loopcounter%50 == 0) {
-      // System.out.println("Actual Output: " + drivetrainBackLeftMotor.getSelectedSensorVelocity() + " " + drivetrainBackLeftMotor.getStatorCurrent());
-      loopcounter = 0;
-    }
+    // if (++loopcounter%50 == 0) {
+    //   System.out.println("Actual Output: " + drivetrainBackLeftMotor.getSelectedSensorVelocity() + " " + drivetrainBackLeftMotor.getStatorCurrent());
+    //   loopcounter = 0;
+    // }
   }
 }
