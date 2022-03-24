@@ -13,20 +13,5 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final int DRIVETRAIN_FRONT_LEFT_MOTOR = 3;
-    public static final int DRIVETRAIN_BACK_LEFT_MOTOR = 4;
 
-    public static double DRIVETRAIN_VELOCITY = 22000;
-    public static double DRIVETRAIN_ACCELERATION = 2200;
-
-    public static final int DRIVETRAIN_FRONT_RIGHT_MOTOR = 1;
-    public static final int DRIVETRAIN_BACK_RIGHT_MOTOR = 2;
-
-    public static final int JOYSTICK_LEFT_AXIS = 1;
-    public static final int JOYSTICK_RIGHT_AXIS = 5;
-    public static final double JOYSITCK_DEADBAND = 0.025;
-    public static boolean slowMode = false;
-    public static double SLOW_MODE_MULTIPLIER = 1;
-
-    public static boolean percentOutputControl = false;
 }

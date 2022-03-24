@@ -19,14 +19,14 @@ public class BallVision extends SubsystemBase {
   {
       Alliance color = DriverStation.getAlliance();
       String colorString;
-      if(color == Alliance.Red)
+      if(color == Alliance.Red) 
       {
         colorString = "Red";
-      }
+      } 
       else if(color == Alliance.Blue)
       {
         colorString = "Blue";
-      }
+      } 
       else
       {
         colorString = "Can't find color";
