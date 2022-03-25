@@ -8,12 +8,12 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.BallVision;
 // import frc.robot.commands.Climber.moveClimber;
 // import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -32,6 +32,8 @@ public class RobotContainer {
 
   public static Joystick driveStick = new Joystick(0);
   public static Joystick opBoard = new Joystick(1);
+
+  public static final BallVision m_ballvision = new BallVision();
 
   //public static Joystick joystick = new Joystick(0);
   // public static final Climber m_climber = new Climber();
