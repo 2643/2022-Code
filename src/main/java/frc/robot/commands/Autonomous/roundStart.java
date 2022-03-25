@@ -5,6 +5,8 @@
 package frc.robot.commands.Autonomous;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.ADISGyro.turnRobot;
+import frc.robot.commands.Drivetrain.MovePosition;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -14,5 +16,8 @@ public class roundStart extends SequentialCommandGroup {
   public roundStart() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
+
+    //Need to add: Intake, Shooter, Delay, BallVision, Vision, Hood, Turret, Shuffleboard, and multiple operations
+    addCommands(new MovePosition(-4096*10), new turnRobot(180));
   }
 }

@@ -7,7 +7,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.ADISGyro;
 // import frc.robot.subsystems.BallVision;
 // import frc.robot.commands.Climber.moveClimber;
 // import frc.robot.subsystems.Climber;
@@ -29,6 +31,7 @@ public class RobotContainer {
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   public static final Drivetrain m_drivetrain = new Drivetrain();
+  public static final ADISGyro m_gyro = new ADISGyro();
 
   public static Joystick driveStick = new Joystick(0);
   public static Joystick opBoard = new Joystick(1);

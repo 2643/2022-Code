@@ -22,7 +22,6 @@ public class Drivetrain extends SubsystemBase {
   TalonFX drivetrainFrontRightMotor = new TalonFX(Constants.DRIVETRAIN_FRONT_RIGHT_MOTOR);
   TalonFX drivetrainBackRightMotor = new TalonFX(Constants.DRIVETRAIN_BACK_RIGHT_MOTOR);
 
-  ADIS16470_IMU imu = new ADIS16470_IMU();
 
   public static final double TalonFX_F = 0;
   public static final double TalonFX_P = 0.025;
@@ -132,24 +131,7 @@ public class Drivetrain extends SubsystemBase {
     drivetrainFrontRightMotor.setSelectedSensorPosition(0);
   }
 
-  public double gyroAngle(){
-    return imu.getAngle();
-  }
-
-  public void turnClockwiseDegrees(double degrees){
-    if(Math.round(gyroAngle()) == degrees){
-      setRightMotorVelocity(0);
-      setLeftMotorVelocity(0);
-    }
-    else if(gyroAngle() > degrees){
-      setRightMotorVelocity(-0.5);
-      setLeftMotorVelocity(0.5);
-    }
-    else if(gyroAngle() < degrees){
-      setRightMotorVelocity(0.5);
-      setLeftMotorVelocity(-0.5);
-    }
-  }
+  
 
   @Override
   public void periodic() {
