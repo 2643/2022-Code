@@ -1,196 +1,196 @@
-// // Copyright (c) FIRST and other WPILib contributors.
-// // Open Source Software; you can modify and/or share it under the terms of
-// // the WPILib BSD license file in the root directory of this project.
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
 
-// package frc.robot.subsystems;
+package frc.robot.subsystems;
 
 
-// import com.revrobotics.CANSparkMax;
-// import com.revrobotics.ControlType;
-// import com.revrobotics.CANSparkMax.IdleMode;
-// import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-// import edu.wpi.first.networktables.NetworkTableEntry;
-// import edu.wpi.first.wpilibj.DigitalInput;
-// import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-// import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-// import edu.wpi.first.wpilibj2.command.SubsystemBase;
-// import frc.robot.commands.Turret.*;
-// import frc.robot.Constants;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.commands.Turret.*;
+import frc.robot.Constants;
 
-// public class TurretSubsystem extends SubsystemBase {
-//   /** Creates a new TurretSubsystem. */
+public class TurretSubsystem extends SubsystemBase {
+  /** Creates a new TurretSubsystem. */
 
-//   CANSparkMax turretCanSparkMax = new CANSparkMax(Constants.TurretMotorPort, MotorType.kBrushless);
-//   DigitalInput turretLimitSwitch = new DigitalInput(10);
-//   int TurretVelocityPIDSlot = 0;
-//   int TurretPositionPIDSlot = 1;
+  CANSparkMax turretCanSparkMax = new CANSparkMax(Constants.TurretMotorPort, MotorType.kBrushless);
+  DigitalInput turretLimitSwitch = new DigitalInput(10);
+  int TurretVelocityPIDSlot = 0;
+  int TurretPositionPIDSlot = 1;
 
-//   int stopSpeed = 0;
-//   double leftTurnSpeed = -0.1;
-//   double rightTurnSpeed = 0.1;
+  int stopSpeed = 0;
+  double leftTurnSpeed = -0.1;
+  double rightTurnSpeed = 0.1;
 
-//   //Needs accurate values
-//   int LeftSoftLimit = -210000;
-//   int RightSoftLimit = 230000;
+  //Needs accurate values
+  int LeftSoftLimit = -210000;
+  int RightSoftLimit = 230000;
 
-//   int LeftHardLimit = -230000;
-//   int RightHardLimit = 250000;
-//   //Needs testing
-//   double TurretSmartVelocityP = 0.0001;
-//   //Tested:
-//     //0.00001 Doesn't move
-//     //0.0001 Moves slowly
-//   double TurretSmartVelocityI = 0;
-//   double TurretSmartVelocityD = 0;
+  int LeftHardLimit = -230000;
+  int RightHardLimit = 250000;
+  //Needs testing
+  double TurretSmartVelocityP = 0.0001;
+  //Tested:
+    //0.00001 Doesn't move
+    //0.0001 Moves slowly
+  double TurretSmartVelocityI = 0;
+  double TurretSmartVelocityD = 0;
 
-//   //double TurretSmartMotionP = 0.00004;
-//   double TurretSmartMotionI = 0;
-//   double TurretSmartMotionD = 0;
+  //double TurretSmartMotionP = 0.00004;
+  double TurretSmartMotionI = 0;
+  double TurretSmartMotionD = 0;
   
-//   double TurretFF = 0;
+  double TurretFF = 0;
 
-//   double TurretOutputMax = 0.5;
-//   double TurretOutputMin = -0.5;
-//   int ConversionFactor = 4096;
-//   int zeroPosition = 0;
+  double TurretOutputMax = 0.5;
+  double TurretOutputMin = -0.5;
+  int ConversionFactor = 4096;
+  int zeroPosition = 0;
 
-//   //Max v(t) and a(t) during Smart Velocity
-//   double SmartVelocityMaxAcceleration = 750;
-//   double SmartVelocityMaxVelocity = 2000;
+  //Max v(t) and a(t) during Smart Velocity
+  double SmartVelocityMaxAcceleration = 750;
+  double SmartVelocityMaxVelocity = 2000;
 
-//   double SmartMotionMaxAcceleration = 1000;
-//   double SmartMotionMaxVelocity = 1500;
+  double SmartMotionMaxAcceleration = 1000;
+  double SmartMotionMaxVelocity = 1500;
 
-//   //4096 represents 1 revolution
-//   int TurretPosition = 4096 * 1;
+  //4096 represents 1 revolution
+  int TurretPosition = 4096 * 1;
 
-//   //Motor is inverted so that when -speed will turn left and +speed will turn right
-//   boolean InvertMotor = true;
+  //Motor is inverted so that when -speed will turn left and +speed will turn right
+  boolean InvertMotor = true;
 
-//   NetworkTableEntry ShuffleBoardData = Shuffleboard.getTab("TalonFX").add("P Value", 0.00005).getEntry();
-//   ShuffleboardTab TalonFXTab = Shuffleboard.getTab("TalonFX");
-//   NetworkTableEntry positionTurret = TalonFXTab.add("Position Value", 0).getEntry();
-//   NetworkTableEntry lol1 = TalonFXTab.add("I Value", 0.000000).getEntry();
-//   NetworkTableEntry lol2 = TalonFXTab.add("D Value", 0.00019).getEntry();
-//   NetworkTableEntry lol3 = TalonFXTab.add("Max Velocity", 2000).getEntry();
-//   NetworkTableEntry lol4 = TalonFXTab.add("Max Acceleration", 750).getEntry();
-
-
+  NetworkTableEntry ShuffleBoardData = Shuffleboard.getTab("TalonFX").add("P Value", 0.00005).getEntry();
+  ShuffleboardTab TalonFXTab = Shuffleboard.getTab("TalonFX");
+  NetworkTableEntry positionTurret = TalonFXTab.add("Position Value", 0).getEntry();
+  NetworkTableEntry lol1 = TalonFXTab.add("I Value", 0.000000).getEntry();
+  NetworkTableEntry lol2 = TalonFXTab.add("D Value", 0.00019).getEntry();
+  NetworkTableEntry lol3 = TalonFXTab.add("Max Velocity", 2000).getEntry();
+  NetworkTableEntry lol4 = TalonFXTab.add("Max Acceleration", 750).getEntry();
 
 
-//   /** Creates a new Turret. */
-//   public TurretSubsystem() {
-//     turretCanSparkMax.getEncoder().setPosition(zeroPosition);
-//     turretCanSparkMax.getPIDController().setReference(0, ControlType.kSmartMotion);
-//     turretCanSparkMax.getPIDController().setP(TurretSmartVelocityP, TurretVelocityPIDSlot);
-//     turretCanSparkMax.getPIDController().setI(TurretSmartVelocityI, TurretVelocityPIDSlot);
-//     turretCanSparkMax.getPIDController().setD(TurretSmartVelocityD, TurretVelocityPIDSlot);
 
-//     // turretCanSparkMax.getPIDController().setP(TurretSmartMotionP, TurretPositionPIDSlot);
-//     // turretCanSparkMax.getPIDController().setI(TurretSmartMotionI, TurretPositionPIDSlot);
-//     // turretCanSparkMax.getPIDController().setD(TurretSmartMotionD, TurretPositionPIDSlot);
 
-//     turretCanSparkMax.getPIDController().setOutputRange(TurretOutputMin, TurretOutputMax);
-//     turretCanSparkMax.getEncoder().setPositionConversionFactor(ConversionFactor);
-//     turretCanSparkMax.setInverted(InvertMotor);
-//     turretCanSparkMax.setIdleMode(IdleMode.kBrake);
+  /** Creates a new Turret. */
+  public TurretSubsystem() {
+    turretCanSparkMax.getEncoder().setPosition(zeroPosition);
+    turretCanSparkMax.getPIDController().setReference(0, ControlType.kSmartMotion);
+    turretCanSparkMax.getPIDController().setP(TurretSmartVelocityP, TurretVelocityPIDSlot);
+    turretCanSparkMax.getPIDController().setI(TurretSmartVelocityI, TurretVelocityPIDSlot);
+    turretCanSparkMax.getPIDController().setD(TurretSmartVelocityD, TurretVelocityPIDSlot);
 
-//     //turretCanSparkMax.getPIDController().setSmartMotionMaxAccel(SmartMotionMaxAcceleration, TurretPositionPIDSlot);
-//     //turretCanSparkMax.getPIDController().setSmartMotionMaxVelocity(SmartMotionMaxVelocity, TurretPositionPIDSlot);
+    // turretCanSparkMax.getPIDController().setP(TurretSmartMotionP, TurretPositionPIDSlot);
+    // turretCanSparkMax.getPIDController().setI(TurretSmartMotionI, TurretPositionPIDSlot);
+    // turretCanSparkMax.getPIDController().setD(TurretSmartMotionD, TurretPositionPIDSlot);
 
-//     turretCanSparkMax.getPIDController().setSmartMotionMaxAccel(SmartVelocityMaxAcceleration, TurretVelocityPIDSlot);
-//     turretCanSparkMax.getPIDController().setSmartMotionMaxVelocity(SmartVelocityMaxVelocity, TurretVelocityPIDSlot);
+    turretCanSparkMax.getPIDController().setOutputRange(TurretOutputMin, TurretOutputMax);
+    turretCanSparkMax.getEncoder().setPositionConversionFactor(ConversionFactor);
+    turretCanSparkMax.setInverted(InvertMotor);
+    turretCanSparkMax.setIdleMode(IdleMode.kBrake);
 
-//     //turretCanSparkMax.setIdleMode(IdleMode.kBrake);
-//   }
-// //Position is not used
-//   public void turretCanTurn(double positionValue)  {
-//     if(RightSoftLimit <= getPosition() || LeftSoftLimit >= getPosition()) {
-//       if(RightHardLimit <= getPosition() || LeftHardLimit >= getPosition()) {
-//         turretCanSparkMax.disable();
-//       }
-//     }
-//     else {
-//       turretCanSparkMax.getPIDController().setReference(positionValue, ControlType.kSmartMotion, TurretPositionPIDSlot);
-//     }
-//   }
+    //turretCanSparkMax.getPIDController().setSmartMotionMaxAccel(SmartMotionMaxAcceleration, TurretPositionPIDSlot);
+    //turretCanSparkMax.getPIDController().setSmartMotionMaxVelocity(SmartMotionMaxVelocity, TurretPositionPIDSlot);
 
-//   public void turretTurnLeft()  {
-//     if(LeftSoftLimit <= turretCanSparkMax.getEncoder().getPosition()){
-//       turretCanSparkMax.getPIDController().setReference(leftTurnSpeed, ControlType.kDutyCycle, TurretVelocityPIDSlot);
-//     }
-//     else{
-//       turretCanSparkMax.getPIDController().setReference(stopSpeed, ControlType.kDutyCycle, TurretVelocityPIDSlot);
-//     }
-//   }
+    turretCanSparkMax.getPIDController().setSmartMotionMaxAccel(SmartVelocityMaxAcceleration, TurretVelocityPIDSlot);
+    turretCanSparkMax.getPIDController().setSmartMotionMaxVelocity(SmartVelocityMaxVelocity, TurretVelocityPIDSlot);
 
-//   public void turretTurnRight() {
-//     if(RightSoftLimit >= turretCanSparkMax.getEncoder().getPosition()){
-//       turretCanSparkMax.getPIDController().setReference(rightTurnSpeed, ControlType.kDutyCycle, TurretVelocityPIDSlot);
-//     }
-//     else{
-//       turretCanSparkMax.getPIDController().setReference(stopSpeed, ControlType.kDutyCycle, TurretVelocityPIDSlot);
-//     }
-//   }
+    //turretCanSparkMax.setIdleMode(IdleMode.kBrake);
+  }
+//Position is not used
+  public void turretCanTurn(double positionValue)  {
+    if(RightSoftLimit <= getPosition() || LeftSoftLimit >= getPosition()) {
+      if(RightHardLimit <= getPosition() || LeftHardLimit >= getPosition()) {
+        turretCanSparkMax.disable();
+      }
+    }
+    else {
+      turretCanSparkMax.getPIDController().setReference(positionValue, ControlType.kSmartMotion, TurretPositionPIDSlot);
+    }
+  }
 
-//   public void stopTurret() {
-//     turretCanSparkMax.getPIDController().setReference(stopSpeed, ControlType.kDutyCycle, TurretVelocityPIDSlot);
-//   }
+  public void turretTurnLeft()  {
+    if(LeftSoftLimit <= turretCanSparkMax.getEncoder().getPosition()){
+      turretCanSparkMax.getPIDController().setReference(leftTurnSpeed, ControlType.kDutyCycle, TurretVelocityPIDSlot);
+    }
+    else{
+      turretCanSparkMax.getPIDController().setReference(stopSpeed, ControlType.kDutyCycle, TurretVelocityPIDSlot);
+    }
+  }
 
-//   //returns true if limitswitch is hits the reflective tape and returns false otherwise
-//   public boolean turretLimitSwitchReflected() {
-//     return !turretLimitSwitch.get();
-//   }
+  public void turretTurnRight() {
+    if(RightSoftLimit >= turretCanSparkMax.getEncoder().getPosition()){
+      turretCanSparkMax.getPIDController().setReference(rightTurnSpeed, ControlType.kDutyCycle, TurretVelocityPIDSlot);
+    }
+    else{
+      turretCanSparkMax.getPIDController().setReference(stopSpeed, ControlType.kDutyCycle, TurretVelocityPIDSlot);
+    }
+  }
 
-//   public void resetEncoder()  {
-//     turretCanSparkMax.getEncoder().setPosition(zeroPosition);
-//   }
+  public void stopTurret() {
+    turretCanSparkMax.getPIDController().setReference(stopSpeed, ControlType.kDutyCycle, TurretVelocityPIDSlot);
+  }
 
-//   public double getPosition() {
-//     return turretCanSparkMax.getEncoder().getPosition();
-//   }
+  //returns true if limitswitch is hits the reflective tape and returns false otherwise
+  public boolean turretLimitSwitchReflected() {
+    return !turretLimitSwitch.get();
+  }
 
-//   public double getVelocity() {
-//     return turretCanSparkMax.getEncoder().getVelocity();
-//   }
-//   public void setEncoder(double pos)  {
-//     turretCanSparkMax.getEncoder().setPosition(pos);
-//   }
+  public void resetEncoder()  {
+    turretCanSparkMax.getEncoder().setPosition(zeroPosition);
+  }
 
-//   @Override
-//   public void periodic()  {
-//     //System.out.println(getPosition());
-//     //System.out.println(getVelocity());
-//     //turretCanSparkMax.getPIDController().setReference(0.1, ControlType.kDutyCycle);
-//     System.out.println(" Pos: " + getPosition() + " Error:" + (double)Constants.visionTable.getEntry("Degree").getNumber(Constants.defaultVisionTurretError) + "PIDError" + (getPosition()-turretShoot.target) + " Target:" + turretShoot.target + " Error:" + (turretShoot.target - getPosition()));
-//     double PValue = ShuffleBoardData.getDouble(0.0001);
-//     double IValue = lol1.getDouble(0.00000);
-//     double DValue = lol2.getDouble(0);
-//     double MaxVelocity = lol3.getDouble(2000);
-//     double MaxAcceleration = lol4.getDouble(750);
-//     turretCanSparkMax.getPIDController().setP(PValue, TurretPositionPIDSlot);
-//     turretCanSparkMax.getPIDController().setI(IValue, TurretPositionPIDSlot);
-//     turretCanSparkMax.getPIDController().setD(DValue, TurretPositionPIDSlot);
-//     turretCanSparkMax.getPIDController().setSmartMotionMaxVelocity(MaxVelocity, TurretPositionPIDSlot);
-//     turretCanSparkMax.getPIDController().setSmartMotionMaxAccel(MaxAcceleration, TurretPositionPIDSlot);
-//     positionTurret.setDouble(getPosition());
-//     Constants.wantedPositionTurret.setDouble(turretShoot.target);
-//     Constants.pidError.setDouble((getPosition()-turretShoot.target));
-//     Constants.degrees.setDouble((double)Constants.visionTable.getEntry("Degree").getNumber(Constants.defaultVisionTurretError));
-//     //public static NetworkTableEntry wantedPositionTurret = TalonFXTab.add("Wanted Position", 0).getEntry();
+  public double getPosition() {
+    return turretCanSparkMax.getEncoder().getPosition();
+  }
 
-//     //P is 0.00001: Doesn't move
-//     //P is 0.0001:Moves but oscilates
-//     //P is 0.00002: Moves 
-//     //P is 0.000025: Moves with less oscilation
-//     //P is 0.000022: Very little oscilation
-//     //P is 0.0000211: Much less oscilation but not exact.
-//     //p is 0.0000221: closer
-//     //p 0.0000341 works
-//     //P is 0.0001 works well. May need more increase
-//     //P is 0.0000341 and D is 0.00019
-//     //P is 0.00001 and D is 0.0002: Error was around 50. Max Velocity was 5000, Max Acceleration is 30,000 with a few degrees error. There is also less oscilating and the turret itself isn't affected.
+  public double getVelocity() {
+    return turretCanSparkMax.getEncoder().getVelocity();
+  }
+  public void setEncoder(double pos)  {
+    turretCanSparkMax.getEncoder().setPosition(pos);
+  }
+
+  @Override
+  public void periodic()  {
+    //System.out.println(getPosition());
+    //System.out.println(getVelocity());
+    //turretCanSparkMax.getPIDController().setReference(0.1, ControlType.kDutyCycle);
+    System.out.println(" Pos: " + getPosition() + " Error:" + (double)Constants.visionTable.getEntry("Degree").getNumber(Constants.defaultVisionTurretError) + "PIDError" + (getPosition()-turretShoot.target) + " Target:" + turretShoot.target + " Error:" + (turretShoot.target - getPosition()));
+    double PValue = ShuffleBoardData.getDouble(0.0001);
+    double IValue = lol1.getDouble(0.00000);
+    double DValue = lol2.getDouble(0);
+    double MaxVelocity = lol3.getDouble(2000);
+    double MaxAcceleration = lol4.getDouble(750);
+    turretCanSparkMax.getPIDController().setP(PValue, TurretPositionPIDSlot);
+    turretCanSparkMax.getPIDController().setI(IValue, TurretPositionPIDSlot);
+    turretCanSparkMax.getPIDController().setD(DValue, TurretPositionPIDSlot);
+    turretCanSparkMax.getPIDController().setSmartMotionMaxVelocity(MaxVelocity, TurretPositionPIDSlot);
+    turretCanSparkMax.getPIDController().setSmartMotionMaxAccel(MaxAcceleration, TurretPositionPIDSlot);
+    positionTurret.setDouble(getPosition());
+    Constants.wantedPositionTurret.setDouble(turretShoot.target);
+    Constants.pidError.setDouble((getPosition()-turretShoot.target));
+    Constants.degrees.setDouble((double)Constants.visionTable.getEntry("Degree").getNumber(Constants.defaultVisionTurretError));
+    //public static NetworkTableEntry wantedPositionTurret = TalonFXTab.add("Wanted Position", 0).getEntry();
+
+    //P is 0.00001: Doesn't move
+    //P is 0.0001:Moves but oscilates
+    //P is 0.00002: Moves 
+    //P is 0.000025: Moves with less oscilation
+    //P is 0.000022: Very little oscilation
+    //P is 0.0000211: Much less oscilation but not exact.
+    //p is 0.0000221: closer
+    //p 0.0000341 works
+    //P is 0.0001 works well. May need more increase
+    //P is 0.0000341 and D is 0.00019
+    //P is 0.00001 and D is 0.0002: Error was around 50. Max Velocity was 5000, Max Acceleration is 30,000 with a few degrees error. There is also less oscilating and the turret itself isn't affected.
     
-//   }
-// }
+  }
+}
