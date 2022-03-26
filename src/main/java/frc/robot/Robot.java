@@ -19,15 +19,20 @@ import frc.robot.commands.Drivetrain.Tankdrive;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends TimedRobot {
-  private Command m_autonomousCommand;
 
+public class Robot extends TimedRobot {
+
+  private Command m_autonomousCommand;
+//   private boolean resetTurretDone = false;
+//   public static boolean canDriverControl = true;
   private RobotContainer m_robotContainer;
 
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
+     
+
   @Override
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
@@ -64,7 +69,14 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
+    //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_turret, new SequentialCommandGroup(new resetPosition(), new driverControl()));
+    // if(!resetTurretDone) {
+    //   CommandScheduler.getInstance().schedule(new resetPosition());
+    //   resetTurretDone = true;
+    // }
+    // else {
+    //   CommandScheduler.getInstance().schedule(true, new driverControl());
+    // }
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
