@@ -9,7 +9,11 @@ import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -21,6 +25,17 @@ public class Drivetrain extends SubsystemBase {
   TalonFX drivetrainFrontRightMotor = new TalonFX(Constants.DRIVETRAIN_FRONT_RIGHT_MOTOR);
   TalonFX drivetrainBackRightMotor = new TalonFX(Constants.DRIVETRAIN_BACK_RIGHT_MOTOR);
 
+  WPI_TalonFX WPI_drivetrainFrontLeftMotor = new WPI_TalonFX(Constants.DRIVETRAIN_FRONT_LEFT_MOTOR);
+  WPI_TalonFX WPI_drivetrainBackLeftMotor = new WPI_TalonFX(Constants.DRIVETRAIN_BACK_LEFT_MOTOR);
+
+  WPI_TalonFX WPI_drivetrainFrontRightMotor = new WPI_TalonFX(Constants.DRIVETRAIN_FRONT_RIGHT_MOTOR);
+  WPI_TalonFX WPI_drivetrainBackRightMotor = new WPI_TalonFX(Constants.DRIVETRAIN_BACK_RIGHT_MOTOR);
+
+  MotorControllerGroup m_left = new MotorControllerGroup((MotorController)WPI_drivetrainFrontLeftMotor);
+  MotorControllerGroup m_right = new MotorControllerGroup((MotorController)WPI_drivetrainFrontRightMotor);
+
+  public DifferentialDrive m_drive = new DifferentialDrive(m_left, m_right);
+
 
   public static final double TalonFX_F = 0;
   public static final double TalonFX_P = 0.025;
@@ -30,7 +45,7 @@ public class Drivetrain extends SubsystemBase {
   public static int loopcounter = 0;
   
   public Drivetrain() {
-    TalonFX[] drivetrainMotors = {drivetrainFrontLeftMotor, drivetrainBackLeftMotor,drivetrainFrontRightMotor, drivetrainBackRightMotor};
+    TalonFX[] drivetrainMotors = {drivetrainFrontLeftMotor, drivetrainBackLeftMotor,drivetrainFrontRightMotor, drivetrainBackRightMotor, WPI_drivetrainFrontLeftMotor, WPI_drivetrainBackLeftMotor, WPI_drivetrainFrontRightMotor, WPI_drivetrainBackRightMotor};
     // TalonFX[] drivetrainMasterMotors = {drivetrainFrontLeftMotor, drivetrainFrontRightMotor};
     // TalonFX[] drivetrainFollowerMotors = {drivetrainBackLeftMotor, drivetrainBackRightMotor};
 
@@ -58,7 +73,21 @@ public class Drivetrain extends SubsystemBase {
     drivetrainFrontLeftMotor.setInverted(InvertType.InvertMotorOutput);
     drivetrainBackLeftMotor.follow(drivetrainFrontLeftMotor);
     drivetrainBackLeftMotor.setInverted(InvertType.FollowMaster);
+
+    WPI_drivetrainBackRightMotor.follow(WPI_drivetrainFrontRightMotor);
+    // drivetrainBackLeftMotor.setInverted(InvertType.FollowMaster);
+
+    // INVERTING RIGHT SIDE SO BOTH SIDES ARE POSITIVE FOR THE SAME DIRECTION
+    WPI_drivetrainFrontLeftMotor.setInverted(InvertType.InvertMotorOutput);
+    WPI_drivetrainBackLeftMotor.follow(WPI_drivetrainFrontLeftMotor);
+    WPI_drivetrainBackLeftMotor.setInverted(InvertType.FollowMaster);
+    WPI_drivetrainFrontRightMotor.setNeutralMode(NeutralMode.Brake);
+    WPI_drivetrainFrontLeftMotor.setNeutralMode(NeutralMode.Coast);
+    WPI_drivetrainFrontLeftMotor.configMotionAcceleration(5);
+    WPI_drivetrainFrontRightMotor.configMotionAcceleration(5);
     
+    //WPI_drivetrainFrontLeftMotor.configMotionCruiseVelocity(5);
+    //WPI_drivetrainFrontRightMotor.configMotionCruiseVelocity(5);
   }
 
   public void setLeftMotorSpeed(double speed) {
