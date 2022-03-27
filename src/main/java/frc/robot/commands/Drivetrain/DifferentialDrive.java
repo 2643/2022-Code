@@ -23,13 +23,12 @@ public class DifferentialDrive extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
+    RobotContainer.m_drivetrain.m_drive.curvatureDrive(speed, rotation, rotateInPlace);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.m_drivetrain.m_drive.curvatureDrive(speed, rotation, rotateInPlace);
   }
 
   // Called once the command ends or is interrupted.

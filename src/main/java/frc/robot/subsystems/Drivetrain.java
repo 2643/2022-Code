@@ -85,6 +85,7 @@ public class Drivetrain extends SubsystemBase {
     WPI_drivetrainFrontLeftMotor.setNeutralMode(NeutralMode.Coast);
     WPI_drivetrainFrontLeftMotor.configMotionAcceleration(5);
     WPI_drivetrainFrontRightMotor.configMotionAcceleration(5);
+    m_drive.setMaxOutput(0.1);
     
     //WPI_drivetrainFrontLeftMotor.configMotionCruiseVelocity(5);
     //WPI_drivetrainFrontRightMotor.configMotionCruiseVelocity(5);
