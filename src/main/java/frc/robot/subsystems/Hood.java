@@ -73,10 +73,19 @@ public class Hood extends SubsystemBase {
     }
 
   }
+  public void moveHood(double position){
+    if(position >= Constants.lowerEncoderSoftLimit && position <= Constants.upperEncoderSoftLimit){
+      motor.getPIDController().setReference(position, ControlType.kPosition, Constants.slotID_hood);
+    }
+  }
 
   //gets the position of the hood motor
   public void getPosition(){
     System.out.println(motor.getEncoder().getPosition());
+  }
+
+  public double getPositionValue(){
+    return motor.getEncoder().getPosition();
   }
 
   

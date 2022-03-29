@@ -3,6 +3,8 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -18,4 +20,10 @@ public final class Constants {
 
     public static final int maxHoodLimitPort = 12;
     public static final int minHoodLimitPort = 11;
+
+    public static NetworkTable visionTable = NetworkTableInstance.getDefault().getTable("vision-movement");
+    public static final double defaultVisionHoodError = 0;
+    public static final int slotID_hood = 0;
+    public static int upperEncoderSoftLimit = 26; //TODO get upper limit for hood
+    public static int lowerEncoderSoftLimit = 0;
 }
