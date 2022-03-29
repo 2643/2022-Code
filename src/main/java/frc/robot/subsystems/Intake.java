@@ -27,9 +27,7 @@ public class Intake extends SubsystemBase {
   }
 
   @Override public void periodic () {
-    
+    setSpeed(0.1);
     // This method will be called once per scheduler run
-
   }
 }
-

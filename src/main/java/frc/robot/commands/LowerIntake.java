@@ -11,48 +11,44 @@ import edu.wpi.first.wpilibj.Timer;
 public class LowerIntake extends CommandBase {
   /** Creates a new LowerIntake. */
   Timer timer = new Timer();
-
   public LowerIntake() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.intake);
-  }
+    addRequirements(RobotContainer.m_intake);
+  } 
 
   // Called when the command is initially scheduled.
-
   @Override
   public void initialize() {
+    timer.reset();
     timer.start();
+    start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
-
   @Override
   public void execute() {
-   start();
   }
-
   public void start() {
     while(!hasPeriodPassed(1)) {
       intakeMotor(0.5);
+      System.out.println("its running");
     }
   }
 
   public void intakeMotor(double d) {
   }
 
-  public boolean hasPeriodPassed(double period) {
-    return false;
+  public boolean hasPeriodPassed(int period) {
+    return true;
+  }
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {
   }
 
-  // Called once the command ends or is interrupted.
-
-  @Override
-  public void end(boolean interrupted) {}
-
   // Returns true when the command should end.
-
   @Override
   public boolean isFinished() {
-    return false; 
+    return false;
   }
 }
