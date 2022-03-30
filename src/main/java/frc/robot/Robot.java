@@ -105,7 +105,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // CommandScheduler.getInstance().schedule(new FindBall());
-    CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_drivetrain, new Tankdrive());
+    //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_drivetrain, new Tankdrive());
 
   }
 
