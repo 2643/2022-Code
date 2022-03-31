@@ -5,7 +5,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Autonomous.roundStart;
 import frc.robot.commands.Drivetrain.DifferentialDrive;
@@ -16,6 +15,10 @@ import frc.robot.subsystems.ADISGyro;
 // import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 // import frc.robot.subsystems.TurretSubsystem;
+import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.commands.hoodcm;
+import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Hood;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -49,6 +52,10 @@ public class RobotContainer {
   
   
   
+  public static final Hood cm_Hood = new Hood();
+
+  public static Joystick joystick = new Joystick(0);
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings

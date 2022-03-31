@@ -12,6 +12,8 @@ import frc.robot.commands.Drivetrain.Tankdrive;
 // import frc.robot.commands.Climber.moveClimber;
 // import frc.robot.commands.Climber.resetPosition;
 
+import frc.robot.commands.hoodcm;
+import frc.robot.subsystems.Hood;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -26,6 +28,7 @@ public class Robot extends TimedRobot {
 //   private boolean resetTurretDone = false;
 //   public static boolean canDriverControl = true;
   private RobotContainer m_robotContainer;
+  public hoodcm m_hoodccm = new hoodcm(); 
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -39,6 +42,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
     
+    CommandScheduler.getInstance().setDefaultCommand(RobotContainer.cm_Hood, new hoodcm());
   }
 
   /**
@@ -80,7 +84,6 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-    Constants.slowMode = false;
   }
 
   /** This function is called periodically during autonomous. */
