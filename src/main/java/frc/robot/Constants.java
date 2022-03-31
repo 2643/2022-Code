@@ -66,4 +66,8 @@ public final class Constants {
 
     public static final int maxHoodLimitPort = 12;
     public static final int minHoodLimitPort = 11;
+    public static boolean checksForBallChannel;
+    public static int intakeBallChannel;
+    public static boolean intakesBallChannel;
+    public static boolean intakingBall;
 }

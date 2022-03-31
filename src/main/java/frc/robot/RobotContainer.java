@@ -19,7 +19,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.commands.hoodcm;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Hood;
+import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -29,8 +31,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-
-
   // The robot's subsystems and commands are defined here...
 
   public static final Drivetrain m_drivetrain = new Drivetrain();
@@ -55,6 +55,7 @@ public class RobotContainer {
   public static final Hood cm_Hood = new Hood();
 
   public static Joystick joystick = new Joystick(0);
+  public static final Intake m_intake = new Intake(); 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
