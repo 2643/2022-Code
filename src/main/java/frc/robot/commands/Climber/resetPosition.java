@@ -14,7 +14,6 @@ public class resetPosition extends CommandBase {
   private boolean zeroedPositionR = false;
   private boolean zeroedPositionL = false;
 
-
   /** Creates a new ClimbUp. */
   public resetPosition() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -35,16 +34,18 @@ public class resetPosition extends CommandBase {
       RobotContainer.m_climber.percentOutputControlResetR(0.0);
       RobotContainer.m_climber.setPositionR(20000);
       RobotContainer.m_climber.movePositionR(20000);
+      zeroedPositionR = true;
     }
-    else if(upr-RobotContainer.m_climber.getPositionR() <= 750 & upr-RobotContainer.m_climber.getPositionR() >= -750) {
+    else if(upr-RobotContainer.m_climber.getPositionR() <= 1000 && upr-RobotContainer.m_climber.getPositionR() >= -1000) {
       RobotContainer.m_climber.percentOutputControlResetR(-0.5);
     }
     if(!RobotContainer.m_climber.limitswitchL()) {
       RobotContainer.m_climber.percentOutputControlResetL(0.0);
       RobotContainer.m_climber.setPositionL(20000);
       RobotContainer.m_climber.movePositionL(20000);
+      zeroedPositionL = true;
     }
-    else if(upl-RobotContainer.m_climber.getPositionL() <= 750 & upl-RobotContainer.m_climber.getPositionL() >= -750) {
+    else if(upl-RobotContainer.m_climber.getPositionL() <= 1000 && upl-RobotContainer.m_climber.getPositionL() >= -1000) {
       RobotContainer.m_climber.percentOutputControlResetL(-0.5);   
     }
   }
