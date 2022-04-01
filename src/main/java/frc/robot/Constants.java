@@ -17,4 +17,5 @@ public final class Constants {
     public static int intakeBallChannel;
     public static boolean intakesBallChannel;
     public static boolean intakingBall;
+    public static boolean verticalIntakeToggleVariable;
 }
