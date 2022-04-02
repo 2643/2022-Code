@@ -35,7 +35,7 @@ public class hoodcm extends CommandBase {
       RobotContainer.cm_Hood.stopMove();
       //RobotContainer.cm_Hood.hoodPID(RobotContainer.cm_Hood.getPosition());
     }
-    RobotContainer.cm_Hood.getPosition();
+    RobotContainer.cm_Hood.getPosition(); //shows degrees of hood
 
     //if joystick is l
   }

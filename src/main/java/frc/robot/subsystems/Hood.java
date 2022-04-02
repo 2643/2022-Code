@@ -52,7 +52,7 @@ public class Hood extends SubsystemBase {
   }
 
   public boolean atBottomPos(){
-    return (motor.getEncoder().getPosition() == minPosition);
+    return (motor.getEncoder().getPosition() <= minPosition);
   }
 
   public void hoodPID(double position){
