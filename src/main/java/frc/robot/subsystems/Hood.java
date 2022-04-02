@@ -15,7 +15,7 @@ import frc.robot.Constants;
 
 public class Hood extends SubsystemBase {
   private CANSparkMax motor = new CANSparkMax(Constants.motorPort, MotorType.kBrushless);
-  private DigitalInput maxPositionTrue = new DigitalInput(Constants.maxHoodLimitPort);
+  /*private DigitalInput maxPositionTrue = new DigitalInput(Constants.maxHoodLimitPort);*/
 
   //sets PID variables
     private static final double kP = 0.000001;
@@ -25,7 +25,7 @@ public class Hood extends SubsystemBase {
     private static final double outputRange = 0;
 
   //max/min position that the hood can move to
-  //private static final double maxPosition = 10000;
+  private static final double maxPosition = 100; //GET VALUE
   private static final double minPosition = 0;
 
 
@@ -48,7 +48,8 @@ public class Hood extends SubsystemBase {
   }
 
   public boolean atTopPos(){
-    return maxPositionTrue.get();
+    //return maxPositionTrue.get();
+    return (motor.getEncoder().getPosition() >= maxPosition);
   }
 
   public boolean atBottomPos(){
