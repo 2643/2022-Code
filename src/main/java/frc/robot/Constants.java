@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -14,10 +16,13 @@ package frc.robot;
  */
 public final class Constants {
 
-    public static final int rightClimberPort = 4; //add port num later
-    public static final int leftClimberPort = 3; //add port num later
+    public static final int rightClimberPort = 4; 
+    public static final int leftClimberPort = 3; 
 
-    public static final double gearBoxRatio = 100; //gear box ratio is 100:1 
+    public static final DigitalInput climberLimitSwitchR = new DigitalInput(4);
+    public static final DigitalInput climberLimitSwitchL = new DigitalInput(3);
+    
+    public static final double gearBoxRatio = 100; 
   
     public static final double downSoftLimitClimbLeft = 0;
     public static final double upSoftLimitClimbLeft = 1390060;

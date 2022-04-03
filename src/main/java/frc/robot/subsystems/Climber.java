@@ -28,8 +28,7 @@ public class Climber extends SubsystemBase {
   
   public static final TalonFX rightClimber = new TalonFX(Constants.rightClimberPort);
   public static final TalonFX leftClimber = new TalonFX(Constants.leftClimberPort);
-  public static final DigitalInput climberLimitSwitchR = new DigitalInput(4);
-  public static final DigitalInput climberLimitSwitchL = new DigitalInput(3);
+
   
   public static final int timeoutSecondsTalonFX = 1;
 
@@ -75,11 +74,11 @@ public class Climber extends SubsystemBase {
   
 
   public boolean limitswitchR(){
-    return climberLimitSwitchR.get();
+    return Constants.climberLimitSwitchR.get();
   }
 
   public boolean limitswitchL(){
-    return climberLimitSwitchL.get();
+    return Constants.climberLimitSwitchL.get();
   }
 
   public void setPositionR(double pos){
