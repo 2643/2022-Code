@@ -13,9 +13,7 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static boolean checksForBallChannel;
-    public static int intakeBallChannel;
-    public static boolean intakesBallChannel;
-    public static boolean intakingBall;
-    public static boolean verticalIntakeToggleVariable;
+    public static int motorPort = 10;
+    public static final double speed = 0.3;
 }
+

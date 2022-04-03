@@ -5,24 +5,37 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import frc.robot.Constants;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkMax.IdleMode;
 
 public class Intake extends SubsystemBase {
+    /** Creates a new Intake. */
 
-  /** Creates a new Intake. */
-  TalonSRX intakeMotor = new TalonSRX(14);
+  CANSparkMax intakeMotor = new CANSparkMax(Constants.motorPort, MotorType.kBrushed);
+
+  private static final double kP = 0.000001;
+  private static final double kI = 0.0;
+  private static final double kD = 0;
+
+  private static final double outputRange = 0;
 
   public Intake() {
 
-    intakeMotor.setNeutralMode(NeutralMode.Coast);
+    intakeMotor.setIdleMode(IdleMode.kCoast);
+
+    intakeMotor.getPIDController().setP(kP);
+    intakeMotor.getPIDController().setI(kI);
+    intakeMotor.getPIDController().setD(kD);
+    intakeMotor.getPIDController().setOutputRange(-1*(outputRange), outputRange);
 
   }
 
-  public void setSpeed (double speed) {
-
-    intakeMotor.set(TalonSRXControlMode.PercentOutput, speed);
+  public void setSpeed(double speed) {
+    
+    intakeMotor.getPIDController().setReference(Constants.speed, ControlType.kCurrent);
 
   }
 
