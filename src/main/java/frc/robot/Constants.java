@@ -19,11 +19,17 @@ public final class Constants {
 
     public static final double gearBoxRatio = 100; //gear box ratio is 100:1 
   
-    public static final double downSoftLimit = 0;
-    public static final double upSoftLimit = 1250000;
+    public static final double downSoftLimitClimbLeft = 0;
+    public static final double upSoftLimitClimbLeft = 1390060;
+
+    public static final double downSoftLimitClimberRight = 0;
+    public static final double upSoftLimitClimbRight = 1373726;
   
-    public static final double downHardLimit = -9000;
-    public static final double upHardLimit = 1259000;
+    public static final double downHardLimitClimbRight = -9000;
+    public static final double upHardLimitClimbRight = 4096+1373726;
+
+    public static final double downHardLimitClimbLeft = -9000;
+    public static final double upHardLimitClimbLeft = 4096+1390060;
 
     public static final double climberGain = 0.5;
     public static final double climberSpeed = 500 * 100; // not really speed, but treat this like it

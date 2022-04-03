@@ -115,17 +115,17 @@ public class Climber extends SubsystemBase {
   }
   
   public void movePositionLimitR(double movePos){
-    if (moveClimber.targetr < Constants.upSoftLimit && moveClimber.targetr > Constants.downSoftLimit) {
+    if (moveClimber.targetr < Constants.upSoftLimitClimbRight && moveClimber.targetr > Constants.downSoftLimitClimberRight) {
       rightClimber.set(TalonFXControlMode.Position, movePos);
-    } else if (getPositionR() >= Constants.upHardLimit || getPositionR() <= Constants.downHardLimit){
+    } else if (getPositionR() >= Constants.upHardLimitClimbRight || getPositionR() <= Constants.downHardLimitClimbRight){
       rightClimber.set(ControlMode.Disabled, 0);
     }
   }
 
   public void movePositionLimitL(double movePos){
-    if (moveClimber.targetl < Constants.upSoftLimit && moveClimber.targetl > Constants.downSoftLimit) {
+    if (moveClimber.targetl < Constants.upSoftLimitClimbLeft && moveClimber.targetl > Constants.downSoftLimitClimbLeft) {
       leftClimber.set(TalonFXControlMode.Position, movePos);
-    } else if (getPositionL() >= Constants.upHardLimit || getPositionL() <= Constants.downHardLimit){
+    } else if (getPositionL() >= Constants.upHardLimitClimbLeft || getPositionL() <= Constants.downHardLimitClimbLeft){
       leftClimber.set(ControlMode.Disabled, 0);
     }
   }
