@@ -27,7 +27,7 @@ public class VisionHood extends CommandBase {
   public void initialize() {
     pos = RobotContainer.cm_Hood.getPositionValue();
     hoodReady = false;
-    error = ((double)Constants.visionTable.getEntry("Degree2").getNumber(Constants.defaultVisionHoodError));
+    error = ((double)Constants.visionTable.getEntry("Degree2").getNumber(Constants.HOOD_DEFAULT_VISION_ERROR));
     target = pos - error*gain;
     RobotContainer.cm_Hood.moveHood(target);
     hoodReady = true;
@@ -37,7 +37,7 @@ public class VisionHood extends CommandBase {
   @Override
   public void execute() {
     pos = RobotContainer.cm_Hood.getPositionValue();
-    error = ((double)Constants.visionTable.getEntry("Degree2").getNumber(Constants.defaultVisionHoodError));
+    error = ((double)Constants.visionTable.getEntry("Degree2").getNumber(Constants.HOOD_DEFAULT_VISION_ERROR));
     System.out.println("Error: " + error + " Pos:" + RobotContainer.cm_Hood.getPositionValue() + " Ready: " + hoodReady + " Target:" + target);
   }
 

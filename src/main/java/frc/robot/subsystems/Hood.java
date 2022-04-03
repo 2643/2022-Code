@@ -14,7 +14,7 @@ import frc.robot.Constants;
 
 
 public class Hood extends SubsystemBase {
-  private CANSparkMax motor = new CANSparkMax(Constants.motorPort, MotorType.kBrushless);
+  private CANSparkMax motor = new CANSparkMax(Constants.HOOD_MOTOR_PORT, MotorType.kBrushless);
   /*private DigitalInput maxPositionTrue = new DigitalInput(Constants.maxHoodLimitPort);*/
 
   //sets PID variables
@@ -63,20 +63,20 @@ public class Hood extends SubsystemBase {
   //moves the hood up
   public void moveUp() { 
     if(!(atTopPos())){
-      motor.getPIDController().setReference(Constants.hoodSpeed, ControlType.kDutyCycle);
+      motor.getPIDController().setReference(Constants.HOOD_SPEED, ControlType.kDutyCycle);
     }
   }
 
   //moves the hood down
   public void moveDown(){
     if(!(atBottomPos())){
-      motor.getPIDController().setReference(-1*(Constants.hoodSpeed), ControlType.kDutyCycle);
+      motor.getPIDController().setReference(-1*(Constants.HOOD_SPEED), ControlType.kDutyCycle);
     }
 
   }
   public void moveHood(double position){
-    if(position >= Constants.lowerEncoderSoftLimit && position <= Constants.upperEncoderSoftLimit){
-      motor.getPIDController().setReference(position, ControlType.kPosition, Constants.slotID_hood);
+    if(position >= Constants.HOOD_LOWER_ENCODER_SOFT_LIMIT && position <= Constants.HOOD_UPPER_ENCODER_SOFT_LIMIT){
+      motor.getPIDController().setReference(position, ControlType.kPosition, Constants.SLOTID_HOOD);
     }
   }
 
