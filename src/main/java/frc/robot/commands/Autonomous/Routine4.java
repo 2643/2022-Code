@@ -10,23 +10,15 @@
 // import frc.robot.commands.ADISGyro.turnRobot;
 // import frc.robot.commands.Drivetrain.MovePosition;
 // import frc.robot.subsystems.Intake;
-// import edu.wpi.first.wpilibj.Timer;
-
 
 // // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // // information, see:
 // // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-// public class Rountine2 extends SequentialCommandGroup {
-//   /** Creates a new Rountine2. */
-//   private final Timer m_timer = new Timer();
-//   public Rountine2(double delay) {
+// public class Routine4 extends SequentialCommandGroup {
+//   /** Creates a new Routine4. */
+//   public Routine4() {
 //     // Add your commands in the addCommands() call, e.g.
 //     // addCommands(new FooCommand(), new BarCommand());
-//     m_timer.reset();
-//     m_timer.start();
-//     if(m_timer.get()==delay){
-//       addCommands(new MovePosition(Constants.MOVE_BACK_POSITION_TO_SHOOT), new turretShoot(), new hoodcm(), new motorSpeed(), new turnRobot(180), new MovePosition(Constants.MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS), new Intake(), new turnRobot(180), new turretShoot(), new hoodcm(), new motorSpeed());   
-//      }
-//     m_timer.stop();
+//     addCommands(new turnRobot(180),new MovePosition(Constants.MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS),new Intake(),new turnRobot(180),new turretShoot(), new hoodcm(), new motorSpeed(),new turretShoot(), new hoodcm(), new motorSpeed());
 //   }
 // }

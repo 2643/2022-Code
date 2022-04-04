@@ -38,19 +38,31 @@ public final class Constants {
     public static final double DRIVETRAIN_VELOCITY = 22000;
     public static final double DRIVETRAIN_ACCELERATION = 2200;
 
-    public static final int rightClimberPort = 6; //add port num later
-    public static final int leftClimberPort = 5; //add port num later
+    public static final int RIGHT_CLIMBER_PORT = 5; 
+    public static final int LEFT_CLIMBER_PORT = 6; 
 
-    public static final double gearBoxRatio = 100; //gear box ratio is 100:1 
+    public static final int RIGHT_CLIMB_LIMIT_SWITCH_PORT = 1;
+    public static final int LEFT_CLIMB_LIMIT_SWITCH_PORT = 0;
+    
+    public static final double GEARBOX_RATIO = 100; 
   
-    public static final double downSoftLimit = 0;
-    public static final double upSoftLimit = 1250000;
-  
-    public static final double downHardLimit = -9000;
-    public static final double upHardLimit = 1259000;
+    public static final double DOWN_SOFT_LIMIT_CLIMB_LEFT = 0;
+    public static final double UP_SOFT_LIMIT_CLIMB_LEFT = 1390060;
 
-    public static final double climberGain = 0.5;
-    public static final double climberSpeed = 500 * 100; // not really speed, but treat this like it
+    public static final double DOWN_SOFT_LIMIT_CLIMB_RIGHT = 0;
+    public static final double UP_SOFT_LIMIT_CLIMB_RIGHT = 1373726;
+  
+    public static final double DOWN_HARD_LIMIT_CLIMB_RIGHT = -9000;
+    public static final double UP_HARD_LIMIT_CLIMB_RIGHT = 4096+1373726;
+
+    public static final double DOWN_HARD_LIMIT_CLIMB_LEFT = -9000;
+    public static final double UP_HARD_LIMIT_CLIMB_LEFT = 4096+1390060;
+
+    public static final double CLIMBER_GAIN = 0.5;
+    public static final double CLIMBER_SPEED = 500 * 100; // not really speed, but treat this like it
+
+    public static final double MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS = 4096*0;
+    public static final double MOVE_BACK_POSITION_TO_SHOOT = 4096*-0;
 
     public static final int TurretMotorPort = 7;
     public static final int turretLimitSwitchPort = 0;
@@ -70,4 +82,5 @@ public final class Constants {
     public static int intakeBallChannel;
     public static boolean intakesBallChannel;
     public static boolean intakingBall;
+    public static int rightLimitSwitchPort;
 }

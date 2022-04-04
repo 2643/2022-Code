@@ -73,7 +73,7 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_turret, new SequentialCommandGroup(new resetPosition(), new driverControl()));
     // if(!resetTurretDone) {
     //   CommandScheduler.getInstance().schedule(new resetPosition());
