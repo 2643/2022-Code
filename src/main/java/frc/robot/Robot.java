@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 // import frc.robot.commands.FindBall;
 // import frc.robot.commands.Climber.moveClimber;
 // import frc.robot.commands.Climber.resetPosition;
+import frc.robot.commands.shoot;
 
 // import frc.robot.commands.hoodcm;
 // import frc.robot.subsystems.Hood;
@@ -97,7 +98,6 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    Constants.slowMode = true;
     // CommandScheduler.getInstance().schedule(new resetPosition());
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
@@ -110,7 +110,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     // CommandScheduler.getInstance().schedule(new FindBall());
     //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_drivetrain, new Tankdrive());
-
+    //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_shooter, new shoot());
   }
 
   @Override

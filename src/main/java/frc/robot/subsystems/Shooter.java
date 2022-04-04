@@ -35,7 +35,7 @@ public class Shooter extends SubsystemBase {
     //500 = 0.1 kDutyCycle
     //leftShooter.getEncoder().setVelocityConversionFactor(1);
 
-    rightShooter.follow(leftShooter, Invertrightfollow);
+    //rightShooter.follow(leftShooter, Invertrightfollow);
   }
 
   public void setSpeed(double motorSpeed)
@@ -47,7 +47,7 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    //leftShooter.getPIDController().setReference(0.1, ControlType.kDutyCycle);
-    System.out.println(leftShooter.getEncoder().getVelocity() + "    " + leftShooter.getEncoder().getVelocityConversionFactor());
+    leftShooter.getPIDController().setReference(0.6, ControlType.kDutyCycle);
+    //System.out.println(leftShooter.getEncoder().getVelocity() + "    " + leftShooter.getEncoder().getVelocityConversionFactor());
   }
 }
