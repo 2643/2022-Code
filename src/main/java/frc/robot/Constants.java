@@ -14,6 +14,5 @@ package frc.robot;
  */
 public final class Constants {
     public static int motorPort = 10;
-    public static final double speed = 0.3;
+    // public static final double speed = 0.3;
 }
-

@@ -29,8 +29,8 @@ public class RobotContainer {
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   public static final Intake m_intake = new Intake(); 
-  public static Joystick opboard = new Joystick(0);
-  public static JoystickButton button11 = new JoystickButton(opboard, 11); 
+  public static Joystick opboard = new Joystick(1);
+  public static JoystickButton button12 = new JoystickButton(opboard, 12); 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -45,8 +45,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    button11.whenPressed(new moveIntake(true));
-    button11.whenReleased(new moveIntake(false));
+    button12.whenHeld(new moveIntake());
   }
 
   /**

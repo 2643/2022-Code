@@ -9,11 +9,10 @@ import frc.robot.RobotContainer;
 
 public class moveIntake extends CommandBase {
   /** Creates a new ManualIntake. */
-  private boolean motorIsActive; 
-  public moveIntake(boolean isMotorActiveInternal) {
+  // private boolean motorIsActive; 
+  public moveIntake() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.m_intake);
-    motorIsActive = isMotorActiveInternal;
   }
 
   // Called when the command is initially scheduled.
@@ -24,17 +23,19 @@ public class moveIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() { 
-    if (motorIsActive) {
-      RobotContainer.m_intake.setSpeed(0.3); 
-    }
-    else {
-      RobotContainer.m_intake.setSpeed(0); 
-    }
+
+    RobotContainer.m_intake.setSpeed(0.3); 
+    // System.out.println("motor speed is set to 0.3");
+    
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+
+    RobotContainer.m_intake.setSpeed(0);
+    // System.out.println("motor speed is set to 0");
+
   }
 
   // Returns true when the command should end.
@@ -43,3 +44,4 @@ public class moveIntake extends CommandBase {
     return false;
   }
 }
+
