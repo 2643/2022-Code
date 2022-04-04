@@ -12,10 +12,10 @@ import frc.robot.commands.Drivetrain.Tankdrive;
 // import frc.robot.commands.Climber.moveClimber;
 // import frc.robot.commands.Climber.resetPosition;
 
-import frc.robot.commands.hoodcm;
-import frc.robot.subsystems.Hood;
-import frc.robot.commands.LowerIntake;
-import frc.robot.subsystems.Intake;
+// import frc.robot.commands.hoodcm;
+// import frc.robot.subsystems.Hood;
+// import frc.robot.commands.LowerIntake;
+// import frc.robot.subsystems.Intake;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -30,7 +30,7 @@ public class Robot extends TimedRobot {
 //   private boolean resetTurretDone = false;
 //   public static boolean canDriverControl = true;
   private RobotContainer m_robotContainer;
-  public hoodcm m_hoodccm = new hoodcm(); 
+  //public hoodcm m_hoodccm = new hoodcm(); 
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -44,7 +44,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
     
-    CommandScheduler.getInstance().setDefaultCommand(RobotContainer.cm_Hood, new hoodcm());
+    //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.cm_Hood, new hoodcm());
   }
 
   /**
@@ -118,7 +118,7 @@ public class Robot extends TimedRobot {
   public void testInit() {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
-    CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_intake, new LowerIntake());
+    //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_intake, new LowerIntake());
   }
 
   /** This function is called periodically during test mode. */
