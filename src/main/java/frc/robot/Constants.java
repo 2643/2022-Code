@@ -19,68 +19,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final int DRIVETRAIN_FRONT_RIGHT_MOTOR = 1;
-    public static final int DRIVETRAIN_BACK_RIGHT_MOTOR = 2;
-    public static final int DRIVETRAIN_FRONT_LEFT_MOTOR = 3;
-    public static final int DRIVETRAIN_BACK_LEFT_MOTOR = 4;
-
-    public static final int JOYSTICK_LEFT_AXIS = 1;
-    public static final int JOYSTICK_RIGHT_AXIS = 5;
-    public static final double JOYSITCK_DEADBAND = 0.05;
-    public static boolean slowMode = false;
-    public static final double SLOW_MODE_MULTIPLIER = 0.5;
-    
-    // Max output set speed point to 66k
-    public static double TANKDRIVE_SETPOINT = 66000;
-    public static final double TANKDRIVE_SLEW_RATE = 1980/TANKDRIVE_SETPOINT;
-
-    public static final double DRIVETRAIN_ALLOWED_ERROR = 2048;
-    public static final double DRIVETRAIN_VELOCITY = 22000;
-    public static final double DRIVETRAIN_ACCELERATION = 2200;
-
-    public static final int RIGHT_CLIMBER_PORT = 5; 
-    public static final int LEFT_CLIMBER_PORT = 6; 
-
-    public static final int RIGHT_CLIMB_LIMIT_SWITCH_PORT = 1;
-    public static final int LEFT_CLIMB_LIMIT_SWITCH_PORT = 0;
-    
-    public static final double GEARBOX_RATIO = 100; 
-  
-    public static final double DOWN_SOFT_LIMIT_CLIMB_LEFT = 0;
-    public static final double UP_SOFT_LIMIT_CLIMB_LEFT = 1390060;
-
-    public static final double DOWN_SOFT_LIMIT_CLIMB_RIGHT = 0;
-    public static final double UP_SOFT_LIMIT_CLIMB_RIGHT = 1373726;
-  
-    public static final double DOWN_HARD_LIMIT_CLIMB_RIGHT = -9000;
-    public static final double UP_HARD_LIMIT_CLIMB_RIGHT = 4096+1373726;
-
-    public static final double DOWN_HARD_LIMIT_CLIMB_LEFT = -9000;
-    public static final double UP_HARD_LIMIT_CLIMB_LEFT = 4096+1390060;
-
-    public static final double CLIMBER_GAIN = 0.5;
-    public static final double CLIMBER_SPEED = 500 * 100; // not really speed, but treat this like it
-
-    public static final double MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS = 4096*0;
-    public static final double MOVE_BACK_POSITION_TO_SHOOT = 4096*-0;
-
-    public static final int TurretMotorPort = 7;
-    public static final int turretLimitSwitchPort = 0;
-    public static final double defaultVisionTurretError = 0;
-    public static NetworkTable visionTable = NetworkTableInstance.getDefault().getTable("vision-movement");
-    public static int visionTurretError = 10;
-    public static ShuffleboardTab TalonFXTab = Shuffleboard.getTab("TalonFX");
-    public static NetworkTableEntry wantedPositionTurret = TalonFXTab.add("Wanted Position", 0).getEntry();
-    public static NetworkTableEntry pidError =  TalonFXTab.add("PID Error", 0).getEntry();
-    public static NetworkTableEntry degrees = TalonFXTab.add("Degrees", 0).getEntry();
-    public static final int motorPort = 8;
-    public static final double hoodSpeed = 0.07;
-
-    public static final int maxHoodLimitPort = 12;
-    public static final int minHoodLimitPort = 11;
-    public static boolean checksForBallChannel;
-    public static int intakeBallChannel;
-    public static boolean intakesBallChannel;
-    public static boolean intakingBall;
-    public static int rightLimitSwitchPort;
+    public static final int LEFT_SHOOTER_PORT = 11;
+    public static final int RIGHT_SHOOTER_PORT = 12;
+    public static final int SHOOTER_SPEED = 2500;
 }

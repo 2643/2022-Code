@@ -6,25 +6,15 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.subsystems.Shooter;
 //import frc.robot.commands.Autonomous.Rountine1;
-import frc.robot.commands.Climber.moveClimber;
-import frc.robot.commands.Drivetrain.DifferentialDrive;
 // import frc.robot.commands.Turret.turretShoot;
-import frc.robot.subsystems.ADISGyro;
-import frc.robot.subsystems.Climber;
-// import frc.robot.subsystems.BallVision;
-// import frc.robot.commands.Climber.moveClimber;
-// import frc.robot.subsystems.Climber;
-import frc.robot.subsystems.Drivetrain;
 // import frc.robot.subsystems.TurretSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 // import frc.robot.commands.hoodcm;
 // import frc.robot.subsystems.ExampleSubsystem;
 // import frc.robot.subsystems.Hood;
-// import frc.robot.subsystems.Intake;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Subsystem;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+// import frc.robot.subsystems.Intake;  
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -35,19 +25,9 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
-  public static final Drivetrain m_drivetrain = new Drivetrain();
-  public static final ADISGyro m_gyro = new ADISGyro();
-  // public static TurretSubsystem m_turret = new TurretSubsystem();
-  public static final Climber m_climber = new Climber();
+  public static Shooter m_shooter = new Shooter();
 
 
-
-  public static Joystick driveStick = new Joystick(0);
-  public static Joystick opBoard = new Joystick(1);
-
-  public static JoystickButton driveButton = new JoystickButton(driveStick, 3);
-  public static JoystickButton raiseClimber = new JoystickButton(opBoard, 8);
-  public static JoystickButton lowerClimber = new JoystickButton(opBoard, 15);
 
 
   // public static final BallVision m_ballvision = new BallVision();
@@ -76,9 +56,7 @@ public class RobotContainer {
     // button1.whenHeld(new moveClimber(Climber.climbDirection.Up));
     // button2.whenHeld(new moveClimber(Climber.climbDirection.Down));
     // turretTest.whenPressed(new turretShoot());
-    driveButton.whenHeld(new DifferentialDrive(-0.1, 90, true));
-    raiseClimber.whenHeld(new moveClimber(Climber.climbDirection.Up));
-    lowerClimber.whenHeld(new moveClimber(Climber.climbDirection.Down));
+ 
   }
 
   /**

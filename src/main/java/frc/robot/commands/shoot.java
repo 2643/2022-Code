@@ -2,18 +2,17 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.ADISGyro;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class turnRobot extends CommandBase {
-  double turnDegrees;
-  /** Creates a new turnRobot. */
-  public turnRobot(double degrees) {
+public class shoot extends CommandBase {
+  /** Creates a new shoot. */
+  public shoot() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.m_gyro);
-    turnDegrees = degrees;
+    addRequirements(RobotContainer.m_shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -22,8 +21,9 @@ public class turnRobot extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    RobotContainer.m_gyro.turnClockwiseDegrees(turnDegrees);
+  public void execute() 
+  {
+    RobotContainer.m_shooter.setSpeed(Constants.SHOOTER_SPEED);
   }
 
   // Called once the command ends or is interrupted.
@@ -33,11 +33,6 @@ public class turnRobot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(Math.floor(RobotContainer.m_gyro.gyroAngle()) == turnDegrees){
-      return true;
-    } 
-    else{
-      return false;
-    }
+    return false;
   }
 }

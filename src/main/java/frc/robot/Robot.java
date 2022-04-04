@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 // import frc.robot.commands.FindBall;
-import frc.robot.commands.Drivetrain.Tankdrive;
 // import frc.robot.commands.Climber.moveClimber;
 // import frc.robot.commands.Climber.resetPosition;
 
@@ -32,7 +31,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   //public hoodcm m_hoodccm = new hoodcm(); 
 
-  /**
+  /*
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
