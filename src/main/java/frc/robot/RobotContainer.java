@@ -16,10 +16,12 @@ import frc.robot.commands.Autonomous.Routine4;
 //import frc.robot.commands.Autonomous.Rountine1;
 import frc.robot.commands.Climber.moveClimber;
 import frc.robot.commands.Intake.moveIntake;
+import frc.robot.commands.conveyor.*;
 //import frc.robot.commands.Drivetrain.DifferentialDrive;
 // import frc.robot.commands.Turret.turretShoot;
 import frc.robot.subsystems.ADISGyro;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.ConveyorBelt;
 // import frc.robot.subsystems.BallVision;
 // import frc.robot.commands.Climber.moveClimber;
 // import frc.robot.subsystems.Climber;
@@ -41,6 +43,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
+  public static ConveyorBelt conveyorBelt = new ConveyorBelt();
   public static final Drivetrain m_drivetrain = new Drivetrain();
   public static final ADISGyro m_gyro = new ADISGyro();
   // public static final TurretSubsystem m_turret = new TurretSubsystem();
@@ -55,6 +58,10 @@ public class RobotContainer {
 
   // public static final BallVision m_ballvision = new BallVision();
   
+  
+  public static JoystickButton forwardConveyor = new JoystickButton(opBoard, 11); 
+  public static JoystickButton reverseConveyor = new JoystickButton(opBoard, 10); 
+
   //public static final Hood cm_Hood = new Hood();
 
   public static Joystick joystick = new Joystick(0);
@@ -83,6 +90,9 @@ public class RobotContainer {
     raiseClimber.whenHeld(new moveClimber(Climber.climbDirection.Up));
     lowerClimber.whenHeld(new moveClimber(Climber.climbDirection.Down));
     forwardIntake.whenHeld(new moveIntake());
+    
+    forwardConveyor.whileHeld(new conveyerForward());
+    reverseConveyor.whileHeld(new conveyorReverse());
   }
 
   /**

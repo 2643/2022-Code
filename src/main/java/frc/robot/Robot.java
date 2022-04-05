@@ -40,6 +40,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   //public hoodcm m_hoodccm = new hoodcm(); 
 
+  private Command m_conveyor;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.

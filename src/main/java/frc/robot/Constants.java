@@ -97,4 +97,14 @@ public final class Constants {
     //INTAKE
     public static int INTAKE_MOTOR_PORT = 10;
     // public static final double speed = 0.3;
+
+    //CONVEYOR
+    
+    public static final int conveyerIRSensorPort1 = 2;
+    public static final int conveyerIRSensorPort2 = 3;
+
+    public static final int conveyorBeltMotorPort = 9;
+
+    public static final double convMotorSpeed = 0.4;
+    public static final double convRevMotorSpeed = -0.4;
 }
