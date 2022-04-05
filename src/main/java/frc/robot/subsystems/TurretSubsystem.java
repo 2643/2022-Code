@@ -105,7 +105,22 @@ public class TurretSubsystem extends SubsystemBase {
     //turretCanSparkMax.setIdleMode(IdleMode.kBrake);
   }
 //Position is not used
-  public void turretCanTurn(double positionValue)  {
+  public void turretCanTurn(double positionValue){
+    if(getPosition() <= RightHardLimit && getPosition() >= LeftHardLimit){
+      if(getPosition() <= RightSoftLimit && getPosition() >= LeftSoftLimit){
+        turretCanSparkMax.getPIDController().setReference(positionValue, ControlType.kSmartMotion, TurretPositionPIDSlot);
+      }
+      else if((getPosition() >= turretShoot.target) && getPosition() <= RightSoftLimit){
+        turretCanSparkMax.getPIDController().setReference(positionValue, ControlType.kSmartMotion, TurretPositionPIDSlot);
+      }
+      else if((getPosition() <= turretShoot.target) && getPosition() >= LeftSoftLimit){
+        turretCanSparkMax.getPIDController().setReference(positionValue, ControlType.kSmartMotion, TurretPositionPIDSlot);
+      }
+    }
+    else{
+      turretCanSparkMax.disable();
+    }
+  public void turretTest(double positionValue)  {
     if(RightSoftLimit <= getPosition() || LeftSoftLimit >= getPosition()) {
       if(RightHardLimit <= getPosition() || LeftHardLimit >= getPosition()) {
         turretCanSparkMax.disable();
