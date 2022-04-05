@@ -18,30 +18,34 @@ public class Hood extends SubsystemBase {
   /*private DigitalInput maxPositionTrue = new DigitalInput(Constants.maxHoodLimitPort);*/
 
   //sets PID variables
-    private static final double kP = 0.000001;
-    private static final double kI = 0.0;
-    private static final double kD = 0;
-
-    private static final double outputRange = 0;
+  private static final double kP = 0.000001;
+  private static final double kI = 0.0;
+  private static final double kD = 0;
+  private static final double outputRange = 0.3;
+  private static final double hood_maxVel = 2000;
+  private static final double hood_minVel = 0;
+  private static final int conversionFactor = 4096;
 
   //max/min position that the hood can move to
-  private static final double maxPosition = 100; //GET VALUE
+  private static final double maxPosition = 1000; //GET VALUE
   private static final double minPosition = 0;
 
 
   /** Creates a new Hood. */
   public Hood() {
     //sets PID values
+    motor.getEncoder().setPosition(0);
     motor.getPIDController().setP(kP);
     motor.getPIDController().setI(kI);
     motor.getPIDController().setD(kD);
     motor.getPIDController().setOutputRange(-1*(outputRange), outputRange);
+    motor.getPIDController().setSmartMotionMaxAccel(hood_maxVel, Constants.SLOTID_HOOD);
+    motor.getPIDController().setSmartMotionMaxVelocity(hood_minVel, Constants.SLOTID_HOOD);
+    motor.getEncoder().setPositionConversionFactor(conversionFactor);
+
 
   }
   //resets encoder to 0
-  public void setEncoder(){
-    motor.getEncoder().setPosition(0);
-  }
   //stops the motion of the hood/robot is at a resting position
   public void stopMove(){
     motor.getPIDController().setReference(0, ControlType.kDutyCycle);
@@ -62,16 +66,12 @@ public class Hood extends SubsystemBase {
 
   //moves the hood up
   public void moveUp() { 
-    if(!(atTopPos())){
-      motor.getPIDController().setReference(Constants.HOOD_SPEED, ControlType.kDutyCycle);
-    }
+    motor.getPIDController().setReference(Constants.HOOD_SPEED, ControlType.kSmartMotion, Constants.SLOTID_HOOD);
   }
 
   //moves the hood down
   public void moveDown(){
-    if(!(atBottomPos())){
-      motor.getPIDController().setReference(-1*(Constants.HOOD_SPEED), ControlType.kDutyCycle);
-    }
+      motor.getPIDController().setReference(-1*(Constants.HOOD_SPEED), ControlType.kSmartMotion, Constants.SLOTID_HOOD);
 
   }
   public void moveHood(double position){
@@ -93,6 +93,7 @@ public class Hood extends SubsystemBase {
 
   @Override
   public void periodic() {
+
     // This method will be called once per scheduler run
   }
 }

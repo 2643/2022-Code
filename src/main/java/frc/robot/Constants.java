@@ -16,14 +16,14 @@ import edu.wpi.first.networktables.NetworkTableInstance;
  */
 public final class Constants {
     public static final int HOOD_MOTOR_PORT = 8;
-    public static final double HOOD_SPEED = 0.07;
+    public static final double HOOD_SPEED = 0.2;
 
     //public static final int maxHoodLimitPort = 12;
     //public static final int minHoodLimitPort = 11;
 
     public static NetworkTable visionTable = NetworkTableInstance.getDefault().getTable("vision-movement");
     public static final double HOOD_DEFAULT_VISION_ERROR = 0;
-    public static final int SLOTID_HOOD = 0;
+    public static final int SLOTID_HOOD = 1;
     public static int HOOD_UPPER_ENCODER_SOFT_LIMIT = 26; //TODO get upper limit for hood
     public static int HOOD_LOWER_ENCODER_SOFT_LIMIT = 0;
 }

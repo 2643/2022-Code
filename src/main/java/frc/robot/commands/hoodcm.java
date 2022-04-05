@@ -25,17 +25,19 @@ public class hoodcm extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(RobotContainer.joystick.getPOV() == 0){
+    if(RobotContainer.joystick.getPOV() == 180){
       RobotContainer.cm_Hood.moveUp();
     }
-    else if(RobotContainer.joystick.getPOV() == 180){
+    else if(RobotContainer.joystick.getPOV() == 0){
       RobotContainer.cm_Hood.moveDown();
     }
     else{
       RobotContainer.cm_Hood.stopMove();
       //RobotContainer.cm_Hood.hoodPID(RobotContainer.cm_Hood.getPosition());
     }
-    RobotContainer.cm_Hood.getPosition(); //shows degrees of hood
+    RobotContainer.cm_Hood.getPosition();
+    RobotContainer.cm_Hood.atTopPos();
+    RobotContainer.cm_Hood.atBottomPos(); //shows degrees of hood
 
     //if joystick is l
   }
