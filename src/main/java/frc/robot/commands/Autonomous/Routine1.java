@@ -5,9 +5,9 @@
 package frc.robot.commands.Autonomous;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.commands.Drivetrain.MovePosition;
-import edu.wpi.first.wpilibj.Timer;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -15,17 +15,15 @@ import edu.wpi.first.wpilibj.Timer;
 public class Routine1 extends SequentialCommandGroup {
   //private final Timer m_timer = new Timer();
   /** Creates a new Rountine3. */
-  public Routine1(/*double delay*/) {
+  public Routine1(double delay) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     // m_timer.reset();
     // m_timer.start();
     // if(m_timer.get()==delay){
-    addCommands(new MovePosition(-Constants.MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS));
+    addCommands(new WaitCommand(delay), new MovePosition(Constants.MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS));
+    //addCommands(new MovePosition(Constants.MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS));
     }
   }
-
-
-
 
 //}

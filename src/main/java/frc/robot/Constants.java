@@ -36,10 +36,10 @@ public final class Constants {
     public static final double TANKDRIVE_SLEW_RATE = 1980/TANKDRIVE_SETPOINT;
 
     public static final double DRIVETRAIN_ALLOWED_ERROR = 2048;
-    public static final double DRIVETRAIN_VELOCITY = 22000;
-    public static final double DRIVETRAIN_ACCELERATION = 2200;
+    public static final double DRIVETRAIN_VELOCITY = 22000;//22000
+    public static final double DRIVETRAIN_ACCELERATION = 5000;
 
-    public static final double DRIVETRAIN_GEARBOX_RATIO = 11.4;
+    public static final double DRIVETRAIN_GEARBOX_RATIO = 11.25;
 
 
     //CLIMBER
@@ -58,19 +58,20 @@ public final class Constants {
     public static final double UP_SOFT_LIMIT_CLIMB_RIGHT = 1373726;
   
     public static final double DOWN_HARD_LIMIT_CLIMB_RIGHT = -9000;
-    public static final double UP_HARD_LIMIT_CLIMB_RIGHT = 4096+1373726;
+    public static final double UP_HARD_LIMIT_CLIMB_RIGHT = 2048+1373726;
 
     public static final double DOWN_HARD_LIMIT_CLIMB_LEFT = -9000;
-    public static final double UP_HARD_LIMIT_CLIMB_LEFT = 4096+1390060;
+    public static final double UP_HARD_LIMIT_CLIMB_LEFT = 2048+1390060;
 
     public static final double CLIMBER_GAIN = 0.5;
     public static final double CLIMBER_SPEED = 500 * 100; // not really speed, but treat this like it
 
 
     //AUTONOMOUS
-    public static final double MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS = 4096*100*DRIVETRAIN_GEARBOX_RATIO;
-    public static final double MOVE_BACK_POSITION_TO_SHOOT = 4096*-1*DRIVETRAIN_GEARBOX_RATIO;
+    public static final double MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS = 2048*10*DRIVETRAIN_GEARBOX_RATIO;
+    public static final double MOVE_BACK_POSITION_TO_SHOOT = 2048*-1*DRIVETRAIN_GEARBOX_RATIO;
     public static int ROUTINE_SELECTOR = 1;
+    public static double AUTONOMOUS_DELAY = 3;
 
 
     //TURRET

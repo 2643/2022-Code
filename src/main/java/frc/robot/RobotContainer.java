@@ -102,7 +102,7 @@ public class RobotContainer {
        return (new Routine4());
      }
      else{
-       return (new Routine1());
+       return (new Routine1(Constants.AUTONOMOUS_DELAY));
      }
    }
 }

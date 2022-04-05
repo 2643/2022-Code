@@ -185,6 +185,5 @@ public class Drivetrain extends SubsystemBase {
     //   loopcounter = 0;
     // }
     //setMotorPercentOutput(0.3);
-    setMotorPosition(4096*10*11.4);
   }
 }
