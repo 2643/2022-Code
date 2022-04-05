@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.ControlType;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -42,6 +43,8 @@ public class Hood extends SubsystemBase {
     motor.getPIDController().setSmartMotionMaxAccel(hood_maxVel, Constants.SLOTID_HOOD);
     motor.getPIDController().setSmartMotionMaxVelocity(hood_minVel, Constants.SLOTID_HOOD);
     motor.getEncoder().setPositionConversionFactor(conversionFactor);
+    motor.setIdleMode(IdleMode.kBrake);
+    
 
 
   }
