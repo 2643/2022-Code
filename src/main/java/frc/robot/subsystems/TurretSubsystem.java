@@ -21,8 +21,8 @@ import frc.robot.Constants;
 public class TurretSubsystem extends SubsystemBase {
   /** Creates a new TurretSubsystem. */
 
-  CANSparkMax turretCanSparkMax = new CANSparkMax(Constants.TurretMotorPort, MotorType.kBrushless);
-  DigitalInput turretLimitSwitch = new DigitalInput(10);
+  CANSparkMax turretCanSparkMax = new CANSparkMax(Constants.TURRET_MOTOR_PORT, MotorType.kBrushless);
+  //DigitalInput turretLimitSwitch = new DigitalInput(10);
   int TurretVelocityPIDSlot = 0;
   int TurretPositionPIDSlot = 1;
 
@@ -120,6 +120,7 @@ public class TurretSubsystem extends SubsystemBase {
     else{
       turretCanSparkMax.disable();
     }
+  }
   public void turretTest(double positionValue)  {
     if(RightSoftLimit <= getPosition() || LeftSoftLimit >= getPosition()) {
       if(RightHardLimit <= getPosition() || LeftHardLimit >= getPosition()) {
@@ -154,9 +155,9 @@ public class TurretSubsystem extends SubsystemBase {
   }
 
   //returns true if limitswitch is hits the reflective tape and returns false otherwise
-  public boolean turretLimitSwitchReflected() {
-    return !turretLimitSwitch.get();
-  }
+  // public boolean turretLimitSwitchReflected() {
+  //   return !turretLimitSwitch.get();
+  // }
 
   public void resetEncoder()  {
     turretCanSparkMax.getEncoder().setPosition(zeroPosition);
@@ -178,7 +179,7 @@ public class TurretSubsystem extends SubsystemBase {
     //System.out.println(getPosition());
     //System.out.println(getVelocity());
     //turretCanSparkMax.getPIDController().setReference(0.1, ControlType.kDutyCycle);
-    System.out.println(" Pos: " + getPosition() + " Error:" + (double)Constants.visionTable.getEntry("Degree").getNumber(Constants.defaultVisionTurretError) + "PIDError" + (getPosition()-turretShoot.target) + " Target:" + turretShoot.target + " Error:" + (turretShoot.target - getPosition()));
+    //System.out.println(" Pos: " + getPosition() + " Error:" + (double)Constants.visionTable.getEntry("Degree").getNumber(Constants.defaultVisionTurretError) + "PIDError" + (getPosition()-turretShoot.target) + " Target:" + turretShoot.target + " Error:" + (turretShoot.target - getPosition()));
     double PValue = ShuffleBoardData.getDouble(0.0001);
     double IValue = lol1.getDouble(0.00000);
     double DValue = lol2.getDouble(0);
@@ -192,7 +193,7 @@ public class TurretSubsystem extends SubsystemBase {
     positionTurret.setDouble(getPosition());
     Constants.wantedPositionTurret.setDouble(turretShoot.target);
     Constants.pidError.setDouble((getPosition()-turretShoot.target));
-    Constants.degrees.setDouble((double)Constants.visionTable.getEntry("Degree").getNumber(Constants.defaultVisionTurretError));
+    //Constants.degrees.setDouble((double)Constants.visionTable.getEntry("Degree").getNumber(Constants.defaultVisionTurretError));
     //public static NetworkTableEntry wantedPositionTurret = TalonFXTab.add("Wanted Position", 0).getEntry();
 
     //P is 0.00001: Doesn't move

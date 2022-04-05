@@ -19,31 +19,12 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final int DRIVETRAIN_FRONT_LEFT_MOTOR = 3;
-    public static final int DRIVETRAIN_BACK_LEFT_MOTOR = 4;
-
-    public static final int DRIVETRAIN_FRONT_RIGHT_MOTOR = 1;
-    public static final int DRIVETRAIN_BACK_RIGHT_MOTOR = 2;
-
-    public static final int JOYSTICK_LEFT_AXIS = 1;
-    public static final int JOYSTICK_RIGHT_AXIS = 5;
-    public static final double JOYSITCK_DEADBAND = 0.025;
-    public static boolean slowMode = false;
-    public static final double SLOW_MODE_MULTIPLIER = 0.5;
-
-    public static final int rightClimberPort = 0; //add port num later
-    public static final int leftClimberPort = 0; //add port num later
-    public static final double maxpos = 0; //test for max speed later
-    
-    public static final int leftShooterPort = 5;
-    public static final int rightShooterPort = 6;
-    public static final int conveyorBeltMotorPort = 15;
-
-    public static final int TurretMotorPort = 7;
-    public static final int turretLimitSwitchPort = 0;
-    public static final double defaultVisionTurretError = 0;
-    public static NetworkTable visionTable = NetworkTableInstance.getDefault().getTable("vision-movement");
-    public static int visionTurretError = 10;
+    public static final int TURRET_MOTOR_PORT = 7;
+    public static double TURRET_TARGET_POSITION = 0;
+    //public static final int turretLimitSwitchPort = 0;
+    // public static final double defaultVisionTurretError = 0;
+    // public static NetworkTable visionTable = NetworkTableInstance.getDefault().getTable("vision-movement");
+    // public static int visionTurretError = 10;
     public static ShuffleboardTab TalonFXTab = Shuffleboard.getTab("TalonFX");
     public static NetworkTableEntry wantedPositionTurret = TalonFXTab.add("Wanted Position", 0).getEntry();
     public static NetworkTableEntry pidError =  TalonFXTab.add("PID Error", 0).getEntry();

@@ -32,8 +32,8 @@ public class turretShoot extends CommandBase {
     pos = RobotContainer.m_turret.getPosition();
     turretReady = false;
     Robot.canDriverControl = false;
-    error = ((double)Constants.visionTable.getEntry("Degree").getNumber(Constants.defaultVisionTurretError));
-    target = pos - error*gain;
+    //error = ((double)Constants.visionTable.getEntry("Degree").getNumber(Constants.defaultVisionTurretError));
+    Constants.TURRET_TARGET_POSITION = pos - /*error**/gain;
     RobotContainer.m_turret.turretCanTurn(target);
     turretReady = true;
     
@@ -43,7 +43,7 @@ public class turretShoot extends CommandBase {
   @Override
   public void execute() {
     pos = RobotContainer.m_turret.getPosition();
-    error = ((double)Constants.visionTable.getEntry("Degree").getNumber(Constants.defaultVisionTurretError));
+    //error = ((double)Constants.visionTable.getEntry("Degree").getNumber(Constants.defaultVisionTurretError));
     // if(error <= 5 && error >= -5){
     //   turretReady = true;
     // }
@@ -55,9 +55,6 @@ public class turretShoot extends CommandBase {
     //   target = pos + 2500;
     //   RobotContainer.m_turret.turretCanTurn(target);
     // }
-    
-
-    System.out.println("Error: " + error + " Pos:" + RobotContainer.m_turret.getPosition() + " Ready: " + turretReady + " Target:" + target);
   }
 
 

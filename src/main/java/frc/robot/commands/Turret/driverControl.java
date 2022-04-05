@@ -10,7 +10,6 @@ import frc.robot.Constants;
 
 public class driverControl extends CommandBase {
   public static double posDriverControl;
-  private static double target;
   /** Creates a new driverControl. */
   public driverControl() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -29,15 +28,15 @@ public class driverControl extends CommandBase {
     posDriverControl = RobotContainer.m_turret.getPosition();
 
     if(RobotContainer.driveStick.getPOV() == 270) {
-      target = posDriverControl - 3500;
-      RobotContainer.m_turret.turretCanTurn(target);
+      Constants.TURRET_TARGET_POSITION = posDriverControl - 3500;
+      RobotContainer.m_turret.turretCanTurn(Constants.TURRET_TARGET_POSITION);
     }
     else if(RobotContainer.driveStick.getPOV() == 90) {
-      target = posDriverControl + 3500;
-      RobotContainer.m_turret.turretCanTurn(target);
+      Constants.TURRET_TARGET_POSITION = posDriverControl + 3500;
+      RobotContainer.m_turret.turretCanTurn(Constants.TURRET_TARGET_POSITION);
     }
     else {
-      RobotContainer.m_turret.setEncoder(target);
+      RobotContainer.m_turret.setEncoder(Constants.TURRET_TARGET_POSITION);
     }
   }
 
