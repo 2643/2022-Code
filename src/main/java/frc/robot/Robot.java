@@ -21,7 +21,6 @@ import frc.robot.commands.Drivetrain.Tankdrive;
 
 // import frc.robot.commands.hoodcm;
 // import frc.robot.subsystems.Hood;
-// import frc.robot.commands.LowerIntake;
 // import frc.robot.subsystems.Intake;
 
 /**
@@ -127,7 +126,6 @@ public class Robot extends TimedRobot {
   public void testInit() {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
-    //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_intake, new LowerIntake());
   }
 
   /** This function is called periodically during test mode. */

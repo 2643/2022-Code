@@ -76,11 +76,8 @@ public final class Constants {
     public static final int motorPort = 8;
     public static final double hoodSpeed = 0.07;
 
-    public static final int maxHoodLimitPort = 12;
-    public static final int minHoodLimitPort = 11;
-    public static boolean checksForBallChannel;
-    public static int intakeBallChannel;
-    public static boolean intakesBallChannel;
-    public static boolean intakingBall;
-    public static int rightLimitSwitchPort;
+    public static final int MAX_HOOD_LIMIT_PORT = 12;
+    public static final int MIN_HOOD_LIMIT_PORT = 11;
+    public static int INTAKE_MOTOR_PORT = 10;
+    // public static final double speed = 0.3;
 }
