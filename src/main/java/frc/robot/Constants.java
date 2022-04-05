@@ -4,11 +4,11 @@
 
 package frc.robot;
 
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+// import edu.wpi.first.networktables.NetworkTable;
+// import edu.wpi.first.networktables.NetworkTableEntry;
+// import edu.wpi.first.networktables.NetworkTableInstance;
+// import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+// import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    //DRIVETRAIN
     public static final int DRIVETRAIN_FRONT_RIGHT_MOTOR = 1;
     public static final int DRIVETRAIN_BACK_RIGHT_MOTOR = 2;
     public static final int DRIVETRAIN_FRONT_LEFT_MOTOR = 3;
@@ -38,6 +39,10 @@ public final class Constants {
     public static final double DRIVETRAIN_VELOCITY = 22000;
     public static final double DRIVETRAIN_ACCELERATION = 2200;
 
+    public static final double DRIVETRAIN_GEARBOX_RATIO = 11.4;
+
+
+    //CLIMBER
     public static final int RIGHT_CLIMBER_PORT = 5; 
     public static final int LEFT_CLIMBER_PORT = 6; 
 
@@ -61,23 +66,35 @@ public final class Constants {
     public static final double CLIMBER_GAIN = 0.5;
     public static final double CLIMBER_SPEED = 500 * 100; // not really speed, but treat this like it
 
-    public static final double MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS = 4096*100;
-    public static final double MOVE_BACK_POSITION_TO_SHOOT = 4096*-0;
 
-    public static final int TurretMotorPort = 7;
-    public static final int turretLimitSwitchPort = 0;
-    public static final double defaultVisionTurretError = 0;
-    public static NetworkTable visionTable = NetworkTableInstance.getDefault().getTable("vision-movement");
-    public static int visionTurretError = 10;
-    public static ShuffleboardTab TalonFXTab = Shuffleboard.getTab("TalonFX");
-    public static NetworkTableEntry wantedPositionTurret = TalonFXTab.add("Wanted Position", 0).getEntry();
-    public static NetworkTableEntry pidError =  TalonFXTab.add("PID Error", 0).getEntry();
-    public static NetworkTableEntry degrees = TalonFXTab.add("Degrees", 0).getEntry();
+    //AUTONOMOUS
+    public static final double MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS = 4096*100*DRIVETRAIN_GEARBOX_RATIO;
+    public static final double MOVE_BACK_POSITION_TO_SHOOT = 4096*-1*DRIVETRAIN_GEARBOX_RATIO;
+    public static int ROUTINE_SELECTOR = 1;
+
+
+    //TURRET
+    public static final int TURRET_MOTOR_PORT = 7;
+    //public static final int turretLimitSwitchPort = 0;
+
+    // public static final double defaultVisionTurretError = 0;
+    // public static NetworkTable visionTable = NetworkTableInstance.getDefault().getTable("vision-movement");
+    // public static int visionTurretError = 10;
+    // public static ShuffleboardTab TalonFXTab = Shuffleboard.getTab("TalonFX");
+    // public static NetworkTableEntry wantedPositionTurret = TalonFXTab.add("Wanted Position", 0).getEntry();
+    // public static NetworkTableEntry pidError =  TalonFXTab.add("PID Error", 0).getEntry();
+    // public static NetworkTableEntry degrees = TalonFXTab.add("Degrees", 0).getEntry();
+
+
+    //HOOD
     public static final int motorPort = 8;
     public static final double hoodSpeed = 0.07;
 
     public static final int MAX_HOOD_LIMIT_PORT = 12;
     public static final int MIN_HOOD_LIMIT_PORT = 11;
+
+
+    //INTAKE
     public static int INTAKE_MOTOR_PORT = 10;
     // public static final double speed = 0.3;
 }

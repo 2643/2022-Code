@@ -20,7 +20,7 @@
 // public class TurretSubsystem extends SubsystemBase {
 //   /** Creates a new TurretSubsystem. */
 
-//   CANSparkMax turretCanSparkMax = new CANSparkMax(Constants.TurretMotorPort, MotorType.kBrushless);
+//   CANSparkMax turretCanSparkMax = new CANSparkMax(Constants.TURRET_MOTOR_PORT, MotorType.kBrushless);
 //   DigitalInput turretLimitSwitch = new DigitalInput(10);
 //   int TurretVelocityPIDSlot = 0;
 //   int TurretPositionPIDSlot = 1;
