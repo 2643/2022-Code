@@ -4,15 +4,20 @@
 
 package frc.robot.commands;
 
+import java.util.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class shoot extends CommandBase {
+
+  double speed;
+
   /** Creates a new shoot. */
-  public shoot() {
+  public shoot(double m_speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.m_shooter);
+    speed = m_speed;
   }
 
   // Called when the command is initially scheduled.
@@ -23,7 +28,7 @@ public class shoot extends CommandBase {
   @Override
   public void execute() 
   {
-    RobotContainer.m_shooter.setSpeed(Constants.SHOOTER_SPEED);
+    RobotContainer.m_shooter.setSpeed(speed);
   }
 
   // Called once the command ends or is interrupted.

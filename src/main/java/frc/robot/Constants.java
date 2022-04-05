@@ -21,5 +21,10 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 public final class Constants {
     public static final int LEFT_SHOOTER_PORT = 11;
     public static final int RIGHT_SHOOTER_PORT = 12;
-    public static final int SHOOTER_SPEED = 2500;
+
+    //NEED TO CONFIGURE
+    public static final int CLOSE_SHOOTER_SPEED = 2500;
+    public static final int FAR_SHOOTER_SPEED = 2500;
+    public static final int MEDIUM_SHOOTER_SPEED = 2500;
+
 }

@@ -6,6 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.shoot;
 import frc.robot.subsystems.Shooter;
 //import frc.robot.commands.Autonomous.Rountine1;
 // import frc.robot.commands.Turret.turretShoot;
@@ -27,17 +29,13 @@ public class RobotContainer {
 
   public static Shooter m_shooter = new Shooter();
 
+  public static Joystick opBoard = new Joystick(1);
 
+  //GET ACTUAL PORT NUMBERS
+  public static JoystickButton closeShoot = new JoystickButton(opBoard, 10);
+  public static JoystickButton manualShoot = new JoystickButton(opBoard, 11);
+  public static JoystickButton autoShoot = new JoystickButton(opBoard, 12);
 
-
-  // public static final BallVision m_ballvision = new BallVision();
-  
-  
-  
-  //public static final Hood cm_Hood = new Hood();
-
-  public static Joystick joystick = new Joystick(0);
-  //public static final Intake m_intake = new Intake(); 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -53,10 +51,9 @@ public class RobotContainer {
    */
   private void configureButtonBindings() 
   {
-    // button1.whenHeld(new moveClimber(Climber.climbDirection.Up));
-    // button2.whenHeld(new moveClimber(Climber.climbDirection.Down));
-    // turretTest.whenPressed(new turretShoot());
- 
+    // closeShoot.whenPressed(new shoot(Constants.CLOSE_SHOOTER_SPEED));
+    // manualShoot.whenPressed(new shoot(Constants.FAR_SHOOTER_SPEED));
+    // autoShoot.whenPressed(new shoot(Constants.FAR_SHOOTER_SPEED));
   }
 
   /**

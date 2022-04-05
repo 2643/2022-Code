@@ -43,6 +43,14 @@ public class Shooter extends SubsystemBase {
     leftShooter.getPIDController().setReference(motorSpeed, ControlType.kVelocity);
   }
 
+  public double getVelocity(){
+    return leftShooter.getEncoder().getVelocity();
+  }
+
+  public double getPosition(){
+    return leftShooter.getEncoder().getPosition();
+  }
+
   
   @Override
   public void periodic() {

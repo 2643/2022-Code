@@ -74,14 +74,6 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-    //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_turret, new SequentialCommandGroup(new resetPosition(), new driverControl()));
-    // if(!resetTurretDone) {
-    //   CommandScheduler.getInstance().schedule(new resetPosition());
-    //   resetTurretDone = true;
-    // }
-    // else {
-    //   CommandScheduler.getInstance().schedule(true, new driverControl());
-    // }
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
@@ -108,8 +100,6 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    // CommandScheduler.getInstance().schedule(new FindBall());
-    //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_drivetrain, new Tankdrive());
     //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_shooter, new shoot());
   }
 
@@ -117,7 +107,6 @@ public class Robot extends TimedRobot {
   public void testInit() {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
-    //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_intake, new LowerIntake());
   }
 
   /** This function is called periodically during test mode. */
