@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.Autonomous.Rountine3;
 //import frc.robot.commands.Autonomous.Rountine1;
 import frc.robot.commands.Climber.moveClimber;
 import frc.robot.commands.Drivetrain.DifferentialDrive;
@@ -86,8 +87,8 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  // public Command getAutonomousCommand() {
-  //   // An ExampleCommand will run in autonomous
-  //   return (new Rountine1());
-  // }
+  public Command getAutonomousCommand() {
+     // An ExampleCommand will run in autonomous
+     return (new Rountine3());
+   }
 }

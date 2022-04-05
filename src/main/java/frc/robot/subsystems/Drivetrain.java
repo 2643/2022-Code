@@ -25,16 +25,16 @@ public class Drivetrain extends SubsystemBase {
   TalonFX drivetrainFrontRightMotor = new TalonFX(Constants.DRIVETRAIN_FRONT_RIGHT_MOTOR);
   TalonFX drivetrainBackRightMotor = new TalonFX(Constants.DRIVETRAIN_BACK_RIGHT_MOTOR);
 
-  WPI_TalonFX WPI_drivetrainFrontLeftMotor = new WPI_TalonFX(Constants.DRIVETRAIN_FRONT_LEFT_MOTOR);
-  WPI_TalonFX WPI_drivetrainBackLeftMotor = new WPI_TalonFX(Constants.DRIVETRAIN_BACK_LEFT_MOTOR);
+  // WPI_TalonFX WPI_drivetrainFrontLeftMotor = new WPI_TalonFX(Constants.DRIVETRAIN_FRONT_LEFT_MOTOR);
+  // WPI_TalonFX WPI_drivetrainBackLeftMotor = new WPI_TalonFX(Constants.DRIVETRAIN_BACK_LEFT_MOTOR);
 
-  WPI_TalonFX WPI_drivetrainFrontRightMotor = new WPI_TalonFX(Constants.DRIVETRAIN_FRONT_RIGHT_MOTOR);
-  WPI_TalonFX WPI_drivetrainBackRightMotor = new WPI_TalonFX(Constants.DRIVETRAIN_BACK_RIGHT_MOTOR);
+  // WPI_TalonFX WPI_drivetrainFrontRightMotor = new WPI_TalonFX(Constants.DRIVETRAIN_FRONT_RIGHT_MOTOR);
+  // WPI_TalonFX WPI_drivetrainBackRightMotor = new WPI_TalonFX(Constants.DRIVETRAIN_BACK_RIGHT_MOTOR);
 
-  MotorControllerGroup m_left = new MotorControllerGroup((MotorController)WPI_drivetrainFrontLeftMotor);
-  MotorControllerGroup m_right = new MotorControllerGroup((MotorController)WPI_drivetrainFrontRightMotor);
+  // MotorControllerGroup m_left = new MotorControllerGroup((MotorController)WPI_drivetrainFrontLeftMotor);
+  // MotorControllerGroup m_right = new MotorControllerGroup((MotorController)WPI_drivetrainFrontRightMotor);
 
-  public DifferentialDrive m_drive = new DifferentialDrive(m_left, m_right);
+  // public DifferentialDrive m_drive = new DifferentialDrive(m_left, m_right);
 
 
   public static final double TalonFX_F = 0;
@@ -42,10 +42,17 @@ public class Drivetrain extends SubsystemBase {
   public static final double TalonFX_I = 0.0000;
   public static final double TalonFX_D = 0.0075;
 
+  public static final double Position_TalonFX_P = 0.025;
+  public static final double Position_TalonFX_I = 0.0000;
+  public static final double Position_TalonFX_D = 0;
+
   public static int loopcounter = 0;
   
   public Drivetrain() {
-    TalonFX[] drivetrainMotors = {drivetrainFrontLeftMotor, drivetrainBackLeftMotor,drivetrainFrontRightMotor, drivetrainBackRightMotor, WPI_drivetrainFrontLeftMotor, WPI_drivetrainBackLeftMotor, WPI_drivetrainFrontRightMotor, WPI_drivetrainBackRightMotor};
+
+  resetMotorEncoders();
+
+  TalonFX[] drivetrainMotors = {drivetrainFrontLeftMotor, drivetrainBackLeftMotor,drivetrainFrontRightMotor, drivetrainBackRightMotor, /*WPI_drivetrainFrontLeftMotor, WPI_drivetrainBackLeftMotor, WPI_drivetrainFrontRightMotor, WPI_drivetrainBackRightMotor*/};
     // TalonFX[] drivetrainMasterMotors = {drivetrainFrontLeftMotor, drivetrainFrontRightMotor};
     // TalonFX[] drivetrainFollowerMotors = {drivetrainBackLeftMotor, drivetrainBackRightMotor};
 
@@ -65,6 +72,10 @@ public class Drivetrain extends SubsystemBase {
       talon.config_kP(0, TalonFX_P, 1);
       talon.config_kI(0, TalonFX_I, 1);
       talon.config_kD(0, TalonFX_D, 1);
+
+      talon.config_kP(1, TalonFX_P, 1);
+      talon.config_kI(1, TalonFX_I, 1);
+      talon.config_kD(1, TalonFX_D, 1);
     }
     drivetrainBackRightMotor.follow(drivetrainFrontRightMotor);
     // drivetrainBackLeftMotor.setInverted(InvertType.FollowMaster);
@@ -74,18 +85,18 @@ public class Drivetrain extends SubsystemBase {
     drivetrainBackLeftMotor.follow(drivetrainFrontLeftMotor);
     drivetrainBackLeftMotor.setInverted(InvertType.FollowMaster);
 
-    WPI_drivetrainBackRightMotor.follow(WPI_drivetrainFrontRightMotor);
+    //WPI_drivetrainBackRightMotor.follow(WPI_drivetrainFrontRightMotor);
     // drivetrainBackLeftMotor.setInverted(InvertType.FollowMaster);
 
     // INVERTING RIGHT SIDE SO BOTH SIDES ARE POSITIVE FOR THE SAME DIRECTION
-    WPI_drivetrainFrontLeftMotor.setInverted(InvertType.InvertMotorOutput);
-    WPI_drivetrainBackLeftMotor.follow(WPI_drivetrainFrontLeftMotor);
-    WPI_drivetrainBackLeftMotor.setInverted(InvertType.FollowMaster);
-    WPI_drivetrainFrontRightMotor.setNeutralMode(NeutralMode.Brake);
-    WPI_drivetrainFrontLeftMotor.setNeutralMode(NeutralMode.Coast);
-    WPI_drivetrainFrontLeftMotor.configMotionAcceleration(5);
-    WPI_drivetrainFrontRightMotor.configMotionAcceleration(5);
-    m_drive.setMaxOutput(0.1);
+    // WPI_drivetrainFrontLeftMotor.setInverted(InvertType.InvertMotorOutput);
+    // WPI_drivetrainBackLeftMotor.follow(WPI_drivetrainFrontLeftMotor);
+    // WPI_drivetrainBackLeftMotor.setInverted(InvertType.FollowMaster);
+    // WPI_drivetrainFrontRightMotor.setNeutralMode(NeutralMode.Brake);
+    // WPI_drivetrainFrontLeftMotor.setNeutralMode(NeutralMode.Coast);
+    // WPI_drivetrainFrontLeftMotor.configMotionAcceleration(5);
+    // WPI_drivetrainFrontRightMotor.configMotionAcceleration(5);
+    // m_drive.setMaxOutput(0.1);
     
     //WPI_drivetrainFrontLeftMotor.configMotionCruiseVelocity(5);
     //WPI_drivetrainFrontRightMotor.configMotionCruiseVelocity(5);
@@ -105,10 +116,12 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void setLeftMotorVelocity(double velocity) {
+    drivetrainFrontRightMotor.selectProfileSlot(0, 0);
     drivetrainFrontLeftMotor.set(ControlMode.Velocity, velocity);
   }
 
   public void setRightMotorVelocity(double velocity) {
+    drivetrainFrontRightMotor.selectProfileSlot(0, 0);
     drivetrainFrontRightMotor.set(ControlMode.Velocity, velocity);
   }
 
@@ -131,12 +144,14 @@ public class Drivetrain extends SubsystemBase {
     }
 
   public void setLeftMotorPosition(double position) {
+    drivetrainFrontLeftMotor.selectProfileSlot(1, 0);
     drivetrainFrontLeftMotor.set(ControlMode.MotionMagic, position);
     drivetrainFrontLeftMotor.configMotionCruiseVelocity(Constants.DRIVETRAIN_VELOCITY);
     drivetrainFrontLeftMotor.configMotionAcceleration(Constants.DRIVETRAIN_ACCELERATION);
   }
 
   public void setRightMotorPosition(double position) {
+    drivetrainFrontRightMotor.selectProfileSlot(1, 0);
     drivetrainFrontRightMotor.set(ControlMode.MotionMagic, position);
     drivetrainFrontRightMotor.configMotionCruiseVelocity(Constants.DRIVETRAIN_VELOCITY);
     drivetrainFrontRightMotor.configMotionAcceleration(Constants.DRIVETRAIN_ACCELERATION);
@@ -169,5 +184,7 @@ public class Drivetrain extends SubsystemBase {
     //   System.out.println("Actual Output: " + drivetrainBackLeftMotor.getSelectedSensorVelocity() + " " + drivetrainBackLeftMotor.getStatorCurrent());
     //   loopcounter = 0;
     // }
+    //setMotorPercentOutput(0.3);
+    setMotorPosition(4096*10);
   }
 }

@@ -61,7 +61,7 @@ public final class Constants {
     public static final double CLIMBER_GAIN = 0.5;
     public static final double CLIMBER_SPEED = 500 * 100; // not really speed, but treat this like it
 
-    public static final double MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS = 4096*0;
+    public static final double MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS = 4096*100;
     public static final double MOVE_BACK_POSITION_TO_SHOOT = 4096*-0;
 
     public static final int TurretMotorPort = 7;
