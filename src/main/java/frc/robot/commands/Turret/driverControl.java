@@ -28,15 +28,15 @@ public class driverControl extends CommandBase {
     posDriverControl = RobotContainer.m_turret.getPosition();
 
     if(RobotContainer.driveStick.getPOV() == 270) {
-      Constants.TURRET_TARGET_POSITION = posDriverControl - 3500;
+      Constants.TURRET_TARGET_POSITION = posDriverControl - 750;
       RobotContainer.m_turret.turretCanTurn(Constants.TURRET_TARGET_POSITION);
     }
     else if(RobotContainer.driveStick.getPOV() == 90) {
-      Constants.TURRET_TARGET_POSITION = posDriverControl + 3500;
+      Constants.TURRET_TARGET_POSITION = posDriverControl + 750;
       RobotContainer.m_turret.turretCanTurn(Constants.TURRET_TARGET_POSITION);
     }
     else {
-      RobotContainer.m_turret.setEncoder(Constants.TURRET_TARGET_POSITION);
+      RobotContainer.m_turret.stopTurret();
     }
   }
 
