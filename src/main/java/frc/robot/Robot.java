@@ -27,10 +27,8 @@ import frc.robot.commands.shoot;
 public class Robot extends TimedRobot {
 
   private Command m_autonomousCommand;
-//   private boolean resetTurretDone = false;
-//   public static boolean canDriverControl = true;
+
   private RobotContainer m_robotContainer;
-  //public hoodcm m_hoodccm = new hoodcm(); 
 
   /*
    * This function is run when the robot is first started up and should be used for any
@@ -42,8 +40,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    m_robotContainer = new RobotContainer();
-    
+  m_robotContainer = new RobotContainer();    
     //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.cm_Hood, new hoodcm());
   }
 
@@ -73,7 +70,7 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    //rm_autonomousCommand = m_robotContainer.getAutonomousCommand();
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
@@ -90,17 +87,14 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    // CommandScheduler.getInstance().schedule(new resetPosition());
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    // CommandScheduler.getInstance().schedule(new FindBall());
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_shooter, new shoot());
   }
 
   @Override
