@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 // import frc.robot.commands.hoodcm;
 import frc.robot.commands.ADISGyro.turnRobot;
-import frc.robot.commands.Conveyor.autoConveyorIntake;
+import frc.robot.commands.conveyor.autoConveyorIntake;
 import frc.robot.commands.Drivetrain.MovePosition;
 import frc.robot.commands.Intake.moveIntake;
 import frc.robot.commands.Shooter.shoot;
@@ -25,8 +25,8 @@ public class Routine2 extends SequentialCommandGroup {
   /** Creates a new Rountine2. */
   public Routine2(double delay) {
     // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new WaitCommand(delay), new MovePosition(Constants.MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS-2.2), new ParallelCommandGroup(new MovePosition(0.2), new moveIntake().raceWith(new WaitCommand(4))),new autoConveyorIntake().raceWith(new WaitCommand(2)),new turnRobot(180),new shoot(Constants.FAR_SHOOTER_SPEED).raceWith(new WaitCommand(4)), new shoot(Constants.FAR_SHOOTER_SPEED).raceWith(new WaitCommand(4))); 
+    // addCommands(new FooCommand(), new BarCommand());-
+    addCommands(new WaitCommand(delay), new MovePosition(2048*2.2*Constants.DRIVETRAIN_GEARBOX_RATIO), new ParallelCommandGroup(new MovePosition(2048*2.1*Constants.DRIVETRAIN_GEARBOX_RATIO), new moveIntake().raceWith(new WaitCommand(4))),new autoConveyorIntake().raceWith(new WaitCommand(2)), new MovePosition(2048*1.1*Constants.DRIVETRAIN_GEARBOX_RATIO),new turnRobot(180),new shoot(Constants.FAR_SHOOTER_SPEED).raceWith(new WaitCommand(4)), new shoot(Constants.FAR_SHOOTER_SPEED).raceWith(new WaitCommand(4))); 
   }  
 }
 
