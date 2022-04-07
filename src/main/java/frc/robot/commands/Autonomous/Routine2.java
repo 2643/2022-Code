@@ -26,7 +26,7 @@ public class Routine2 extends SequentialCommandGroup {
   public Routine2(double delay) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());-
-    addCommands(new WaitCommand(delay), new MovePosition(2048*2.2*Constants.DRIVETRAIN_GEARBOX_RATIO), new ParallelCommandGroup(new MovePosition(2048*2.1*Constants.DRIVETRAIN_GEARBOX_RATIO), new moveIntake().raceWith(new WaitCommand(4))), new autoConveyorIntake().raceWith(new WaitCommand(2)), new MovePosition(2048*1.1*Constants.DRIVETRAIN_GEARBOX_RATIO), new turnRobot(180),new shoot(Constants.FAR_SHOOTER_SPEED).raceWith(new WaitCommand(4)), new shoot(Constants.FAR_SHOOTER_SPEED).raceWith(new WaitCommand(4))); 
+    addCommands(new WaitCommand(delay), new MovePosition(2048*-2.2*Constants.DRIVETRAIN_GEARBOX_RATIO), new ParallelCommandGroup(new MovePosition(2048*-2.1*Constants.DRIVETRAIN_GEARBOX_RATIO), new moveIntake().raceWith(new WaitCommand(4))), new autoConveyorIntake().raceWith(new WaitCommand(2)), new MovePosition(-2048*1.1*Constants.DRIVETRAIN_GEARBOX_RATIO), new turnRobot(180),new shoot(Constants.FAR_SHOOTER_SPEED).raceWith(new WaitCommand(4)), new shoot(Constants.FAR_SHOOTER_SPEED).raceWith(new WaitCommand(4))); 
   }  
 }
 

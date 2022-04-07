@@ -13,6 +13,7 @@ import frc.robot.RobotContainer;
 public class shoot extends CommandBase {
 
   double percent;
+  long a = 0;
 
   /** Creates a new shoot. */
   public shoot(double m_percent) {
@@ -31,11 +32,12 @@ public class shoot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.m_shooter.setSpeed(Constants.SHOOTER_UP_SPEED);
-    Timer.delay(1.5);
     RobotContainer.m_shooter.setSpeed(percent);
-    Timer.delay(2);
-    RobotContainer.conveyorBelt.shootPulse();
+    if (a >= 100) {
+      RobotContainer.conveyorBelt.shootPulse();
+    } else {
+      a += 1;
+    }
   }
 
   // Called once the command ends or is interrupted.

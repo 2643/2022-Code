@@ -40,10 +40,10 @@ public class MovePosition extends CommandBase {
   @Override
   public boolean isFinished() {
     // logic based on 2021-code MoveForward.java
-    if (Math.abs(RobotContainer.m_drivetrain.getLeftMotorPosition()) <= Constants.DRIVETRAIN_ALLOWED_ERROR 
-      && Math.abs(RobotContainer.m_drivetrain.getLeftMotorPosition()) >= Constants.DRIVETRAIN_ALLOWED_ERROR) {
-        if (Math.abs(RobotContainer.m_drivetrain.getRightMotorPosition()) <= Constants.DRIVETRAIN_ALLOWED_ERROR 
-      && Math.abs(RobotContainer.m_drivetrain.getRightMotorPosition()) >= Constants.DRIVETRAIN_ALLOWED_ERROR) {
+    if (Math.abs(robotPosition - RobotContainer.m_drivetrain.getLeftMotorPosition()) <= Constants.DRIVETRAIN_ALLOWED_ERROR 
+      && Math.abs(robotPosition - RobotContainer.m_drivetrain.getLeftMotorPosition()) >= -Constants.DRIVETRAIN_ALLOWED_ERROR) {
+        if (Math.abs(robotPosition - RobotContainer.m_drivetrain.getRightMotorPosition()) <= Constants.DRIVETRAIN_ALLOWED_ERROR 
+      && Math.abs(robotPosition - RobotContainer.m_drivetrain.getRightMotorPosition()) >= -Constants.DRIVETRAIN_ALLOWED_ERROR) {
         return true;
       } else {
         return false;
