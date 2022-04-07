@@ -50,9 +50,11 @@ public class Drivetrain extends SubsystemBase {
   
   public Drivetrain() {
 
-  resetMotorEncoders();
+    resetMotorEncoders();
 
-  TalonFX[] drivetrainMotors = {drivetrainFrontLeftMotor, drivetrainBackLeftMotor,drivetrainFrontRightMotor, drivetrainBackRightMotor, /*WPI_drivetrainFrontLeftMotor, WPI_drivetrainBackLeftMotor, WPI_drivetrainFrontRightMotor, WPI_drivetrainBackRightMotor*/};
+    /*WPI_drivetrainFrontLeftMotor, WPI_drivetrainBackLeftMotor, WPI_drivetrainFrontRightMotor, WPI_drivetrainBackRightMotor*/
+    TalonFX[] drivetrainMotors = {drivetrainFrontLeftMotor, drivetrainBackLeftMotor,drivetrainFrontRightMotor, drivetrainBackRightMotor};
+
     // TalonFX[] drivetrainMasterMotors = {drivetrainFrontLeftMotor, drivetrainFrontRightMotor};
     // TalonFX[] drivetrainFollowerMotors = {drivetrainBackLeftMotor, drivetrainBackRightMotor};
 
@@ -77,6 +79,7 @@ public class Drivetrain extends SubsystemBase {
       talon.config_kI(1, TalonFX_I, 1);
       talon.config_kD(1, TalonFX_D, 1);
     }
+
     drivetrainBackRightMotor.follow(drivetrainFrontRightMotor);
     // drivetrainBackLeftMotor.setInverted(InvertType.FollowMaster);
 
@@ -141,7 +144,7 @@ public class Drivetrain extends SubsystemBase {
   public void setMotorPercentOutput(double percent){
     setLeftMotorPercentOutput(percent);
     setRightMotorPercentOutput(percent);
-    }
+  }
 
   public void setLeftMotorPosition(double position) {
     drivetrainFrontLeftMotor.selectProfileSlot(1, 0);

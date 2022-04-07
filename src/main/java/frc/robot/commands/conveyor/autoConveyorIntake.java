@@ -29,7 +29,7 @@ public class autoConveyorIntake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    initState= RobotContainer.conveyorBelt.getState();
+    initState = RobotContainer.conveyorBelt.getState();
     switch(initState)
     {
       case "empty":

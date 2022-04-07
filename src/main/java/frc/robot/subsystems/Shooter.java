@@ -23,11 +23,11 @@ public class Shooter extends SubsystemBase {
   // double motorP = 0.0018;
   // double motorI = 0.00000;
   // double motorD = 0.00000;
-  double outputMin = -0.9;
-  double outputMax = 0.9;
-  int PIDSlot = 0;
-  boolean Invertleft = true;
-  boolean Invertrightfollow = true;
+  public static double outputMin = -0.9;
+  public static double outputMax = 0.9;
+  public static int PIDSlot = 0;
+  public static boolean Invertleft = true;
+  public static boolean Invertrightfollow = true;
 
   // ShuffleboardTab Tab2022 = Shuffleboard.getTab("2022Tab-1");
   // NetworkTableEntry maxVelocity = Tab2022.add("Target Velocity", 1).getEntry();
@@ -36,7 +36,6 @@ public class Shooter extends SubsystemBase {
   // NetworkTableEntry DValue = Tab2022.add("D Value", 0).getEntry();
   // NetworkTableEntry lol4 = Tab2022.a("Max Acceleration", 750).getEntry();
   // NetworkTableEntry velocityTurret = Tab2022.add("Current Velocity", 0).getEntry();
-
 
   public Shooter() {
     leftShooter.restoreFactoryDefaults();
@@ -48,19 +47,17 @@ public class Shooter extends SubsystemBase {
     leftShooter.follow(rightShooter, true);
   }
 
-  public void setSpeed(double percent)
-  {
+  public void setSpeed(double percent) {
     rightShooter.getPIDController().setReference(percent, ControlType.kDutyCycle);
   }
 
-  public double getVelocity(){
+  public double getVelocity() {
     return rightShooter.getEncoder().getVelocity();
   }
 
-  public double getPosition(){
+  public double getPosition() {
     return rightShooter.getEncoder().getPosition();
   }
-
   
   @Override
   public void periodic() {

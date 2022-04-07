@@ -34,9 +34,7 @@ public class Intake extends SubsystemBase {
   }
 
   public void setSpeed(double speed) {
-    
     intakeMotor.getPIDController().setReference(speed, ControlType.kDutyCycle);
-
   }
 
   @Override public void periodic () {

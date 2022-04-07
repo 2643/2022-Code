@@ -31,7 +31,6 @@ public class Climber extends SubsystemBase {
 
   public static final DigitalInput climberLimitSwitchR = new DigitalInput(Constants.RIGHT_CLIMB_LIMIT_SWITCH_PORT);
   public static final DigitalInput climberLimitSwitchL = new DigitalInput(Constants.LEFT_CLIMB_LIMIT_SWITCH_PORT);
-
   
   public static final int timeoutSecondsTalonFX = 1;
 
@@ -56,11 +55,8 @@ public class Climber extends SubsystemBase {
     //rightClimber.configMotionAcceleration(250);
     //rightClimber.configMotionCruiseVelocity(500);
 
-    
-
     //rightClimber.configMotionAcceleration(250);
     //rightClimber.configMotionCruiseVelocity(500);
-
     
     leftClimber.setSelectedSensorPosition(0,0,30);
     leftClimber.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 0,30);

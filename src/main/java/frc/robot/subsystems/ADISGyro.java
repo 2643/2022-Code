@@ -20,16 +20,16 @@ public class ADISGyro extends SubsystemBase {
     return imu.getYComplementaryAngle();
   }
 
-  public void turnClockwiseDegrees(double degrees){
-    if(Math.round(gyroAngle()) == degrees){
+  public void turnClockwiseDegrees(double degrees) {
+    if(Math.round(gyroAngle()) == degrees) {
       RobotContainer.m_drivetrain.setRightMotorVelocity(0);
       RobotContainer.m_drivetrain.setLeftMotorVelocity(0);
     }
-    else if(gyroAngle() > degrees){
+    else if(gyroAngle() > degrees) {
       RobotContainer.m_drivetrain.setRightMotorVelocity(-0.5);
       RobotContainer.m_drivetrain.setLeftMotorVelocity(0.5);
     }
-    else if(gyroAngle() < degrees){
+    else if(gyroAngle() < degrees) {
       RobotContainer.m_drivetrain.setRightMotorVelocity(0.5);
       RobotContainer.m_drivetrain.setLeftMotorVelocity(-0.5);
     }

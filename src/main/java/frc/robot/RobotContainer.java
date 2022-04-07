@@ -74,7 +74,6 @@ public class RobotContainer {
 
   //public static final Hood cm_Hood = new Hood();
 
-
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -90,7 +89,7 @@ public class RobotContainer {
   private void configureButtonBindings() 
   {
     // turretTest.whenPressed(new turretShoot());
-    //driveButton.whenHeld(new DifferentialDrive(-0.1, 90, true));
+    // driveButton.whenHeld(new DifferentialDrive(-0.1, 90, true));
     raiseClimber.whenHeld(new moveClimber(Climber.climbDirection.Up));
     lowerClimber.whenHeld(new moveClimber(Climber.climbDirection.Down));
     forwardIntake.whenHeld(new moveIntake());
@@ -110,16 +109,16 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
      // An ExampleCommand will run in autonomous
-     if(Constants.ROUTINE_SELECTOR == 2){
+     if (Constants.ROUTINE_SELECTOR == 2) {
        return (new Routine2(2));
      }
-     else if(Constants.ROUTINE_SELECTOR == 3){
+     else if (Constants.ROUTINE_SELECTOR == 3) {
       return (new Routine3());
      }
-     else if(Constants.ROUTINE_SELECTOR == 4){
+     else if (Constants.ROUTINE_SELECTOR == 4) {
        return (new Routine4());
      }
-     else{
+     else {
        return (new Routine1(Constants.AUTONOMOUS_DELAY));
      }
    }
