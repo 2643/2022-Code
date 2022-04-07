@@ -17,7 +17,7 @@ public class ADISGyro extends SubsystemBase {
   public ADISGyro() {}
 
   public double gyroAngle(){
-    return imu.getAngle();
+    return imu.getYComplementaryAngle();
   }
 
   public void turnClockwiseDegrees(double degrees){
