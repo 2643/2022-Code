@@ -14,7 +14,7 @@ import com.revrobotics.CANSparkMax.IdleMode;
 public class Intake extends SubsystemBase {
     /** Creates a new Intake. */
 
-  CANSparkMax intakeMotor = new CANSparkMax(Constants.motorPort, MotorType.kBrushed);
+  CANSparkMax intakeMotor = new CANSparkMax(Constants.INTAKE_MOTOR_PORT, MotorType.kBrushed);
 
   // private static final double kP = 0.000001;
   // private static final double kI = 0.0;
