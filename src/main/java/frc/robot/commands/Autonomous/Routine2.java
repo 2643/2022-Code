@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 // import frc.robot.commands.hoodcm;
 import frc.robot.commands.ADISGyro.turnRobot;
-import frc.robot.commands.conveyor.autoConveyorIntake;
+import frc.robot.commands.Conveyor.autoConveyorIntake;
 import frc.robot.commands.Drivetrain.MovePosition;
 import frc.robot.commands.Intake.moveIntake;
 import frc.robot.commands.Shooter.shoot;

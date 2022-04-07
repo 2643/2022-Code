@@ -15,7 +15,7 @@ import frc.robot.commands.Autonomous.Routine3;
 import frc.robot.commands.Autonomous.Routine4;
 //import frc.robot.commands.Autonomous.Rountine1;
 import frc.robot.commands.Climber.moveClimber;
-import frc.robot.commands.conveyor.*;
+import frc.robot.commands.Conveyor.*;
 import frc.robot.commands.Intake.moveIntake;
 import frc.robot.commands.Shooter.shoot;
 //import frc.robot.commands.Drivetrain.DifferentialDrive;

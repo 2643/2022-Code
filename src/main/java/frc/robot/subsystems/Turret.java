@@ -135,16 +135,6 @@ public class Turret extends SubsystemBase {
       turretCanSparkMax.disable();
     }
   }
-  // public void turretTest(double positionValue)  {
-  //   if(RightSoftLimit <= getPosition() || LeftSoftLimit >= getPosition()) {
-  //     if(RightHardLimit <= getPosition() || LeftHardLimit >= getPosition()) {
-  //       turretCanSparkMax.disable();
-  //     }
-  //   }
-  //   else {
-  //     turretCanSparkMax.getPIDController().setReference(positionValue, ControlType.kSmartMotion, TurretPositionPIDSlot);
-  //   }
-  // }
 
   public void turretTurnLeft()  {
     if(LeftSoftLimit <= turretCanSparkMax.getEncoder().getPosition()){
