@@ -8,6 +8,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 //import frc.robot.commands.Autonomous.MoveBackwards;
 import frc.robot.commands.Autonomous.Routine1;
 import frc.robot.commands.Autonomous.Routine2;
@@ -37,6 +41,7 @@ import frc.robot.subsystems.Turret;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.Robot;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -46,7 +51,13 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  public static SendableChooser<Command> m_chooser = new SendableChooser<>();
+  ComplexWidget ShuffleBoardAutonomousRoutines = Shuffleboard.getTab("2022Robot").add("Autonoumous Routines Selector", m_chooser).withWidget(BuiltInWidgets.kComboBoxChooser).withSize(3, 2);
+  public final Command m_Routine1 = new Routine1(Constants.AUTONOMOUS_DELAY);
+  public final Command m_Routine2 = new Routine2(Constants.AUTONOMOUS_DELAY);
+  public final Command m_Routine3 = new Routine3(Constants.AUTONOMOUS_DELAY);
 
+  
   //SUBSYSTEMS INITIALIZED
   public static final ConveyorBelt conveyorBelt = new ConveyorBelt();
   public static final Drivetrain m_drivetrain = new Drivetrain();
@@ -78,6 +89,9 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    m_chooser.addOption("MOVEBACK AND SHOOT", m_Routine1);
+    m_chooser.addOption("MOVEFORWARD, GET SECOND BALL, TURN, AND SHOOT", m_Routine2);
+    m_chooser.addOption("MOVEBACK", m_Routine3);
   }
 
   /**
@@ -109,17 +123,18 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
      // An ExampleCommand will run in autonomous
-     if (Constants.ROUTINE_SELECTOR == 2) {
-       return (new Routine2(2));
-     }
-     else if (Constants.ROUTINE_SELECTOR == 3) {
-      return (new Routine3());
-     }
-     else if (Constants.ROUTINE_SELECTOR == 4) {
-       return (new Routine4());
-     }
-     else {
-       return (new Routine1(Constants.AUTONOMOUS_DELAY));
-     }
+     return m_chooser.getSelected();
+    //  if (Constants.ROUTINE_SELECTOR == 2) {
+    //    return (new Routine2(2));
+    //  }
+    //  else if (Constants.ROUTINE_SELECTOR == 3) {
+    //   return (new Routine3());
+    //  }
+    //  else if (Constants.ROUTINE_SELECTOR == 4) {
+    //    return (new Routine4());
+    //  }
+    //  else {
+    //    return (new Routine1(Constants.AUTONOMOUS_DELAY));
+    //  }
    }
 }
