@@ -4,11 +4,11 @@
 
 package frc.robot.commands.Drivetrain;
 
-import com.fasterxml.jackson.databind.deser.impl.CreatorCandidate;
+// import com.fasterxml.jackson.databind.deser.impl.CreatorCandidate;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.Robot;
+// import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class Tankdrive extends CommandBase {
@@ -16,7 +16,7 @@ public class Tankdrive extends CommandBase {
   private double leftSpeed = 0;
   private double rightSpeed = 0;
   private boolean finished = false;
-  private int loopcounter = 0;
+  // private int loopcounter = 0;
   private double twentyPercentSetpoint = Constants.TANKDRIVE_SETPOINT/5.0;
 
   public Tankdrive() {

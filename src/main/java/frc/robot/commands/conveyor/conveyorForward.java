@@ -7,10 +7,11 @@ package frc.robot.commands.Conveyor;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+// import frc.robot.subsystems.ConveyorBelt;
 
-public class conveyorReverse extends CommandBase {
-  /** Creates a new revConv. */
-  public conveyorReverse() {
+public class conveyorForward extends CommandBase {
+  /** Creates a new forwardConv. */
+  public conveyorForward() {
     // Use addRequirements() here to declare subsystem dependencies.
     
     addRequirements(RobotContainer.conveyorBelt);
@@ -23,8 +24,7 @@ public class conveyorReverse extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
-    RobotContainer.conveyorBelt.setSpeed(Constants.convRevMotorSpeed);
+    RobotContainer.conveyorBelt.setSpeed(Constants.convMotorSpeed);
     //RobotContainer.conveyorBelt.shootPrep();
   }
 
@@ -38,6 +38,7 @@ public class conveyorReverse extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+
     return false;
   }
 }

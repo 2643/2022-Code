@@ -2,15 +2,15 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.conveyor;
+package frc.robot.commands.Conveyor;
 /* MIGHT BE UNECESSARY!!! */
 /* MIGHT BE UNECESSARY!!! */
 /* MIGHT BE UNECESSARY!!! */
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
+// import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.ConveyorBelt;
+// import frc.robot.subsystems.ConveyorBelt;
 
 public class autoConveyorShoot extends CommandBase {
   /** Creates a new autoConveyorShoot. */

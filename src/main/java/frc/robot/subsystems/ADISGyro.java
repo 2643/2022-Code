@@ -21,7 +21,7 @@ public class ADISGyro extends SubsystemBase {
   }
 
   public void turnClockwiseDegrees(double degrees){
-    if(Math.floor(gyroAngle()) == degrees){
+    if(Math.round(gyroAngle()) == degrees){
       RobotContainer.m_drivetrain.setRightMotorVelocity(0);
       RobotContainer.m_drivetrain.setLeftMotorVelocity(0);
     }

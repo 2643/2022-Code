@@ -76,6 +76,7 @@ public final class Constants {
 
     //TURRET
     public static final int TURRET_MOTOR_PORT = 7;
+    public static double TURRET_TARGET_POSITION = 0;
     //public static final int turretLimitSwitchPort = 0;
 
     // public static final double defaultVisionTurretError = 0;
@@ -108,4 +109,16 @@ public final class Constants {
 
     public static final double convMotorSpeed = 0.4;
     public static final double convRevMotorSpeed = -0.4;
+
+    
+    //SHOOTER
+    public static final int LEFT_SHOOTER_PORT = 11;
+    public static final int RIGHT_SHOOTER_PORT = 12;
+
+    //NEED TO CONFIGURE
+    public static final double CLOSE_SHOOTER_SPEED = 0.7;
+    public static final double MEDIUM_SHOOTER_SPEED = 0.8;
+    public static final double FAR_SHOOTER_SPEED = 0.9;
+    
+
 }
