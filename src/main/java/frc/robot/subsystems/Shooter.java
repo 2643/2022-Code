@@ -40,6 +40,7 @@ public class Shooter extends SubsystemBase {
   public Shooter() {
     leftShooter.restoreFactoryDefaults();
     rightShooter.restoreFactoryDefaults();
+    rightShooter.setInverted(true);
     rightShooter.getEncoder().setPosition(0);
     rightShooter.getPIDController().setOutputRange(outputMin, outputMax, PIDSlot);
     //leftShooter.getPIDController().setSmartMotionMaxVelocity(500, 0);

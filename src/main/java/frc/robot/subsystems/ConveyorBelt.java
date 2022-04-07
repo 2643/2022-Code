@@ -42,7 +42,7 @@ public class ConveyorBelt extends SubsystemBase {
   public void shootPulse()
   {
     setSpeed(Constants.convMotorSpeed);
-    Timer.delay(0.4);
+    Timer.delay(0.5);
     setSpeed(0);
   }
 

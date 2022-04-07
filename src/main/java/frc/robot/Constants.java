@@ -98,11 +98,12 @@ public final class Constants {
 
     public static final int conveyorBeltMotorPort = 9;
 
-    public static final double convMotorSpeed = 0.4;
+    public static final double convMotorSpeed = 0.9;
     public static final double convRevMotorSpeed = -0.4;
 
     
     //SHOOTER
+    public static final double SHOOTER_UP_SPEED = 0.15;
     public static final int LEFT_SHOOTER_PORT = 11;
     public static final int RIGHT_SHOOTER_PORT = 12;
     public static final double CLOSE_SHOOTER_SPEED = 0.7;

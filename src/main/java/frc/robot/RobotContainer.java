@@ -108,9 +108,13 @@ public class RobotContainer {
     lowerClimber.whenHeld(new moveClimber(Climber.climbDirection.Down));
     forwardIntake.whenHeld(new moveIntake());
 
-    closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
-    manualShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
-    autoShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
+    // closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
+    // manualShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
+    // autoShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
+
+    closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED));
+    manualShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_SPEED));
+    autoShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_SPEED));
 
     forwardConveyor.whileHeld(new conveyorForward());
     reverseConveyor.whileHeld(new conveyorReverse());
