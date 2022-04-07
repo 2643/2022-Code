@@ -14,10 +14,9 @@ import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.Climber.resetPosition;
 // import frc.robot.commands.FindBall;
 import frc.robot.commands.Drivetrain.Tankdrive;
-// import frc.robot.commands.Climber.moveClimber;
-// import frc.robot.commands.Climber.resetPosition;
 
 // import frc.robot.commands.hoodcm;
 // import frc.robot.subsystems.Hood;
@@ -34,19 +33,17 @@ public class Robot extends TimedRobot {
 
   private Command m_autonomousCommand;
 //   private boolean resetTurretDone = false;
+  private boolean resetClimberDone = false;
 //   public static boolean canDriverControl = true;
 //NetworkTableEntry ShuffleBoardAutonomousRoutines = Shuffleboard.getTab("2022 Robot").add("Autonoumous Routines", 1).withWidget(BuiltInWidgets.kComboBoxChooser).withProperties(Map.of("Routine 1(Default)",1,"Routine 2", 2, "Routine 3", 3)).getEntry();
 
   private RobotContainer m_robotContainer;
   //public hoodcm m_hoodccm = new hoodcm(); 
 
-  private Command m_conveyor;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
-     
-
   @Override
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
@@ -84,13 +81,15 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_turret, new SequentialCommandGroup(new resetPosition(), new driverControl()));
-    // if(!resetTurretDone) {
-    //   CommandScheduler.getInstance().schedule(new resetPosition());
-    //   resetTurretDone = true;
-    // }
+
+    if(!resetClimberDone) {
+      CommandScheduler.getInstance().schedule(new resetPosition());
+      resetClimberDone = true;
+    }
     // else {
     //   CommandScheduler.getInstance().schedule(true, new driverControl());
     // }
+
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       System.out.println("Calling autonomus command");
@@ -109,7 +108,12 @@ public class Robot extends TimedRobot {
     // continue until interrupted by another command, remove
     // this line or comment it out.
     Constants.slowMode = true;
-    // CommandScheduler.getInstance().schedule(new resetPosition());
+
+    if(!resetClimberDone) {
+      CommandScheduler.getInstance().schedule(new resetPosition());
+      resetClimberDone = true;
+    }
+
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
@@ -120,8 +124,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // CommandScheduler.getInstance().schedule(new FindBall());
-    //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_drivetrain, new Tankdrive());
-
+    CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_drivetrain, new Tankdrive());
   }
 
   @Override
