@@ -41,8 +41,8 @@ public class ConveyorBelt extends SubsystemBase {
   // assuming just one at a time. test time!
   public void shootPulse()
   {
-    setSpeed(Constants.convMotorSpeed);
-    Timer.delay(0.4);
+    setSpeed(0.9);
+    Timer.delay(0.5);
     setSpeed(0);
   }
 

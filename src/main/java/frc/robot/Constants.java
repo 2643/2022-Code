@@ -23,6 +23,7 @@ public final class Constants {
     public static final int RIGHT_SHOOTER_PORT = 12;
 
     //NEED TO CONFIGURE
+    public static final double SHOOTER_UP_SPEED = 0.15;
     public static final double CLOSE_SHOOTER_SPEED = 0.7;
     public static final double FAR_SHOOTER_SPEED = 0.9;
     public static final double MEDIUM_SHOOTER_SPEED = 0.8;

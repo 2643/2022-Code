@@ -5,11 +5,8 @@
 
 package frc.robot.commands;
 
-import javax.management.timer.Timer;
+import edu.wpi.first.wpilibj.Timer;
 
-//import java.util.Timer;
-
-//import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -30,15 +27,16 @@ public class shoot extends CommandBase {
   @Override
   public void initialize() {
     RobotContainer.conveyorBelt.shootPrep();
-    RobotContainer.conveyorBelt.shootPulse();
-    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() 
-  {
+  public void execute() {
+    RobotContainer.m_shooter.setSpeed(Constants.SHOOTER_UP_SPEED);
+    Timer.delay(1.5);
     RobotContainer.m_shooter.setSpeed(percent);
+    Timer.delay(2);
+    RobotContainer.conveyorBelt.shootPulse();
   }
 
   // Called once the command ends or is interrupted.

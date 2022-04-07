@@ -60,7 +60,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() 
   {
-    closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
+    //closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
+    closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED));
     manualShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
     autoShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
 
