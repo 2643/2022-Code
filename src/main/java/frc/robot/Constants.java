@@ -23,8 +23,16 @@ public final class Constants {
     public static final int RIGHT_SHOOTER_PORT = 12;
 
     //NEED TO CONFIGURE
-    public static final int CLOSE_SHOOTER_SPEED = 2500;
-    public static final int FAR_SHOOTER_SPEED = 2500;
-    public static final int MEDIUM_SHOOTER_SPEED = 2500;
+    public static final double CLOSE_SHOOTER_SPEED = 0.7;
+    public static final double FAR_SHOOTER_SPEED = 0.9;
+    public static final double MEDIUM_SHOOTER_SPEED = 0.8;
+
+    public static final int conveyerIRSensorPort1 = 2;
+    public static final int conveyerIRSensorPort2 = 3;
+
+    public static final int conveyorBeltMotorPort = 9;
+
+    public static final double convMotorSpeed = 0.4;
+    public static final double convRevMotorSpeed = -0.4;
 
 }
