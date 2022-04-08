@@ -93,13 +93,13 @@ public final class Constants {
 
     //CONVEYOR
     
-    public static final int conveyerIRSensorPort1 = 2;
-    public static final int conveyerIRSensorPort2 = 3;
+    public static final int CONVEYER_IR_SENSOR_PORT1 = 2;
+    public static final int CONVEYER_IR_SENSOR_PORT2 = 3;
 
-    public static final int conveyorBeltMotorPort = 9;
+    public static final int CONVEYOR_BELT_MOTOR_PORT = 9;
 
-    public static final double convMotorSpeed = 0.9;
-    public static final double convRevMotorSpeed = -0.4;
+    public static final double CONVEYOR_MOTOR_SPEED = 0.9;
+    public static final double CONVEYOR_REVERSE_MOTOR_SPEED = -0.4;
 
     
     //SHOOTER

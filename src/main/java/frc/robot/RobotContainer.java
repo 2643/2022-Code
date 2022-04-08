@@ -16,10 +16,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.commands.Autonomous.Routine1;
 import frc.robot.commands.Autonomous.Routine2;
 import frc.robot.commands.Autonomous.Routine3;
-import frc.robot.commands.Autonomous.Routine4;
+// import frc.robot.commands.Autonomous.Routine4;
 //import frc.robot.commands.Autonomous.Rountine1;
 import frc.robot.commands.Climber.moveClimber;
-import frc.robot.commands.Conveyor.*;
+import frc.robot.commands.ConveyorBelt.*;
 import frc.robot.commands.Intake.moveIntake;
 import frc.robot.commands.Intake.moveIntakeReverse;
 import frc.robot.commands.Shooter.shoot;
@@ -41,9 +41,9 @@ import frc.robot.subsystems.Turret;
 // import frc.robot.subsystems.Hood;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
+// import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.Robot;
+// import frc.robot.Robot;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -54,14 +54,14 @@ import frc.robot.Robot;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static SendableChooser<Command> m_chooser = new SendableChooser<>();
-  ComplexWidget ShuffleBoardAutonomousRoutines = Shuffleboard.getTab("2022Robot").add("Autonoumous Routines Selector", m_chooser).withWidget(BuiltInWidgets.kComboBoxChooser).withSize(3, 2);
+  ComplexWidget ShuffleBoardAutonomousRoutines = Shuffleboard.getTab("2022Robot").add("Autonoumous Routines Selector", m_chooser).withWidget(BuiltInWidgets.kComboBoxChooser).withSize(2, 2);
   public final Command m_Routine1 = new Routine1(Constants.AUTONOMOUS_DELAY);
   public final Command m_Routine2 = new Routine2(Constants.AUTONOMOUS_DELAY);
   public final Command m_Routine3 = new Routine3(Constants.AUTONOMOUS_DELAY);
 
   
   //SUBSYSTEMS INITIALIZED
-  public static final ConveyorBelt conveyorBelt = new ConveyorBelt();
+  public static final ConveyorBelt m_conveyorBelt = new ConveyorBelt();
   public static final Drivetrain m_drivetrain = new Drivetrain();
   public static final ADISGyro m_gyro = new ADISGyro();
   public static final Turret m_turret = new Turret();
@@ -93,9 +93,10 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    m_chooser.addOption("MOVEBACK AND SHOOT", m_Routine1);
-    m_chooser.addOption("MOVEFORWARD, GET SECOND BALL, TURN, AND SHOOT", m_Routine2);
-    m_chooser.addOption("MOVEBACK", m_Routine3);
+    m_chooser.setDefaultOption("MOVE BACK AND SHOOT", m_Routine1);
+    m_chooser.addOption("MOVE BACK AND SHOOT", m_Routine1);
+    m_chooser.addOption("MOVE FORWARD, GET SECOND BALL, TURN, AND SHOOT", m_Routine2);
+    m_chooser.addOption("MOVE BACK", m_Routine3);
   }
 
   /**

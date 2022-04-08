@@ -17,9 +17,9 @@ import frc.robot.Constants;
 public class ConveyorBelt extends SubsystemBase {
   /** Creates a new ConveyerBelt. */
 
-  public static CANSparkMax conveyorBeltMotor = new CANSparkMax(Constants.conveyorBeltMotorPort, MotorType.kBrushless);
-  public static DigitalInput conviRSens1 = new DigitalInput(Constants.conveyerIRSensorPort1);
-  public static DigitalInput conviRSens2 = new DigitalInput(Constants.conveyerIRSensorPort2);
+  public static CANSparkMax conveyorBeltMotor = new CANSparkMax(Constants.CONVEYOR_BELT_MOTOR_PORT, MotorType.kBrushless);
+  public static DigitalInput conviRSens1 = new DigitalInput(Constants.CONVEYER_IR_SENSOR_PORT1);
+  public static DigitalInput conviRSens2 = new DigitalInput(Constants.CONVEYER_IR_SENSOR_PORT2);
   public static DigitalInput[] conviRSens = { conviRSens1, conviRSens2 };
 
   public static int[] pos = { 0, 0 };
@@ -33,7 +33,7 @@ public class ConveyorBelt extends SubsystemBase {
 
   public void shootPrep()
   {
-    setSpeed(Constants.convRevMotorSpeed);
+    setSpeed(Constants.CONVEYOR_REVERSE_MOTOR_SPEED);
     Timer.delay(0.2);
     setSpeed(0);
   }
@@ -41,7 +41,7 @@ public class ConveyorBelt extends SubsystemBase {
   // assuming just one at a time. test time!
   public void shootPulse()
   {
-    setSpeed(Constants.convMotorSpeed);
+    setSpeed(Constants.CONVEYOR_MOTOR_SPEED);
     Timer.delay(0.3);
     setSpeed(0);
   }
@@ -72,7 +72,7 @@ public class ConveyorBelt extends SubsystemBase {
     {
       while(!getState().equals("secondonly"))
       {
-        setSpeed(Constants.convMotorSpeed);
+        setSpeed(Constants.CONVEYOR_MOTOR_SPEED);
       }
       setSpeed(0);
     }
@@ -179,7 +179,7 @@ public class ConveyorBelt extends SubsystemBase {
     // until it goes from secondonly to firstonly in pos then no intake
     else if (equalTo("secondonly")) {
       while (conviRSens1.get() == true) {
-        setSpeed(Constants.convRevMotorSpeed); // sets in position to firstonly
+        setSpeed(Constants.CONVEYOR_REVERSE_MOTOR_SPEED); // sets in position to firstonly
       }
       return true;
     } else {
@@ -195,7 +195,7 @@ public class ConveyorBelt extends SubsystemBase {
     // cant shoot until from firstonly to secondonly positioning
     else if (equalTo("firstonly")) {
       while (conviRSens2.get() == true) {
-        setSpeed(Constants.convMotorSpeed);
+        setSpeed(Constants.CONVEYOR_MOTOR_SPEED);
       }
       return true;
     } else {

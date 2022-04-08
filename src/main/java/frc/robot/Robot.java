@@ -4,22 +4,18 @@
 
 package frc.robot;
 
-import java.util.Map;
-
-import com.fasterxml.jackson.databind.introspect.TypeResolutionContext.Basic;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
-import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.Autonomous.*;
 import frc.robot.commands.Climber.resetPosition;
 // import frc.robot.commands.FindBall;
 import frc.robot.commands.Drivetrain.Tankdrive;
+import frc.robot.subsystems.ConveyorBelt;
 
 // import frc.robot.commands.hoodcm;
 // import frc.robot.subsystems.Hood;
@@ -40,6 +36,9 @@ public class Robot extends TimedRobot {
   
 //   public static boolean canDriverControl = true;
 NetworkTableEntry ShuffleBoardDelay = Shuffleboard.getTab("2022Robot").add("Autonomous Delay", 0).withSize(2, 2).getEntry();
+NetworkTableEntry ballAtTopLimitSwitch = Shuffleboard.getTab("2022Robot").getLayout("Conveyor(Green = Ball and Red = No Ball)", BuiltInLayouts.kGrid).withSize(3, 2).add("Ball at Top", false).withWidget(BuiltInWidgets.kBooleanBox).withSize(3, 3).withPosition(1, 1).getEntry();
+NetworkTableEntry ballAtBottomLimitSwitch = Shuffleboard.getTab("2022Robot").getLayout("Conveyor(Green = Ball and Red = No Ball)", BuiltInLayouts.kGrid).withSize(3, 2).add("Ball at Bottom", false).withWidget(BuiltInWidgets.kBooleanBox).withSize(3, 3).withPosition(1, 2).getEntry();
+
 
   private RobotContainer m_robotContainer;
   //public hoodcm m_hoodccm = new hoodcm(); 
@@ -86,6 +85,7 @@ NetworkTableEntry ShuffleBoardDelay = Shuffleboard.getTab("2022Robot").add("Auto
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_turret, new SequentialCommandGroup(new resetPosition(), new driverControl()));
+    //NetworkTableEntry lol = Shuffleboard.getTab("2022Robot").add("Hi", 1).
     Constants.AUTONOMOUS_DELAY = ShuffleBoardDelay.getDouble(0);
     if(!resetClimberDone) {
       CommandScheduler.getInstance().schedule(new resetPosition());
@@ -130,6 +130,8 @@ NetworkTableEntry ShuffleBoardDelay = Shuffleboard.getTab("2022Robot").add("Auto
   public void teleopPeriodic() {
     // CommandScheduler.getInstance().schedule(new FindBall());
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_drivetrain, new Tankdrive());
+    ballAtTopLimitSwitch.setBoolean(ConveyorBelt.conviRSens2.get());
+    ballAtBottomLimitSwitch.setBoolean(ConveyorBelt.conviRSens1.get());
   }
 
   @Override

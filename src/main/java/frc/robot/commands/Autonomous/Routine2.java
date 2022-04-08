@@ -6,13 +6,12 @@
 package frc.robot.commands.Autonomous;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 // import frc.robot.commands.hoodcm;
 import frc.robot.commands.ADISGyro.turnRobot;
-import frc.robot.commands.Conveyor.autoConveyorIntake;
+import frc.robot.commands.ConveyorBelt.autoConveyorIntake;
 import frc.robot.commands.Drivetrain.MovePosition;
 import frc.robot.commands.Intake.moveIntake;
 import frc.robot.commands.Shooter.shoot;

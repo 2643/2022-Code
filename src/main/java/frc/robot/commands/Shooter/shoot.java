@@ -5,7 +5,6 @@
 
 package frc.robot.commands.Shooter;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -19,7 +18,7 @@ public class shoot extends CommandBase {
   public shoot(double m_percent) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.m_shooter);
-    addRequirements(RobotContainer.conveyorBelt);
+    addRequirements(RobotContainer.m_conveyorBelt);
     percent = m_percent;
   }
 
@@ -32,13 +31,13 @@ public class shoot extends CommandBase {
   @Override
   public void execute() {
     if (a < 15) {
-      RobotContainer.conveyorBelt.setSpeed(Constants.convRevMotorSpeed);
+      RobotContainer.m_conveyorBelt.setSpeed(Constants.CONVEYOR_REVERSE_MOTOR_SPEED);
     } else {
-      RobotContainer.conveyorBelt.setSpeed(0);
+      RobotContainer.m_conveyorBelt.setSpeed(0);
       RobotContainer.m_shooter.setSpeed(percent);
     }
     if (a >= 100) {
-      RobotContainer.conveyorBelt.setSpeed(Constants.convMotorSpeed);
+      RobotContainer.m_conveyorBelt.setSpeed(Constants.CONVEYOR_MOTOR_SPEED);
     } else {
       a += 1;
     }
