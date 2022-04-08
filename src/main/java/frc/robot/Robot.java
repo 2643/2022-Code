@@ -53,9 +53,7 @@ NetworkTableEntry ballAtBottomLimitSwitch = Shuffleboard.getTab("2022Robot").get
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    m_robotContainer = new RobotContainer();
-   
-    
+    m_robotContainer = new RobotContainer(); 
     //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.cm_Hood, new hoodcm());
   }
 
