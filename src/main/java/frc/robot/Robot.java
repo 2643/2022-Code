@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.Climber.resetPosition;
 // import frc.robot.commands.FindBall;
 import frc.robot.commands.Drivetrain.Tankdrive;
+import frc.robot.commands.Intake.releaseLatches;
 import frc.robot.subsystems.ConveyorBelt;
 
 // import frc.robot.commands.hoodcm;
@@ -32,6 +33,7 @@ public class Robot extends TimedRobot {
 
   private Command m_autonomousCommand;
 //   private boolean resetTurretDone = false;
+  private boolean releaseIntakeDone = false;
   private boolean resetClimberDone = false;
   
 //   public static boolean canDriverControl = true;
@@ -91,6 +93,10 @@ NetworkTableEntry ballAtBottomLimitSwitch = Shuffleboard.getTab("2022Robot").get
       CommandScheduler.getInstance().schedule(new resetPosition());
       resetClimberDone = true;
     }
+    if (!releaseIntakeDone) {
+      CommandScheduler.getInstance().schedule(new releaseLatches(Constants.INTAKE_SERVO_LATCH_DEGREES));
+      releaseIntakeDone = true;
+    }
     // else {
     //   CommandScheduler.getInstance().schedule(true, new driverControl());
     // }
@@ -117,6 +123,10 @@ NetworkTableEntry ballAtBottomLimitSwitch = Shuffleboard.getTab("2022Robot").get
     if(!resetClimberDone) {
       CommandScheduler.getInstance().schedule(new resetPosition());
       resetClimberDone = true;
+    }
+    if (!releaseIntakeDone) {
+      CommandScheduler.getInstance().schedule(new releaseLatches(Constants.INTAKE_SERVO_LATCH_DEGREES));
+      releaseIntakeDone = true;
     }
 
     if (m_autonomousCommand != null) {

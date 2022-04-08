@@ -19,6 +19,7 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    
     //DRIVETRAIN
     public static final int DRIVETRAIN_FRONT_RIGHT_MOTOR = 1;
     public static final int DRIVETRAIN_BACK_RIGHT_MOTOR = 2;
@@ -86,11 +87,6 @@ public final class Constants {
     // public static final int MAX_HOOD_LIMIT_PORT = 12;
     // public static final int MIN_HOOD_LIMIT_PORT = 11;
 
-
-    //INTAKE
-    public static int INTAKE_MOTOR_PORT = 10;
-
-
     //CONVEYOR
     
     public static final int CONVEYER_IR_SENSOR_PORT1 = 2;
@@ -101,6 +97,19 @@ public final class Constants {
     public static final double CONVEYOR_MOTOR_SPEED = 0.9;
     public static final double CONVEYOR_REVERSE_MOTOR_SPEED = -0.4;
 
+    //INTAKE
+    public static int INTAKE_MOTOR_PORT = 10;
+
+
+    // INTAKE LATCH SERVOS
+    public static int INTAKE_RIGHT_SERVO_CHANNEL = 0;
+    public static int INTAKE_LEFT_SERVO_CHANNEL = 1;
+
+    // Change this also
+    public static double INTAKE_SERVO_LATCH_DEGREES = 100;
+
+    
+    
     
     //SHOOTER
     public static final double SHOOTER_UP_SPEED = 0.15;
