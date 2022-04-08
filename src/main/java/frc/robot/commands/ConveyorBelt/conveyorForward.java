@@ -31,8 +31,7 @@ public class conveyorForward extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    
-    RobotContainer.m_conveyorBelt.turnOffConv();
+    RobotContainer.m_conveyorBelt.setSpeed(0);  
   }
 
   // Returns true when the command should end.

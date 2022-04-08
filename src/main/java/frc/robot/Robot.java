@@ -53,6 +53,7 @@ NetworkTableEntry ballAtBottomLimitSwitch = Shuffleboard.getTab("2022Robot").get
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    RobotContainer.m_conveyorBelt.setSpeed(0);  
     m_robotContainer = new RobotContainer(); 
     //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.cm_Hood, new hoodcm());
   }
@@ -95,6 +96,8 @@ NetworkTableEntry ballAtBottomLimitSwitch = Shuffleboard.getTab("2022Robot").get
       CommandScheduler.getInstance().schedule(new releaseLatches(Constants.INTAKE_SERVO_LATCH_DEGREES));
       releaseIntakeDone = true;
     }
+    RobotContainer.m_conveyorBelt.setSpeed(0);  
+
     // else {
     //   CommandScheduler.getInstance().schedule(true, new driverControl());
     // }
@@ -126,7 +129,7 @@ NetworkTableEntry ballAtBottomLimitSwitch = Shuffleboard.getTab("2022Robot").get
       CommandScheduler.getInstance().schedule(new releaseLatches(Constants.INTAKE_SERVO_LATCH_DEGREES));
       releaseIntakeDone = true;
     }
-
+    RobotContainer.m_conveyorBelt.setSpeed(0);  
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }

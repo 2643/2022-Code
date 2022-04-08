@@ -19,6 +19,6 @@ public class Routine1 extends SequentialCommandGroup {
   public Routine1(double delay) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new WaitCommand(delay), new MovePosition(Constants.MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS), new shoot(Constants.FAR_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
+    addCommands(new WaitCommand(delay), new MovePosition(Constants.MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS), new shoot(Constants.AUTONOMOUS_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
     }
   }
