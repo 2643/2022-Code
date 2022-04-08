@@ -16,6 +16,7 @@ import frc.robot.commands.Climber.resetPosition;
 // import frc.robot.commands.FindBall;
 import frc.robot.commands.Drivetrain.Tankdrive;
 import frc.robot.commands.Intake.releaseLatches;
+import frc.robot.commands.Turret.driverControl;
 import frc.robot.subsystems.ConveyorBelt;
 
 // import frc.robot.commands.hoodcm;
@@ -130,6 +131,7 @@ NetworkTableEntry ballAtBottomLimitSwitch = Shuffleboard.getTab("2022Robot").get
       releaseIntakeDone = true;
     }
     RobotContainer.m_conveyorBelt.setSpeed(0);  
+    CommandScheduler.getInstance().schedule(true, new driverControl());
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
