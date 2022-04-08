@@ -7,10 +7,10 @@ package frc.robot.commands.Intake;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class moveIntake extends CommandBase {
+public class moveIntakeReverse extends CommandBase {
   /** Creates a new ManualIntake. */
   // private boolean motorIsActive; 
-  public moveIntake() {
+  public moveIntakeReverse() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.m_intake);
   }
@@ -24,7 +24,7 @@ public class moveIntake extends CommandBase {
   @Override
   public void execute() { 
 
-    RobotContainer.m_intake.setSpeed(0.4); 
+    RobotContainer.m_intake.setSpeed(-0.4); 
     // System.out.println("motor speed is set to 0.3");
     
   }

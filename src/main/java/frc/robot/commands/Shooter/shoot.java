@@ -26,15 +26,19 @@ public class shoot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.conveyorBelt.shootPrep();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.m_shooter.setSpeed(percent);
+    if (a < 15) {
+      RobotContainer.conveyorBelt.setSpeed(Constants.convRevMotorSpeed);
+    } else {
+      RobotContainer.conveyorBelt.setSpeed(0);
+      RobotContainer.m_shooter.setSpeed(percent);
+    }
     if (a >= 100) {
-      RobotContainer.conveyorBelt.shootPulse();
+      RobotContainer.conveyorBelt.setSpeed(Constants.convMotorSpeed);
     } else {
       a += 1;
     }
@@ -44,6 +48,8 @@ public class shoot extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.m_shooter.setSpeed(0);
+   // RobotContainer.m_.setSpeed(0);
+    a = 0;
   }
 
   // Returns true when the command should end.

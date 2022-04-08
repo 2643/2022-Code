@@ -21,6 +21,7 @@ import frc.robot.commands.Autonomous.Routine4;
 import frc.robot.commands.Climber.moveClimber;
 import frc.robot.commands.Conveyor.*;
 import frc.robot.commands.Intake.moveIntake;
+import frc.robot.commands.Intake.moveIntakeReverse;
 import frc.robot.commands.Shooter.shoot;
 //import frc.robot.commands.Drivetrain.DifferentialDrive;
 // import frc.robot.commands.Turret.turretShoot;
@@ -39,6 +40,7 @@ import frc.robot.subsystems.Turret;
 // import frc.robot.subsystems.ExampleSubsystem;
 // import frc.robot.subsystems.Hood;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Robot;
@@ -81,7 +83,9 @@ public class RobotContainer {
   public static JoystickButton reverseConveyor = new JoystickButton(opBoard, 10); 
   public static JoystickButton forwardConveyor = new JoystickButton(opBoard, 11); 
   public static JoystickButton forwardIntake = new JoystickButton(opBoard, 12); 
-  public static JoystickButton lowerClimber = new JoystickButton(opBoard, 15);  
+  public static JoystickButton lowerClimber = new JoystickButton(opBoard, 15);
+  public static JoystickButton autoIntake = new JoystickButton(opBoard, 7);
+  public static JoystickButton reverseIntake = new JoystickButton(opBoard, 9);  
 
   //public static final Hood cm_Hood = new Hood();
 
@@ -107,6 +111,8 @@ public class RobotContainer {
     raiseClimber.whenHeld(new moveClimber(Climber.climbDirection.Up));
     lowerClimber.whenHeld(new moveClimber(Climber.climbDirection.Down));
     forwardIntake.whenHeld(new moveIntake());
+    reverseIntake.whenHeld(new moveIntakeReverse());
+    autoIntake.whenHeld(new ParallelCommandGroup(new moveIntake(), new conveyorForward()));
 
     // closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
     // manualShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
