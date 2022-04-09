@@ -131,7 +131,6 @@ NetworkTableEntry ballAtBottomLimitSwitch = Shuffleboard.getTab("2022Robot").get
       releaseIntakeDone = true;
     }
     RobotContainer.m_conveyorBelt.setSpeed(0);  
-    CommandScheduler.getInstance().schedule(true, new driverControl());
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
@@ -145,6 +144,7 @@ NetworkTableEntry ballAtBottomLimitSwitch = Shuffleboard.getTab("2022Robot").get
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_drivetrain, new Tankdrive());
     ballAtTopLimitSwitch.setBoolean(ConveyorBelt.conviRSens2.get());
     ballAtBottomLimitSwitch.setBoolean(ConveyorBelt.conviRSens1.get());
+    CommandScheduler.getInstance().schedule(true, new driverControl());
   }
 
   @Override
