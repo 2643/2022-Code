@@ -7,6 +7,7 @@ package frc.robot.commands.Autonomous;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
+import frc.robot.commands.ConveyorBelt.conveyorForward;
 import frc.robot.commands.Drivetrain.MovePosition;
 import frc.robot.commands.Shooter.shoot;
 
@@ -19,6 +20,6 @@ public class Routine1 extends SequentialCommandGroup {
   public Routine1(double delay) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new WaitCommand(delay), new MovePosition(Constants.MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS), new shoot(Constants.AUTONOMOUS_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
+    addCommands(new WaitCommand(delay), new conveyorForward().raceWith(new WaitCommand(2)),new MovePosition(Constants.MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS), new shoot(Constants.AUTONOMOUS_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
     }
   }
