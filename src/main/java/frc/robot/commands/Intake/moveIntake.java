@@ -24,7 +24,7 @@ public class moveIntake extends CommandBase {
   @Override
   public void execute() { 
 
-    RobotContainer.m_intake.setSpeed(0.6); 
+    RobotContainer.m_intake.setSpeed(0.7); 
     // System.out.println("motor speed is set to 0.3");
     
   }

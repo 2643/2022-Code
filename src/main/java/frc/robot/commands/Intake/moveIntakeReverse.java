@@ -24,7 +24,7 @@ public class moveIntakeReverse extends CommandBase {
   @Override
   public void execute() { 
 
-    RobotContainer.m_intake.setSpeed(-0.4); 
+    RobotContainer.m_intake.setSpeed(-0.7); 
     // System.out.println("motor speed is set to 0.3");
     
   }
