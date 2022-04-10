@@ -73,7 +73,7 @@ public final class Constants {
     public static final double MOVE_BACK_POSITION_TO_SHOOT = 2048*-1*DRIVETRAIN_GEARBOX_RATIO;
     public static int ROUTINE_SELECTOR = 1;
     public static double AUTONOMOUS_DELAY = 0;
-    public static final double AUTONOMOUS_SHOOTER_SPEED = 0.625;
+    public static final double AUTONOMOUS_SHOOTER_SPEED = 0.6;
 
 
     //TURRET
