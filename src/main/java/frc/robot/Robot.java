@@ -148,10 +148,11 @@ public class Robot extends TimedRobot {
     shuffleboardVisionDeg.setValue(visionDeg);
     NetworkTableValue distanceVal = Constants.VISION_TABLE.getEntry("Distance").getValue();
     shuffleboardHubDistance.setValue(distanceVal);
-    // NetworkTableEntry visionDegrees = Shuffleboard.getTab("2022Robot").add("Hi", 1).getEntry();
-    CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_drivetrain, new Tankdrive());
+    
     ballAtTopLimitSwitch.setBoolean(ConveyorBelt.conviRSens2.get());
     ballAtBottomLimitSwitch.setBoolean(ConveyorBelt.conviRSens1.get());
+
+    CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_drivetrain, new Tankdrive());
     CommandScheduler.getInstance().schedule(true, new driverControl());
   }
 

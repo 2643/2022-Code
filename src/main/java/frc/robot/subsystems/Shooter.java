@@ -18,7 +18,6 @@ public class Shooter extends SubsystemBase {
   public static CANSparkMax leftShooter = new CANSparkMax(Constants.LEFT_SHOOTER_PORT, MotorType.kBrushless);
   public static CANSparkMax rightShooter = new CANSparkMax(Constants.RIGHT_SHOOTER_PORT, MotorType.kBrushless);
 
-
   // double motorP = 0.0018;
   // double motorI = 0.00000;
   // double motorD = 0.00000;

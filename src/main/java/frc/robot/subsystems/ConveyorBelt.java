@@ -17,7 +17,8 @@ import frc.robot.Constants;
 public class ConveyorBelt extends SubsystemBase {
   /** Creates a new ConveyerBelt. */
 
-  public static CANSparkMax conveyorBeltMotor = new CANSparkMax(Constants.CONVEYOR_BELT_MOTOR_PORT, MotorType.kBrushless);
+  public static CANSparkMax conveyorBeltMotor = new CANSparkMax(Constants.CONVEYOR_BELT_MOTOR_PORT,
+      MotorType.kBrushless);
   public static DigitalInput conviRSens1 = new DigitalInput(Constants.CONVEYER_IR_SENSOR_PORT1);
   public static DigitalInput conviRSens2 = new DigitalInput(Constants.CONVEYER_IR_SENSOR_PORT2);
   public static DigitalInput[] conviRSens = { conviRSens1, conviRSens2 };
@@ -31,21 +32,19 @@ public class ConveyorBelt extends SubsystemBase {
     conveyorBeltMotor.set(speed);
   }
 
-  public void shootPrep()
-  {
+  public void shootPrep() {
     setSpeed(Constants.CONVEYOR_REVERSE_MOTOR_SPEED);
     Timer.delay(0.2);
     setSpeed(0);
   }
 
   // assuming just one at a time. test time!
-  public void shootPulse()
-  {
+  public void shootPulse() {
     setSpeed(Constants.CONVEYOR_MOTOR_SPEED);
     Timer.delay(0.3);
     setSpeed(0);
   }
-
+  
   // everything below is just some fun stuff. not used.
   /*
           _                       
@@ -64,26 +63,22 @@ public class ConveyorBelt extends SubsystemBase {
   [bug] .*' /  .*' ; .*`- +'  `*'
         `*-*   `*-*  `*-*'       
   */
-  
+
   // shoot prep is done
-  public void logicShoot()
-  {
-    if(getState().equals("firstonly"))
-    {
-      while(!getState().equals("secondonly"))
-      {
+  public void logicShoot() {
+    if (getState().equals("firstonly")) {
+      while (!getState().equals("secondonly")) {
         setSpeed(Constants.CONVEYOR_MOTOR_SPEED);
       }
       setSpeed(0);
     }
-    if(getState().equals("full"))
-    {
+    if (getState().equals("full")) {
       shootPulse();
     }
   }
+
   // FALSE = TRUE BECAUSE FALSE = IR BLOCKED
   public void printBallsHeld() {
-
     for (int x = 0; x < pos.length; x++) {
       if (pos[x] == 1) {
         System.out.print("X");
@@ -96,24 +91,15 @@ public class ConveyorBelt extends SubsystemBase {
 
   public String getState() {
     updateBallsHeld();
-    if(pos[0] ==0 && pos[1] == 0)
-    {
+    if (pos[0] == 0 && pos[1] == 0) {
       return "empty";
-    }
-    else if(pos[0] ==1 && pos[1] == 0)
-    {
+    } else if (pos[0] == 1 && pos[1] == 0) {
       return "firstonly";
-    }
-    else if(pos[0] ==0 && pos[1] == 1)
-    {
+    } else if (pos[0] == 0 && pos[1] == 1) {
       return "secondonly";
-    }
-    else if(pos[0] ==1 && pos[1] == 1)
-    {
+    } else if (pos[0] == 1 && pos[1] == 1) {
       return "full";
-    }
-    else
-    {
+    } else {
       return "error";
     }
   }
@@ -130,12 +116,13 @@ public class ConveyorBelt extends SubsystemBase {
 
   /*
    * verifies state
-   *            pos1  pos2
-   * state 1 -  0     0
-   * state 2 -  1     0
-   * state 3 -  0     1
-   * state 4 -  1     1
+   * pos1 pos2
+   * state 1 - 0 0
+   * state 2 - 1 0
+   * state 3 - 0 1
+   * state 4 - 1 1
    */
+
   public boolean equalTo(String inp) {
     switch (inp) {
       case "empty":
@@ -203,11 +190,10 @@ public class ConveyorBelt extends SubsystemBase {
     }
   }
 
-  public void turnOffConv()
-  {
+  public void turnOffConv() {
     setSpeed(0);
   }
-  
+
   // move ot back
   /*
    * moved to intakeGo
@@ -238,6 +224,5 @@ public class ConveyorBelt extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     updateBallsHeld();
-
   }
 }
