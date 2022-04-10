@@ -53,16 +53,16 @@ public final class Constants {
     public static final double CLIMBER_GEARBOX_RATIO = 100; 
   
     public static final double DOWN_SOFT_LIMIT_CLIMB_LEFT = 0;
-    public static final double UP_SOFT_LIMIT_CLIMB_LEFT = 1390060;
+    public static final double UP_SOFT_LIMIT_CLIMB_LEFT = 1390060*20;
 
     public static final double DOWN_SOFT_LIMIT_CLIMB_RIGHT = 0;
-    public static final double UP_SOFT_LIMIT_CLIMB_RIGHT = 1373726+20480;
+    public static final double UP_SOFT_LIMIT_CLIMB_RIGHT = 1373726*20;
   
     public static final double DOWN_HARD_LIMIT_CLIMB_RIGHT = -9000;
-    public static final double UP_HARD_LIMIT_CLIMB_RIGHT = 2048+1373726+20480;
+    public static final double UP_HARD_LIMIT_CLIMB_RIGHT = 2048+1373726*20;
 
     public static final double DOWN_HARD_LIMIT_CLIMB_LEFT = -9000;
-    public static final double UP_HARD_LIMIT_CLIMB_LEFT = 2048+1390060;
+    public static final double UP_HARD_LIMIT_CLIMB_LEFT = 2048+1390060*20;
 
     public static final double CLIMBER_GAIN = 0.5;
     public static final double CLIMBER_SPEED = 500 * 100; // not really speed, but treat this like it
@@ -100,8 +100,8 @@ public final class Constants {
 
     //INTAKE
     public static int INTAKE_MOTOR_PORT = 10;
-    public static final double FORWARD_INTAKE_SPEED = 0.7;
-    public static final double REVERSE_INTAKE_SPEED = -0.7;
+    public static final double FORWARD_INTAKE_SPEED = 0.9;
+    public static final double REVERSE_INTAKE_SPEED = -0.9;
 
 
     // INTAKE LATCH SERVOS

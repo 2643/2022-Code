@@ -5,6 +5,7 @@
 package frc.robot.commands.Intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class moveIntake extends CommandBase {
@@ -24,7 +25,7 @@ public class moveIntake extends CommandBase {
   @Override
   public void execute() { 
 
-    RobotContainer.m_intake.setSpeed(0.7); 
+    RobotContainer.m_intake.setSpeed(Constants.FORWARD_INTAKE_SPEED); 
     // System.out.println("motor speed is set to 0.3");
     
   }
