@@ -56,10 +56,10 @@ public final class Constants {
     public static final double UP_SOFT_LIMIT_CLIMB_LEFT = 1390060;
 
     public static final double DOWN_SOFT_LIMIT_CLIMB_RIGHT = 0;
-    public static final double UP_SOFT_LIMIT_CLIMB_RIGHT = 1373726;
+    public static final double UP_SOFT_LIMIT_CLIMB_RIGHT = 1373726+20480;
   
     public static final double DOWN_HARD_LIMIT_CLIMB_RIGHT = -9000;
-    public static final double UP_HARD_LIMIT_CLIMB_RIGHT = 2048+1373726;
+    public static final double UP_HARD_LIMIT_CLIMB_RIGHT = 2048+1373726+20480;
 
     public static final double DOWN_HARD_LIMIT_CLIMB_LEFT = -9000;
     public static final double UP_HARD_LIMIT_CLIMB_LEFT = 2048+1390060;
