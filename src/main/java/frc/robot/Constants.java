@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
+
 // import edu.wpi.first.networktables.NetworkTable;
 // import edu.wpi.first.networktables.NetworkTableEntry;
 // import edu.wpi.first.networktables.NetworkTableInstance;
@@ -19,7 +22,6 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    
     //DRIVETRAIN
     public static final int DRIVETRAIN_FRONT_RIGHT_MOTOR = 1;
     public static final int DRIVETRAIN_BACK_RIGHT_MOTOR = 2;
@@ -41,7 +43,6 @@ public final class Constants {
     public static final double DRIVETRAIN_ACCELERATION = 5000;
 
     public static final double DRIVETRAIN_GEARBOX_RATIO = 11.25;
-
 
     //CLIMBER
     public static final int RIGHT_CLIMBER_PORT = 5; 
@@ -67,7 +68,6 @@ public final class Constants {
     public static final double CLIMBER_GAIN = 0.5;
     public static final double CLIMBER_SPEED = 500 * 100; // not really speed, but treat this like it
 
-
     //AUTONOMOUS
     public static final double MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS = 2048*3.503*DRIVETRAIN_GEARBOX_RATIO;
     public static final double MOVE_BACK_POSITION_TO_SHOOT = 2048*-1*DRIVETRAIN_GEARBOX_RATIO;
@@ -75,11 +75,9 @@ public final class Constants {
     public static double AUTONOMOUS_DELAY = 0;
     public static final double AUTONOMOUS_SHOOTER_SPEED = 0.625;
 
-
     //TURRET
     public static final int TURRET_MOTOR_PORT = 7;
     public static double TURRET_TARGET_POSITION = 0;
-
 
     //HOOD
     // public static final int motorPort = 8;
@@ -103,16 +101,10 @@ public final class Constants {
     public static final double FORWARD_INTAKE_SPEED = 0.9;
     public static final double REVERSE_INTAKE_SPEED = -0.9;
 
-
     // INTAKE LATCH SERVOS
     public static int INTAKE_RIGHT_SERVO_CHANNEL = 0;
     public static int INTAKE_LEFT_SERVO_CHANNEL = 1;
-
-    // Change this also
     public static double INTAKE_SERVO_LATCH_DEGREES = 100;
-
-    
-    
     
     //SHOOTER
     public static final double SHOOTER_UP_SPEED = 0.15;
@@ -121,6 +113,7 @@ public final class Constants {
     public static final double CLOSE_SHOOTER_SPEED = 0.5;
     public static final double MEDIUM_SHOOTER_SPEED = 0.625;
     public static final double FAR_SHOOTER_SPEED = 0.9;
-    
 
+    // VISION
+    public static NetworkTable VISION_TABLE = NetworkTableInstance.getDefault().getTable("vision-movement");
 }
