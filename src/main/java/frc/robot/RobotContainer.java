@@ -19,6 +19,7 @@ import frc.robot.commands.Autonomous.Routine3;
 // import frc.robot.commands.Autonomous.Routine4;
 //import frc.robot.commands.Autonomous.Rountine1;
 import frc.robot.commands.Climber.moveClimber;
+import frc.robot.commands.Climber.rightUp;
 import frc.robot.commands.ConveyorBelt.*;
 import frc.robot.commands.Intake.moveIntake;
 import frc.robot.commands.Intake.moveIntakeReverse;
@@ -86,6 +87,7 @@ public class RobotContainer {
   public static JoystickButton lowerClimber = new JoystickButton(opBoard, 15);
   public static JoystickButton autoIntake = new JoystickButton(opBoard, 7);
   public static JoystickButton reverseIntake = new JoystickButton(opBoard, 9);  
+  public static JoystickButton rightUp = new JoystickButton(opBoard, 13);
 
   //public static final Hood cm_Hood = new Hood();
 
@@ -111,6 +113,7 @@ public class RobotContainer {
     // driveButton.whenHeld(new DifferentialDrive(-0.1, 90, true));
     raiseClimber.whenHeld(new moveClimber(Climber.climbDirection.Up));
     lowerClimber.whenHeld(new moveClimber(Climber.climbDirection.Down));
+    rightUp.whenHeld(new rightUp());
     forwardIntake.whenHeld(new moveIntake());
     reverseIntake.whenHeld(new moveIntakeReverse());
     autoIntake.whenHeld(new ParallelCommandGroup(new moveIntake(), new conveyorForward()));
