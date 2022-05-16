@@ -110,6 +110,9 @@ public final class Constants {
     public static final double SHOOTER_UP_SPEED = 0.15;
     public static final int LEFT_SHOOTER_PORT = 11;
     public static final int RIGHT_SHOOTER_PORT = 12;
+    public static final double SUPER_SUPER_CLOSE_SHOOTER_SPEED = 0.1;
+    public static final double SUPER_CLOSE_SHOOTER_SPEED = 0.25;
+    public static final double SUPER_MEDIUM_SHOOTER_SPEED = 0.4;
     public static final double CLOSE_SHOOTER_SPEED = 0.5;
     public static final double MEDIUM_SHOOTER_SPEED = 0.625;
     public static final double FAR_SHOOTER_SPEED = 0.9;
