@@ -80,9 +80,9 @@ public class RobotContainer {
   public static JoystickButton closeShoot = new JoystickButton(opBoard, 1);
   public static JoystickButton autoShoot = new JoystickButton(opBoard, 2);
   public static JoystickButton manualShoot = new JoystickButton(opBoard, 3);
-  public static JoystickButton superCloseShoot = new JoystickButton(opBoard, 4);
+  public static JoystickButton superCloseShoot = new JoystickButton(opBoard, 6);
   public static JoystickButton superSuperCloseShoot = new JoystickButton(opBoard, 5);
-  public static JoystickButton superMediumShoot = new JoystickButton(opBoard, 6);
+  public static JoystickButton superMediumShoot = new JoystickButton(opBoard, 4);
   public static JoystickButton autoIntake = new JoystickButton(opBoard, 7);
   public static JoystickButton raiseClimber = new JoystickButton(opBoard, 8);
   public static JoystickButton reverseIntake = new JoystickButton(opBoard, 9);  
@@ -123,15 +123,13 @@ public class RobotContainer {
     // closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
     // manualShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
     // autoShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
-    superCloseShoot.whenHeld(new shoot(Constants.SUPER_CLOSE_SHOOTER_SPEED));
-    closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED));
-    manualShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_SPEED));
-    autoShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_SPEED));
+    //superCloseShoot.whenHeld(new shoot(Constants.SUPER_CLOSE_SHOOTER_SPEED));
+    //closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED));
+    //manualShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_SPEED));
+    //autoShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_SPEED));
     superCloseShoot.whenHeld(new shoot(Constants.SUPER_CLOSE_SHOOTER_SPEED));
     superSuperCloseShoot.whenHeld(new shoot(Constants.SUPER_SUPER_CLOSE_SHOOTER_SPEED));
-    superMediumShoot.whenHeld(new shoot(Constants.SUPER_MEDIUM_SHOOTER_SPEED));
-    autoShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_SPEED));
-    autoShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_SPEED));
+    //superMediumShoot.whenHeld(new shoot(Constants.SUPER_MEDIUM_SHOOTER_SPEED));
 
     forwardConveyor.whileHeld(new conveyorForward());
     reverseConveyor.whileHeld(new conveyorReverse());

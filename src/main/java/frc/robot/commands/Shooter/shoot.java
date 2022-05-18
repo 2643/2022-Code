@@ -47,7 +47,7 @@ public class shoot extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.m_shooter.setSpeed(0);
-   // RobotContainer.m_.setSpeed(0);
+    RobotContainer.m_conveyorBelt.setSpeed(0);
     a = 0;
   }
 
