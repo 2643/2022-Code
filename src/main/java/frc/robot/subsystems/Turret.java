@@ -29,16 +29,12 @@ public class Turret extends SubsystemBase {
   double rightTurnSpeed = 0.1;
 
   // Needs accurate values
-  double LeftSoftLimit = -55000;
-  double RightSoftLimit = 45000;
-
-  double LeftHardLimit = LeftSoftLimit - 4096;
-  double RightHardLimit = RightSoftLimit + 4096;
+  
   // Needs testing
   double TurretSmartVelocityP = 0.0005;
   // Tested:
   // 0.00001 Doesn't move
-  // 0.0001 Moves slowly
+  // 0.0001 Moves slowly 
   double TurretSmartVelocityI = 0;
   double TurretSmartVelocityD = 0;
 
@@ -81,17 +77,15 @@ public class Turret extends SubsystemBase {
   // right
   boolean InvertMotor = true;
 
-  // NetworkTableEntry ShuffleBoardData = Shuffleboard.getTab("TalonFX").add("P
-  // Value", 0.00005).getEntry();
   // ShuffleboardTab TalonFXTab = Shuffleboard.getTab("TalonFX");
-  // NetworkTableEntry positionTurret = TalonFXTab.add("Position Value",
-  // 0).getEntry();
-  // NetworkTableEntry lol1 = TalonFXTab.add("I Value", 0.000000).getEntry();
-  // NetworkTableEntry lol2 = TalonFXTab.add("D Value", 0.00019).getEntry();
-  // NetworkTableEntry lol3 = TalonFXTab.add("Max Velocity", 2000).getEntry();
-  // NetworkTableEntry lol4 = TalonFXTab.add("Max Acceleration", 750).getEntry();
-  // NetworkTableEntry lol5 = TalonFXTab.add("Left Limit", -100).getEntry();
-  // NetworkTableEntry lol6 = TalonFXTab.add("Right", 100).getEntry();
+  // NetworkTableEntry positionTurret = TalonFXTab.add("Position Value", 0).getEntry();
+  // NetworkTableEntry proportionalValue = TalonFXTab.add("P Value", 0.00005).getEntry();
+  // NetworkTableEntry integralValue = TalonFXTab.add("I Value", 0.000000).getEntry();
+  // NetworkTableEntry derivativeValue = TalonFXTab.add("D Value", 0.00019).getEntry();
+  // NetworkTableEntry maxVel = TalonFXTab.add("Max Velocity", 2000).getEntry();
+  // NetworkTableEntry maxAcc = TalonFXTab.add("Max Acceleration", 750).getEntry();
+  // NetworkTableEntry leftLimit = TalonFXTab.add("Left Limit", -100).getEntry();
+  // NetworkTableEntry rightLimit = TalonFXTab.add("Right Limit", 100).getEntry();
 
   /** Creates a new Turret. */
   public Turret() {
@@ -119,26 +113,16 @@ public class Turret extends SubsystemBase {
     // turretCanSparkMax.setIdleMode(IdleMode.kBrake);
   }
 
-  // Position is not used
   public void turretCanTurn(double positionValue) {
-    if (getPosition() <= RightHardLimit && getPosition() >= LeftHardLimit) {
-      if (getPosition() <= RightSoftLimit && getPosition() >= LeftSoftLimit) {
-        turretCanSparkMax.getPIDController().setReference(positionValue, ControlType.kSmartMotion,
-            TurretPositionPIDSlot);
-      } else if ((getPosition() >= Constants.TURRET_TARGET_POSITION) && getPosition() <= RightSoftLimit) {
-        turretCanSparkMax.getPIDController().setReference(positionValue, ControlType.kSmartMotion,
-            TurretPositionPIDSlot);
-      } else if ((getPosition() <= Constants.TURRET_TARGET_POSITION) && getPosition() >= LeftSoftLimit) {
-        turretCanSparkMax.getPIDController().setReference(positionValue, ControlType.kSmartMotion,
-            TurretPositionPIDSlot);
-      }
-    } else {
+    if (getPosition() <= Constants.TURRET_RIGHT_HARD_LIMIT && getPosition() >= Constants.TURRET_LEFT_HARD_LIMIT) {
+      turretCanSparkMax.getPIDController().setReference(positionValue, ControlType.kSmartMotion, TurretPositionPIDSlot);
+   } else {
       turretCanSparkMax.disable();
     }
   }
 
   public void turretTurnLeft() {
-    if (LeftSoftLimit <= turretCanSparkMax.getEncoder().getPosition()) {
+    if (Constants.TURRET_LEFT_SOFT_LIMIT <= turretCanSparkMax.getEncoder().getPosition()) {
       turretCanSparkMax.getPIDController().setReference(leftTurnSpeed, ControlType.kDutyCycle, TurretVelocityPIDSlot);
     } else {
       turretCanSparkMax.getPIDController().setReference(stopSpeed, ControlType.kDutyCycle, TurretVelocityPIDSlot);
@@ -146,7 +130,7 @@ public class Turret extends SubsystemBase {
   }
 
   public void turretTurnRight() {
-    if (RightSoftLimit >= turretCanSparkMax.getEncoder().getPosition()) {
+    if (Constants.TURRET_RIGHT_SOFT_LIMIT >= turretCanSparkMax.getEncoder().getPosition()) {
       turretCanSparkMax.getPIDController().setReference(rightTurnSpeed, ControlType.kDutyCycle, TurretVelocityPIDSlot);
     } else {
       turretCanSparkMax.getPIDController().setReference(stopSpeed, ControlType.kDutyCycle, TurretVelocityPIDSlot);
@@ -181,21 +165,21 @@ public class Turret extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // System.out.println(getPosition());
+    //Target
+    //System.out.println(getPosition() + "Target: " + Constants.TURRET_TARGET_POSITION);
     // System.out.println(getVelocity());
-    // turretCanSparkMax.getPIDController().setReference(0.1,
-    // ControlType.kDutyCycle);
+    //Pos, Vision Error, PID Error, 
     // System.out.println(" Pos: " + getPosition() + " Error:" +
     // (double)Constants.visionTable.getEntry("Degree").getNumber(Constants.defaultVisionTurretError)
     // + "PIDError" + (getPosition()-turretShoot.target) + " Target:" +
     // turretShoot.target + " Error:" + (turretShoot.target - getPosition()));
-    // double PValue = ShuffleBoardData.getDouble(0.0001);
-    // double IValue = lol1.getDouble(0.00000);
-    // double DValue = lol2.getDouble(0);
-    // double MaxVelocity = lol3.getDouble(2000);
-    // double MaxAcceleration = lol4.getDouble(750);
-    // LeftSoftLimit = lol5.getDouble(-100);
-    // RightSoftLimit = lol6.getDouble(100);
+    // double PValue = proportionalValue.getDouble(0.0001);
+    // double IValue = integralValue.getDouble(0.00000);
+    // double DValue = derivativeValue.getDouble(0);
+    // double MaxVelocity = maxVel.getDouble(2000);
+    // double MaxAcceleration = maxAcc.getDouble(750);
+    // LeftSoftLimit = leftLimit.getDouble(-100);
+    // RightSoftLimit = rightLimit.getDouble(100);
     // LeftHardLimit = LeftSoftLimit - 4096;
     // RightHardLimit = RightSoftLimit + 4096;
 
@@ -207,8 +191,6 @@ public class Turret extends SubsystemBase {
     // Constants.wantedPositionTurret.setDouble(turretShoot.target);
     // Constants.pidError.setDouble((getPosition()-turretShoot.target));
     // Constants.degrees.setDouble((double)Constants.visionTable.getEntry("Degree").getNumber(Constants.defaultVisionTurretError));
-    // public static NetworkTableEntry wantedPositionTurret = TalonFXTab.add("Wanted
-    // Position", 0).getEntry();
-
+    // public static NetworkTableEntry wantedPositionTurret = TalonFXTab.add("Wanted Position", 0).getEntry();
   }
 }

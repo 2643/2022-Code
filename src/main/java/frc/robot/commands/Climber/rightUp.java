@@ -9,7 +9,7 @@ import frc.robot.RobotContainer;
 
 public class rightUp extends CommandBase {
 
-  private double posr;
+  //private double posr;
 
   /** Creates a new rightUp. */
   public rightUp() {
@@ -20,7 +20,7 @@ public class rightUp extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    posr = RobotContainer.m_climber.getPositionR();
+    //posr = RobotContainer.m_climber.getPositionR();
 
   }
 

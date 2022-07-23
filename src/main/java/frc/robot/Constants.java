@@ -1,3 +1,4 @@
+
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
@@ -79,10 +80,20 @@ public final class Constants {
     public static final int TURRET_MOTOR_PORT = 7;
     public static double TURRET_TARGET_POSITION = 0;
 
-    //HOOD
-    // public static final int motorPort = 8;
-    // public static final double hoodSpeed = 0.07;
+    public static final double TURRET_LEFT_SOFT_LIMIT = -55000 + 4096;
+    public static final double TURRET_RIGHT_SOFT_LIMIT = 45000 - 4096;
 
+    public static final double TURRET_LEFT_HARD_LIMIT = TURRET_LEFT_SOFT_LIMIT - 8192;
+    public static final double TURRET_RIGHT_HARD_LIMIT = TURRET_RIGHT_SOFT_LIMIT + 8192;
+
+    //HOOD
+    public static final int HOOD_MOTOR_PORT = 8;
+    public static final double HOOD_SPEED = 0.07;
+    
+    public static double HOOD_UP_SOFT_LIMIT = 10000;
+    public static final double HOOD_DOWN_SOFT_LIMIT = 0;
+    public static final double HOOD_UP_HARD_LIMIT = HOOD_UP_SOFT_LIMIT + 4096;
+    public static double HOOD_DOWN_HARD_LIMIT = HOOD_DOWN_SOFT_LIMIT - 4096;
     // public static final int MAX_HOOD_LIMIT_PORT = 12;
     // public static final int MIN_HOOD_LIMIT_PORT = 11;
 

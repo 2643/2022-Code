@@ -23,7 +23,7 @@ import frc.robot.commands.Climber.rightUp;
 import frc.robot.commands.ConveyorBelt.*;
 import frc.robot.commands.Intake.moveIntake;
 import frc.robot.commands.Intake.moveIntakeReverse;
-import frc.robot.commands.Shooter.shoot;
+//import frc.robot.commands.Shooter.shoot;
 //import frc.robot.commands.Drivetrain.DifferentialDrive;
 // import frc.robot.commands.Turret.turretShoot;
 import frc.robot.subsystems.ADISGyro;
@@ -33,6 +33,7 @@ import frc.robot.subsystems.ConveyorBelt;
 // import frc.robot.commands.Climber.moveClimber;
 // import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Hood;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Turret;
@@ -69,6 +70,7 @@ public class RobotContainer {
   public static final Climber m_climber = new Climber();
   public static final Shooter m_shooter = new Shooter();
   public static final Intake m_intake = new Intake(); 
+  public static final Hood cm_Hood = new Hood();
 
   //JOYSTICK AND OPBOARD INITIALIZED
   public static Joystick driveStick = new Joystick(0);
@@ -91,7 +93,7 @@ public class RobotContainer {
   public static JoystickButton forwardIntake = new JoystickButton(opBoard, 12);
   public static JoystickButton rightUp = new JoystickButton(opBoard, 13);
   public static JoystickButton lowerClimber = new JoystickButton(opBoard, 15);
-  //public static final Hood cm_Hood = new Hood();
+  
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -123,13 +125,13 @@ public class RobotContainer {
     // closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
     // manualShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
     // autoShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
-    //superCloseShoot.whenHeld(new shoot(Constants.SUPER_CLOSE_SHOOTER_SPEED));
-    //closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED));
-    //manualShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_SPEED));
-    //autoShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_SPEED));
-    superCloseShoot.whenHeld(new shoot(Constants.SUPER_CLOSE_SHOOTER_SPEED));
-    superSuperCloseShoot.whenHeld(new shoot(Constants.SUPER_SUPER_CLOSE_SHOOTER_SPEED));
-    //superMediumShoot.whenHeld(new shoot(Constants.SUPER_MEDIUM_SHOOTER_SPEED));
+    // superCloseShoot.whenHeld(new shoot(Constants.SUPER_CLOSE_SHOOTER_SPEED));
+    // closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED));
+    // manualShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_SPEED));
+    // autoShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_SPEED));
+    // superCloseShoot.whenHeld(new shoot(Constants.SUPER_CLOSE_SHOOTER_SPEED));
+    // superSuperCloseShoot.whenHeld(new shoot(Constants.SUPER_SUPER_CLOSE_SHOOTER_SPEED));
+    // superMediumShoot.whenHeld(new shoot(Constants.SUPER_MEDIUM_SHOOTER_SPEED));
 
     forwardConveyor.whileHeld(new conveyorForward());
     reverseConveyor.whileHeld(new conveyorReverse());
