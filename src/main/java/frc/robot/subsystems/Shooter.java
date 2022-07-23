@@ -29,41 +29,41 @@ public class Shooter extends SubsystemBase {
   boolean Invertleft = true;
   boolean Invertrightfollow = true;
 
-  ShuffleboardTab Tab2022 = Shuffleboard.getTab("2022Tab-1");
-  NetworkTableEntry targetVelocity = Tab2022.add("Target Velocity", 1).getEntry();
-  NetworkTableEntry PValue = Tab2022.add("P Value", 0.00001).getEntry();
-  NetworkTableEntry IValue = Tab2022.add("I Value", 0).getEntry();
-  NetworkTableEntry DValue = Tab2022.add("D Value", 0).getEntry();
+  static ShuffleboardTab Tab2022 = Shuffleboard.getTab("2022Tab-1");
+  static NetworkTableEntry targetVelocity = Tab2022.add("Target Velocity", 1).getEntry();
+  static NetworkTableEntry PValue = Tab2022.add("P Value", 0.00001).getEntry();
+  static NetworkTableEntry IValue = Tab2022.add("I Value", 0).getEntry();
+  static NetworkTableEntry DValue = Tab2022.add("D Value", 0).getEntry();
   //NetworkTableEntry lol4 = Tab2022.a("Max Acceleration", 750).getEntry();
-  NetworkTableEntry velocityTurret = Tab2022.add("Velocity(rotations per 100ms)", 0).getEntry();
+  static NetworkTableEntry velocityTurret = Tab2022.add("Velocity(rotations per 100ms)", 0).getEntry();
 
 
   public Shooter() {
     leftShooter.restoreFactoryDefaults();
     rightShooter.restoreFactoryDefaults();
-    rightShooter.setInverted(true);
-    rightShooter.getEncoder().setPosition(0);
-    rightShooter.getPIDController().setOutputRange(outputMin, outputMax, PIDSlot);
+    leftShooter.setInverted(true);
+    leftShooter.getEncoder().setPosition(0);
+    leftShooter.getPIDController().setOutputRange(outputMin, outputMax, PIDSlot);
     //leftShooter.getPIDController().setSmartMotionMaxVelocity(500, 0);
     //leftShooter.getEncoder().setVelocityConversionFactor(1);
-    leftShooter.follow(rightShooter, true);
+    rightShooter.follow(leftShooter, true);
   }
 
   public void setSpeed(double percent)
   {
-    rightShooter.getPIDController().setReference(percent, ControlType.kDutyCycle);
+    leftShooter.getPIDController().setReference(percent, ControlType.kDutyCycle);
   }
 
   public void setVelSpeed(double speed) {
-    rightShooter.getPIDController().setReference(speed, ControlType.kVelocity);
+    leftShooter.getPIDController().setReference(speed, ControlType.kVelocity);
   }
 
   public double getVelocity(){
-    return rightShooter.getEncoder().getVelocity();
+    return leftShooter.getEncoder().getVelocity();
   }
 
   public double getPosition(){
-    return rightShooter.getEncoder().getPosition();
+    return leftShooter.getEncoder().getPosition();
   }
 
   
