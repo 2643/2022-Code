@@ -8,9 +8,9 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-// import edu.wpi.first.networktables.NetworkTableEntry;
-// import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-// import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -29,13 +29,13 @@ public class Shooter extends SubsystemBase {
   boolean Invertleft = true;
   boolean Invertrightfollow = true;
 
-  // ShuffleboardTab Tab2022 = Shuffleboard.getTab("2022Tab-1");
-  // NetworkTableEntry maxVelocity = Tab2022.add("Target Velocity", 1).getEntry();
-  // NetworkTableEntry PValue = Tab2022.add("P Value", 0.00001).getEntry();
-  // NetworkTableEntry IValue = Tab2022.add("I Value", 0).getEntry();
-  // NetworkTableEntry DValue = Tab2022.add("D Value", 0).getEntry();
-  // NetworkTableEntry lol4 = Tab2022.a("Max Acceleration", 750).getEntry();
-  // NetworkTableEntry velocityTurret = Tab2022.add("Current Velocity", 0).getEntry();
+  ShuffleboardTab Tab2022 = Shuffleboard.getTab("2022Tab-1");
+  NetworkTableEntry targetVelocity = Tab2022.add("Target Velocity", 1).getEntry();
+  NetworkTableEntry PValue = Tab2022.add("P Value", 0.00001).getEntry();
+  NetworkTableEntry IValue = Tab2022.add("I Value", 0).getEntry();
+  NetworkTableEntry DValue = Tab2022.add("D Value", 0).getEntry();
+  //NetworkTableEntry lol4 = Tab2022.a("Max Acceleration", 750).getEntry();
+  NetworkTableEntry velocityTurret = Tab2022.add("Velocity(rotations per 100ms)", 0).getEntry();
 
 
   public Shooter() {
@@ -54,6 +54,10 @@ public class Shooter extends SubsystemBase {
     rightShooter.getPIDController().setReference(percent, ControlType.kDutyCycle);
   }
 
+  public void setVelSpeed(double speed) {
+    rightShooter.getPIDController().setReference(speed, ControlType.kVelocity);
+  }
+
   public double getVelocity(){
     return rightShooter.getEncoder().getVelocity();
   }
@@ -66,17 +70,13 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    // double velocity = maxVelocity.getDouble(1);
-    // double PValue1 = PValue.getDouble(0.0001);
-    // double IValue1 = IValue.getDouble(0);
-    // double DValue1 = DValue.getDouble(0);
-  
-    // leftShooter.getPIDController().setP(PValue1, PIDSlot);
-    // leftShooter.getPIDController().setI(IValue1, PIDSlot);
-    // leftShooter.getPIDController().setD(DValue1, PIDSlot);
-    // leftShooter.getPIDController().setReference(velocity, ControlType.kVelocity, PIDSlot);
     
-    //velocityTurret.setDouble(getVelocity());
-    //System.out.println(leftShooter.getEncoder().getVelocity() + "    " + leftShooter.getEncoder().getVelocityConversionFactor());
+    leftShooter.getPIDController().setP(PValue.getDouble(0.0001), PIDSlot);
+    leftShooter.getPIDController().setI(IValue.getDouble(0), PIDSlot);
+    leftShooter.getPIDController().setD(DValue.getDouble(0), PIDSlot);
+    leftShooter.getPIDController().setReference(targetVelocity.getDouble(0), ControlType.kVelocity, PIDSlot);
+    
+    velocityTurret.setDouble(getVelocity());
+    System.out.println(leftShooter.getEncoder().getVelocity() + "    " + leftShooter.getEncoder().getVelocityConversionFactor());
   }
 }
