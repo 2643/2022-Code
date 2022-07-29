@@ -5,19 +5,24 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
+
+import com.ctre.phoenix.sensors.Pigeon2;
+
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
 
 
-public class ADISGyro extends SubsystemBase {
+public class PigeonTwo extends SubsystemBase {
 
   /** Creates a new Gyro. */
-  ADIS16470_IMU imu = new ADIS16470_IMU();
+  
+  Pigeon2 imu = new Pigeon2(Constants.PIGEON_PORT);
 
-  public ADISGyro() {}
+  public PigeonTwo() {}
 
   public double gyroAngle(){
-    return imu.getYComplementaryAngle();
+    return imu.getYaw();
   }
 
   public void turnClockwiseDegrees(double degrees) {

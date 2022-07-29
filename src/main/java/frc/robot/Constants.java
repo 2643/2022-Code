@@ -128,6 +128,9 @@ public final class Constants {
     public static final double MEDIUM_SHOOTER_SPEED = 0.625;
     public static final double FAR_SHOOTER_SPEED = 0.9;
 
+    public static final int PIGEON_PORT = 13;
+
     // VISION
     public static NetworkTable VISION_TABLE = NetworkTableInstance.getDefault().getTable("vision-movement");
+
 }

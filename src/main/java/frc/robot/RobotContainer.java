@@ -26,7 +26,7 @@ import frc.robot.commands.Intake.moveIntakeReverse;
 //import frc.robot.commands.Shooter.shoot;
 //import frc.robot.commands.Drivetrain.DifferentialDrive;
 // import frc.robot.commands.Turret.turretShoot;
-import frc.robot.subsystems.ADISGyro;
+import frc.robot.subsystems.PigeonTwo;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ConveyorBelt;
 // import frc.robot.subsystems.BallVision;
@@ -65,7 +65,7 @@ public class RobotContainer {
   //SUBSYSTEMS INITIALIZED
   public static final ConveyorBelt m_conveyorBelt = new ConveyorBelt();
   public static final Drivetrain m_drivetrain = new Drivetrain();
-  public static final ADISGyro m_gyro = new ADISGyro();
+  public static final PigeonTwo m_gyro = new PigeonTwo();
   public static final Turret m_turret = new Turret();
   public static final Climber m_climber = new Climber();
   public static final Shooter m_shooter = new Shooter();

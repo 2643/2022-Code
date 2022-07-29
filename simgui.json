@@ -21,7 +21,7 @@
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
-      "/LiveWindow/ADISGyro": "Subsystem",
+      "/LiveWindow/PigeonTwo": "Subsystem",
       "/LiveWindow/Climber": "Subsystem",
       "/LiveWindow/ConveyorBelt": "Subsystem",
       "/LiveWindow/Drivetrain": "Subsystem",
@@ -38,7 +38,7 @@
   },
   "NetworkTables": {
     "LiveWindow": {
-      "ADISGyro": {
+      "PigeonTwo": {
         "open": true
       },
       "Turret": {
