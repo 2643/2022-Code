@@ -48,6 +48,8 @@ public class Hood extends SubsystemBase {
   NetworkTableEntry maxVel = HoodTab.add("Max Velocity", 1000).getEntry();
   NetworkTableEntry maxAcc = HoodTab.add("Max Acceleration", 750).getEntry();
   NetworkTableEntry upLimit = HoodTab.add("Up Limit", 140000).getEntry();
+  NetworkTableEntry targetPos = HoodTab.add("Target Pos", 0).getEntry();
+
 
 
   /** Creates a new Hood. */
@@ -140,5 +142,6 @@ public class Hood extends SubsystemBase {
     }
 
     Constants.HOOD_UP_SOFT_LIMIT = upLimit.getDouble(0);
+    motor.getPIDController().setReference(targetPos.getDouble(0), ControlType.kSmartMotion);
   }
 }
