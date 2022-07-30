@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.ControlType;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -29,24 +30,28 @@ public class Hood extends SubsystemBase {
 
     private static final double smartMotionMaxVel = 0;
     private static final double smartMotionMaxAccel = 0;
+    private static final double smartMotionClosedLoopError = 4096;
 
     private static final double posConversionFactor = 4096;
+
+    private static final boolean isInverted = true;
 
   //max/min position that the hood can move to
   //private static final double maxPosition = 10000;
   private static final double minPosition = 0;
   ShuffleboardTab HoodTab = Shuffleboard.getTab("HoodTab");
   NetworkTableEntry positionHood = HoodTab.add("Position Value", 0).getEntry();
-  NetworkTableEntry proportionalValue = HoodTab.add("P Value", 0.00005).getEntry();
-  NetworkTableEntry integralValue = HoodTab.add("I Value", 0.000000).getEntry();
-  NetworkTableEntry derivativeValue = HoodTab.add("D Value", 0.00019).getEntry();
-  NetworkTableEntry maxVel = HoodTab.add("Max Velocity", 2000).getEntry();
+  NetworkTableEntry proportionalValue = HoodTab.add("P Value", 0.000005).getEntry();
+  NetworkTableEntry integralValue = HoodTab.add("I Value", 0).getEntry();
+  NetworkTableEntry feedForwardValue = HoodTab.add("Feed Forward Value", 0).getEntry();
+  NetworkTableEntry derivativeValue = HoodTab.add("D Value", 0).getEntry();
+  NetworkTableEntry maxVel = HoodTab.add("Max Velocity", 1000).getEntry();
   NetworkTableEntry maxAcc = HoodTab.add("Max Acceleration", 750).getEntry();
-  NetworkTableEntry upLimit = HoodTab.add("Up Limit", 0).getEntry();
+  NetworkTableEntry upLimit = HoodTab.add("Up Limit", 140000).getEntry();
 
 
   /** Creates a new Hood. */
-public Hood() {
+  public Hood() {
     //sets PID values
     motor.restoreFactoryDefaults();
     motor.getEncoder().setPositionConversionFactor(posConversionFactor);
@@ -59,32 +64,36 @@ public Hood() {
     motor.getPIDController().setOutputRange(-1*(outputRange), outputRange);
     motor.getPIDController().setSmartMotionMaxVelocity(smartMotionMaxVel, slotID);
     motor.getPIDController().setSmartMotionMaxAccel(smartMotionMaxAccel, slotID);
+    motor.getPIDController().setSmartMotionAllowedClosedLoopError(smartMotionClosedLoopError, slotID);
 
-}
+    motor.setIdleMode(IdleMode.kBrake);
+    motor.setInverted(isInverted);
+
+  }
   //resets encoder to 0
-public void setEncoder(){
+  public void setEncoder(){
     motor.getEncoder().setPosition(0);
-}
+  }
   //stops the motion of the hood/robot is at a resting position
-public void stopMove(){
+  public void stopMove(){
     motor.getPIDController().setReference(0, ControlType.kDutyCycle);
-}
+  }
 
 //   public boolean atTopPos(){
 //     return maxPositionTrue.get();
 //   }
 
 
-public boolean atBottomPos(){
+  public boolean atBottomPos(){
     return (motor.getEncoder().getPosition() == minPosition);
-}
+  }
 
-public void hoodPID(double position){
+  public void hoodPID(double position){
     if(getPosition() >= Constants.HOOD_DOWN_HARD_LIMIT && getPosition() <= Constants.HOOD_UP_HARD_LIMIT) {
-        motor.getPIDController().setReference(position, ControlType.kSmartMotion, 0);
+      motor.getPIDController().setReference(position, ControlType.kSmartMotion, 0);
     } else {
-        motor.disable();
-    }
+      motor.disable();
+  }
 }
 
   //moves the hood up
@@ -107,18 +116,28 @@ public void hoodPID(double position){
     return motor.getEncoder().getPosition();
   }
 
-  
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     positionHood.setDouble(getPosition());
-    motor.getPIDController().setP(proportionalValue.getDouble(0), slotID);
-    motor.getPIDController().setI(integralValue.getDouble(0), slotID);
-    motor.getPIDController().setD(derivativeValue.getDouble(0), slotID);
-
-    motor.getPIDController().setSmartMotionMaxVelocity(maxVel.getDouble(0), slotID);
-    motor.getPIDController().setSmartMotionMaxAccel(maxAcc.getDouble(0), slotID);
+    if(motor.getPIDController().getP() != proportionalValue.getDouble(0)) {
+      motor.getPIDController().setP(proportionalValue.getDouble(0), slotID);
+    }
+    if(motor.getPIDController().getI() != integralValue.getDouble(0)) {
+      motor.getPIDController().setI(integralValue.getDouble(0), slotID);
+    }
+    if(motor.getPIDController().getD() != derivativeValue.getDouble(0)) {
+      motor.getPIDController().setD(derivativeValue.getDouble(0), slotID);
+    }
+    if(motor.getPIDController().getSmartMotionMaxVelocity(slotID) != maxVel.getDouble(0)) {
+      motor.getPIDController().setSmartMotionMaxVelocity(maxVel.getDouble(0), slotID);
+    }
+    if(motor.getPIDController().getSmartMotionMaxAccel(slotID) != maxAcc.getDouble(0)){
+      motor.getPIDController().setSmartMotionMaxAccel(maxAcc.getDouble(0), slotID);
+    }
+    if(motor.getPIDController().getFF() != feedForwardValue.getDouble(0)){
+      motor.getPIDController().setFF(feedForwardValue.getDouble(0), slotID);
+    }
 
     Constants.HOOD_UP_SOFT_LIMIT = upLimit.getDouble(0);
   }

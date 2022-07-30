@@ -10,8 +10,6 @@ import frc.robot.RobotContainer;
 
 import com.ctre.phoenix.sensors.Pigeon2;
 
-import edu.wpi.first.wpilibj.ADIS16470_IMU;
-
 
 public class PigeonTwo extends SubsystemBase {
 

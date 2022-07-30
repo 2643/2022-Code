@@ -98,7 +98,6 @@ public final class Constants {
     // public static final int MIN_HOOD_LIMIT_PORT = 11;
 
     //CONVEYOR
-    
     public static final int CONVEYER_IR_SENSOR_PORT1 = 2;
     public static final int CONVEYER_IR_SENSOR_PORT2 = 3;
 
@@ -115,19 +114,22 @@ public final class Constants {
     // INTAKE LATCH SERVOS
     public static int INTAKE_RIGHT_SERVO_CHANNEL = 0;
     public static int INTAKE_LEFT_SERVO_CHANNEL = 1;
+
     public static double INTAKE_SERVO_LATCH_DEGREES = 100;
     
     //SHOOTER
-    public static final double SHOOTER_UP_SPEED = 0.15;
     public static final int LEFT_SHOOTER_PORT = 11;
     public static final int RIGHT_SHOOTER_PORT = 12;
+
     public static final double SUPER_SUPER_CLOSE_SHOOTER_SPEED = 0.1;
+    public static final double SHOOTER_UP_SPEED = 0.15;
     public static final double SUPER_CLOSE_SHOOTER_SPEED = 0.25;
     public static final double SUPER_MEDIUM_SHOOTER_SPEED = 0.4;
     public static final double CLOSE_SHOOTER_SPEED = 0.5;
     public static final double MEDIUM_SHOOTER_SPEED = 0.625;
     public static final double FAR_SHOOTER_SPEED = 0.9;
 
+    //PIGEON
     public static final int PIGEON_PORT = 13;
 
     // VISION
