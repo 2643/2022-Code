@@ -21,15 +21,16 @@ public class Hood extends SubsystemBase {
   //private DigitalInput maxPositionTrue = new DigitalInput(Constants.maxHoodLimitPort);
 
   //sets PID variables
-    private static final double kP = 0.000001;
+    private static final double kP = 0.0001;
     private static final double kI = 0.0;
     private static final double kD = 0;
+    private static final double FF = 0.000005;
 
     private static final double outputRange = 0.5;
     private static final int slotID = 0;
 
-    private static final double smartMotionMaxVel = 0;
-    private static final double smartMotionMaxAccel = 0;
+    private static final double smartMotionMaxVel = 1500;
+    //private static final double smartMotionMaxAccel = 0;
     private static final double smartMotionClosedLoopError = 4096;
 
     private static final double posConversionFactor = 4096;
@@ -40,15 +41,15 @@ public class Hood extends SubsystemBase {
   //private static final double maxPosition = 10000;
   private static final double minPosition = 0;
   ShuffleboardTab HoodTab = Shuffleboard.getTab("HoodTab");
-  NetworkTableEntry positionHood = HoodTab.add("Position Value", 0).getEntry();
-  NetworkTableEntry proportionalValue = HoodTab.add("P Value", 0.000005).getEntry();
+  /*NetworkTableEntry positionHood = HoodTab.add("Position Value", 0).getEntry();
+  NetworkTableEntry proportionalValue = HoodTab.add("P Value", 0.0001).getEntry();
   NetworkTableEntry integralValue = HoodTab.add("I Value", 0).getEntry();
-  NetworkTableEntry feedForwardValue = HoodTab.add("Feed Forward Value", 0).getEntry();
+  NetworkTableEntry feedForwardValue = HoodTab.add("Feed Forward Value", 0.000005).getEntry();
   NetworkTableEntry derivativeValue = HoodTab.add("D Value", 0).getEntry();
-  NetworkTableEntry maxVel = HoodTab.add("Max Velocity", 1000).getEntry();
-  NetworkTableEntry maxAcc = HoodTab.add("Max Acceleration", 750).getEntry();
+  NetworkTableEntry maxVel = HoodTab.add("Max Velocity", 1500).getEntry();
+  NetworkTableEntry maxAcc = HoodTab.add("Max Acceleration", 500).getEntry();
   NetworkTableEntry upLimit = HoodTab.add("Up Limit", 140000).getEntry();
-  NetworkTableEntry targetPos = HoodTab.add("Target Pos", 0).getEntry();
+  NetworkTableEntry targetPos = HoodTab.add("Target Pos", 0).getEntry(); */
 
 
 
@@ -62,10 +63,11 @@ public class Hood extends SubsystemBase {
     motor.getPIDController().setP(kP, slotID);
     motor.getPIDController().setI(kI, slotID);
     motor.getPIDController().setD(kD, slotID);
+    motor.getPIDController().setFF(FF, slotID);
 
     motor.getPIDController().setOutputRange(-1*(outputRange), outputRange);
     motor.getPIDController().setSmartMotionMaxVelocity(smartMotionMaxVel, slotID);
-    motor.getPIDController().setSmartMotionMaxAccel(smartMotionMaxAccel, slotID);
+    //motor.getPIDController().setSmartMotionMaxAccel(smartMotionMaxAccel, slotID);
     motor.getPIDController().setSmartMotionAllowedClosedLoopError(smartMotionClosedLoopError, slotID);
 
     motor.setIdleMode(IdleMode.kBrake);
@@ -121,7 +123,7 @@ public class Hood extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    positionHood.setDouble(getPosition());
+    /*positionHood.setDouble(getPosition());
     if(motor.getPIDController().getP() != proportionalValue.getDouble(0)) {
       motor.getPIDController().setP(proportionalValue.getDouble(0), slotID);
     }
@@ -142,6 +144,6 @@ public class Hood extends SubsystemBase {
     }
 
     Constants.HOOD_UP_SOFT_LIMIT = upLimit.getDouble(0);
-    motor.getPIDController().setReference(targetPos.getDouble(0), ControlType.kSmartMotion);
+    motor.getPIDController().setReference(targetPos.getDouble(0), ControlType.kSmartMotion); */
   }
 }
