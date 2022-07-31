@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -70,13 +71,22 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  
     
-    leftShooter.getPIDController().setP(PValue.getDouble(0.0001), PIDSlot);
-    leftShooter.getPIDController().setI(IValue.getDouble(0), PIDSlot);
-    leftShooter.getPIDController().setD(DValue.getDouble(0), PIDSlot);
-    leftShooter.getPIDController().setReference(targetVelocity.getDouble(0), ControlType.kVelocity, PIDSlot);
     
     velocityTurret.setDouble(getVelocity());
     System.out.println(leftShooter.getEncoder().getVelocity() + "    " + leftShooter.getEncoder().getVelocityConversionFactor());
+    if(PValue.getDouble(0) != leftShooter.getPIDController().getP(PIDSlot)) {
+      leftShooter.getPIDController().setP(PValue.getDouble(0), PIDSlot);
+    }
+    if(IValue.getDouble(0) != leftShooter.getPIDController().getI(PIDSlot)) {
+      leftShooter.getPIDController().setI(IValue.getDouble(0), PIDSlot);
+  }
+    if(DValue.getDouble(0) != leftShooter.getPIDController().getD(PIDSlot)) {
+      leftShooter.getPIDController().setD(DValue.getDouble(0), PIDSlot);
+    }
+    if(targetVelocity.getDouble(0) != leftShooter.getEncoder().getVelocity()){
+      leftShooter.getPIDController().setReference(targetVelocity.getDouble(0), ControlType.kVelocity, PIDSlot);
+    }
   }
 }
