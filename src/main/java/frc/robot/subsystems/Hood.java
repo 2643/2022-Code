@@ -28,6 +28,7 @@ public class Hood extends SubsystemBase {
 
     private static final double outputRange = 0.5;
     private static final int slotID = 0;
+    double lol = 5;
 
     private static final double smartMotionMaxVel = 1500;
     //private static final double smartMotionMaxAccel = 0;
