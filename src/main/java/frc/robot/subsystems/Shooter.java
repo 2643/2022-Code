@@ -31,10 +31,10 @@ public class Shooter extends SubsystemBase {
   boolean Invertrightfollow = true;
 
   static ShuffleboardTab Tab2022 = Shuffleboard.getTab("2022Tab-1");
-  static NetworkTableEntry targetVelocity = Tab2022.add("Target Velocity", 1).getEntry();
-  static NetworkTableEntry PValue = Tab2022.add("P Value", 0.00001).getEntry();
-  static NetworkTableEntry IValue = Tab2022.add("I Value", 0).getEntry();
-  static NetworkTableEntry DValue = Tab2022.add("D Value", 0).getEntry();
+  static NetworkTableEntry targetVelocity = Tab2022.add("Target Velocity", 0).getEntry();
+  static NetworkTableEntry PValue = Tab2022.add("P Value", 0.001).getEntry();
+  static NetworkTableEntry IValue = Tab2022.add("I Value", 0.0000012).getEntry();
+  static NetworkTableEntry DValue = Tab2022.add("D Value", 0.0009).getEntry();
   //NetworkTableEntry lol4 = Tab2022.a("Max Acceleration", 750).getEntry();
   static NetworkTableEntry velocityTurret = Tab2022.add("Velocity(rotations per 100ms)", 0).getEntry();
 
@@ -67,6 +67,7 @@ public class Shooter extends SubsystemBase {
     return leftShooter.getEncoder().getPosition();
   }
 
+
   
   @Override
   public void periodic() {
@@ -87,6 +88,9 @@ public class Shooter extends SubsystemBase {
     }
     if(targetVelocity.getDouble(0) != leftShooter.getEncoder().getVelocity()){
       leftShooter.getPIDController().setReference(targetVelocity.getDouble(0), ControlType.kVelocity, PIDSlot);
+    }
+    if(targetVelocity.getDouble(0)==0){
+      leftShooter.getPIDController().setReference(0,ControlType.kDutyCycle );
     }
   }
 }
