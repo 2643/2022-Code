@@ -23,6 +23,21 @@ public class Shooter extends SubsystemBase {
   double motorP = 0.001;
   double motorI = 0.0000012;
   double motorD = 0.0009;
+  // P,I,D,Target,Velocity (RPM),Explanantion
+  // 0.0009,0,0,200,142-157,Oscilating
+  // 0.0009,0,0.01,200,140-160,Oscilating
+  // 0.0009,0,0.02,200,145-154,Oscilating less
+  // 0.0009,0,0.04,200,same as before,"Oscilating less, but banging is bad"
+  // 0.00045,0,0.04,200,same as before,Oscilating the same
+  // 0.001,0,0.04,200,,Oscilating
+  // 0.0002,0,0.04,200,,
+  // 0.0009,0,0.0009,200,,more oscilation but more banging
+  // 0.0009,0,0.0009,200,,
+  // 0.0009,0,0.0001,200,,even more oscilation
+  // 0.0009,0,0.00001,200,,oscilation
+  // 0.0009,0,0.0003,200,,less oscilation
+  // 0.0009,0,0.0005,200,,oscilating
+
 
   double outputMin = -0.9;
   double outputMax = 0.9;
