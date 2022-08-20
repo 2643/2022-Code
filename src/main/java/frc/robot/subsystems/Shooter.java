@@ -23,20 +23,6 @@ public class Shooter extends SubsystemBase {
   double motorP = 0.001;
   double motorI = 0.0000012;
   double motorD = 0.0009;
-  //   P,I,D,Target,Velocity (RPM),Explanantion
-  //   0.0009,0,0,200,142-157,Oscilating
-  //   0.0009,0,0.01,200,140-160,Oscilating
-  //   0.0009,0,0.02,200,145-154,Oscilating less
-  //   0.0009,0,0.04,200,same as before,"Oscilating less, but banging is bad"
-  //   0.00045,0,0.04,200,same as before,Oscilating the same
-  //   0.001,0,0.04,200,,Oscilating
-  //   0.0002,0,0.04,200,,
-  //   0.0009,0,0.0009,200,,more oscilation but more banging
-  //   0.0009,0,0.0009,200,,
-  //   0.0009,0,0.0001,200,,even more oscilation
-  //   0.0009,0,0.00001,200,,oscilation
-  //   0.0009,0,0.0003,200,,less oscilation
-  //   0 .0009,0,0.0005,200,,oscilating
 
   double outputMin = -0.9;
   double outputMax = 0.9;
@@ -44,12 +30,12 @@ public class Shooter extends SubsystemBase {
   boolean Invertleft = true;
   boolean Invertrightfollow = true;
 
-  // static ShuffleboardTab Tab2022 = Shuffleboard.getTab("2022Tab-1");
+  //static ShuffleboardTab Tab2022 = Shuffleboard.getTab("2022Tab-1");
   // static NetworkTableEntry targetVelocity = Tab2022.add("Shooter Target Velocity", 0).withSize(2, 2).getEntry();
   // static NetworkTableEntry PValue = Tab2022.add("P Value", 0.001).getEntry();
   // static NetworkTableEntry IValue = Tab2022.add("I Value", 0.0000012).getEntry();
   // static NetworkTableEntry DValue = Tab2022.add("D Value", 0.0009).getEntry();
-  // NetworkTableEntry lol4 = Tab2022.a("Max Acceleration", 750).getEntry();
+  //NetworkTableEntry lol4 = Tab2022.a("Max Acceleration", 750).getEntry();
   // static NetworkTableEntry velocityTurret = Tab2022.add("Shooter Velocity(RPM)", 0).withSize(2, 2).getEntry();
 
 
@@ -91,7 +77,7 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    // velocityTurret.setDouble(getVelocity());
+    //velocityTurret.setDouble(getVelocity());
     //   System.out.println(leftShooter.getEncoder().getVelocity() + "    " + leftShooter.getEncoder().getVelocityConversionFactor());
     //   if(PValue.getDouble(0) != leftShooter.getPIDController().getP(PIDSlot)) {
     //     leftShooter.getPIDController().setP(PValue.getDouble(0), PIDSlot);
