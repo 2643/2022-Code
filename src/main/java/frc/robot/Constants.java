@@ -4,9 +4,9 @@
 
 package frc.robot;
 
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
+// import edu.wpi.first.networktables.NetworkTable;
+// import edu.wpi.first.networktables.NetworkTableEntry;
+// import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
@@ -28,12 +28,26 @@ public final class Constants {
     public static final double FAR_SHOOTER_SPEED = 0.9;
     public static final double MEDIUM_SHOOTER_SPEED = 0.8;
 
-    public static final int conveyerIRSensorPort1 = 2;
-    public static final int conveyerIRSensorPort2 = 3;
+    public static final int CONVEYER_IR_SENSOR_PORT1 = 2;
+    public static final int CONVEYER_IR_SENSOR_PORT2 = 3;
 
-    public static final int conveyorBeltMotorPort = 9;
+    public static final int CONVEYOR_BELT_MOTOR_PORT = 9;
 
-    public static final double convMotorSpeed = 0.4;
-    public static final double convRevMotorSpeed = -0.4;
+    public static final double CONVEYOR_MOTOR_SPEED = 0.9;
+    public static final double CONVEYOR_REVERSE_MOTOR_SPEED = -0.4;
+
+    public static final int HOOD_MOTOR_PORT = 8;
+    public static final double HOOD_SPEED = 0.07;
+    
+    public static final double HOOD_UP_SOFT_LIMIT = 140000;
+    public static final double HOOD_DOWN_SOFT_LIMIT = 0;
+    public static final double HOOD_UP_HARD_LIMIT = HOOD_UP_SOFT_LIMIT + 4096;
+    public static final double HOOD_DOWN_HARD_LIMIT = HOOD_DOWN_SOFT_LIMIT - 4096;
+
+    public static ShuffleboardTab Tab2022 = Shuffleboard.getTab("2022-Robot");
+
+    public class Tab2022 {
+    }
+
 
 }

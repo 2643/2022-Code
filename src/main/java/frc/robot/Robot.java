@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 // import frc.robot.commands.FindBall;
 // import frc.robot.commands.Climber.moveClimber;
 // import frc.robot.commands.Climber.resetPosition;
-import frc.robot.commands.shoot;
+// import frc.robot.commands.shoot;
 
 // import frc.robot.commands.hoodcm;
 // import frc.robot.subsystems.Hood;
