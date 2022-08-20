@@ -25,6 +25,20 @@ public class Hood extends SubsystemBase {
     private static final double kI = 0.0;
     private static final double kD = 0;
     private static final double FF = 0.000005;
+    // MAX Accel,MAX Velocity,Up limit,Target,P,I,D,FF,Explanantion
+    // 500,1000,140433,"1,000",0.00009,0,0,0, Very off
+    // 500,1000,140433,10000,0.0001,0,0,0, Quite off
+    // 500,1000,140433,10000,0.00005,0,0,0,Oscilating,"Very off, Oscilating from 3000 to 170000"
+    // 500,1000,140433,"10,000",0.00007,0,0,0,Oscilating,"Sort of off, Oscilating from 9600 to 10800"
+    // 500,1000,140433,"1,000",0.00005,0,0,0,Oscilating 1200,
+    // 500,1000,140433,"10,000",0.00005,0,0,0,Oscilating ,9300-10800
+    // 500,1000,140433,"10,000",0.00009,0,0,0,Oscilating ,9000-10537
+    // 500,1000,140433,"10,000",0.0005,0,0,0,Oscilating ,Went crazy for some reason
+    // none, 1500, 140000, "10,000", 0.0001, 0, 0,0,Needs feed forward
+    // none, 1500, 140000, "10,000", 0.0001, 0, 0,0.00000005,feed forward too low
+    // none, 1500, 140000, "10,000", 0.0001, 0, 0,0.0000005, feed forward too low
+    // none, 1500, 140000, "10,000", 0.0001, 0, 0,0.00005,feed forward too high
+    // none, 1500, 140000, "10,000", 0.0001, 0, 0,0.000005,feed forward perfect
 
     private static final double outputRange = 0.5;
     private static final int slotID = 0;
