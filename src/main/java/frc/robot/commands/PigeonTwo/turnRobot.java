@@ -35,7 +35,7 @@ public class turnRobot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(Math.floor(RobotContainer.m_gyro.gyroAngle()) == turnDegrees){
+    if(Math.round(RobotContainer.m_gyro.gyroAngle()) == turnDegrees){
       return true;
     } else{
       return false;
