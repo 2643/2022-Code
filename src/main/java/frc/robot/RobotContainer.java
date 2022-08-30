@@ -23,7 +23,7 @@ import frc.robot.commands.Climber.rightUp;
 import frc.robot.commands.ConveyorBelt.*;
 import frc.robot.commands.Intake.moveIntake;
 import frc.robot.commands.Intake.moveIntakeReverse;
-//import frc.robot.commands.Shooter.shoot;
+import frc.robot.commands.Shooter.shoot;
 //import frc.robot.commands.Drivetrain.DifferentialDrive;
 // import frc.robot.commands.Turret.turretShoot;
 import frc.robot.subsystems.PigeonTwo;
@@ -43,7 +43,7 @@ import frc.robot.subsystems.Turret;
 // import frc.robot.subsystems.Hood;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-// import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 // import frc.robot.Robot;
 
@@ -63,28 +63,28 @@ public class RobotContainer {
 
   
   //SUBSYSTEMS INITIALIZED
-  public static final ConveyorBelt m_conveyorBelt = new ConveyorBelt();
   public static final Drivetrain m_drivetrain = new Drivetrain();
-  public static final PigeonTwo m_gyro = new PigeonTwo();
-  public static final Turret m_turret = new Turret();
   public static final Climber m_climber = new Climber();
-  public static final Shooter m_shooter = new Shooter();
+  public static final Turret m_turret = new Turret();
+  public static final Hood m_hood = new Hood();
+  public static final ConveyorBelt m_conveyorBelt = new ConveyorBelt();
   public static final Intake m_intake = new Intake(); 
-  public static final Hood cm_Hood = new Hood();
+  public static final Shooter m_shooter = new Shooter();
+  public static final PigeonTwo m_gyro = new PigeonTwo();
 
   //JOYSTICK AND OPBOARD INITIALIZED
-  public static Joystick driveStick = new Joystick(0);
+  public static Joystick joyStick = new Joystick(0);
   public static Joystick opBoard = new Joystick(1);
 
   //BUTTON INITIALIZATION
-  public static JoystickButton driveButton = new JoystickButton(driveStick, 3);
+  public static JoystickButton driveButton = new JoystickButton(joyStick, 3);
 
   public static JoystickButton closeShoot = new JoystickButton(opBoard, 1);
-  public static JoystickButton autoShoot = new JoystickButton(opBoard, 2);
-  public static JoystickButton manualShoot = new JoystickButton(opBoard, 3);
-  public static JoystickButton superCloseShoot = new JoystickButton(opBoard, 6);
-  public static JoystickButton superSuperCloseShoot = new JoystickButton(opBoard, 5);
-  public static JoystickButton superMediumShoot = new JoystickButton(opBoard, 4);
+  public static JoystickButton mediumShoot = new JoystickButton(opBoard, 2);
+  public static JoystickButton farShoot = new JoystickButton(opBoard, 3);
+  //public static JoystickButton superMediumShoot = new JoystickButton(opBoard, 4);
+  //public static JoystickButton superSuperCloseShoot = new JoystickButton(opBoard, 5);
+  //public static JoystickButton superCloseShoot = new JoystickButton(opBoard, 6);
   public static JoystickButton autoIntake = new JoystickButton(opBoard, 7);
   public static JoystickButton raiseClimber = new JoystickButton(opBoard, 8);
   public static JoystickButton reverseIntake = new JoystickButton(opBoard, 9);  
@@ -99,7 +99,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    m_chooser.setDefaultOption("MOVE BACK AND SHOOT", m_Routine1);
+    m_chooser.setDefaultOption("MOVE FORWARD, GET SECOND BALL, TURN, AND SHOOT", m_Routine2);
     m_chooser.addOption("MOVE BACK AND SHOOT", m_Routine1);
     m_chooser.addOption("MOVE FORWARD, GET SECOND BALL, TURN, AND SHOOT", m_Routine2);
     m_chooser.addOption("MOVE BACK", m_Routine3);
@@ -122,9 +122,9 @@ public class RobotContainer {
     reverseIntake.whenHeld(new moveIntakeReverse());
     autoIntake.whenHeld(new ParallelCommandGroup(new moveIntake(), new conveyorForward()));
 
-    // closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
-    // manualShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
-    // autoShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
+    closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
+    mediumShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
+    farShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
     // superCloseShoot.whenHeld(new shoot(Constants.SUPER_CLOSE_SHOOTER_SPEED));
     // closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED));
     // manualShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_SPEED));
@@ -144,18 +144,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
      // An ExampleCommand will run in autonomous
-     return m_chooser.getSelected();
-    //  if (Constants.ROUTINE_SELECTOR == 2) {
-    //    return (new Routine2(2));
-    //  }
-    //  else if (Constants.ROUTINE_SELECTOR == 3) {
-    //   return (new Routine3());
-    //  }
-    //  else if (Constants.ROUTINE_SELECTOR == 4) {
-    //    return (new Routine4());
-    //  }
-    //  else {
-    //    return (new Routine1(Constants.AUTONOMOUS_DELAY));
-    //  }
+     //return m_chooser.getSelected();
+     return (new Routine2(0));
    }
 }

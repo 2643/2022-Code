@@ -16,8 +16,9 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.Climber.resetPosition;
 // import frc.robot.commands.FindBall;
 import frc.robot.commands.Drivetrain.Tankdrive;
+import frc.robot.commands.Hood.hoodDriverControl;
 import frc.robot.commands.Intake.releaseLatches;
-import frc.robot.commands.Turret.driverControl;
+import frc.robot.commands.Turret.turretDriverControl;
 import frc.robot.subsystems.ConveyorBelt;
 
 // import frc.robot.commands.hoodcm;
@@ -153,7 +154,8 @@ public class Robot extends TimedRobot {
     ballAtBottomLimitSwitch.setBoolean(ConveyorBelt.conviRSens1.get());
 
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_drivetrain, new Tankdrive());
-    CommandScheduler.getInstance().schedule(true, new driverControl());
+    CommandScheduler.getInstance().schedule(true, new turretDriverControl());
+    CommandScheduler.getInstance().schedule(true, new hoodDriverControl());
   }
 
   @Override

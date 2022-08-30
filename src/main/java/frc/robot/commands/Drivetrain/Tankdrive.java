@@ -27,8 +27,8 @@ public class Tankdrive extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS)) < Constants.JOYSITCK_DEADBAND && leftSpeed == 0) {
-      if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS)) < Constants.JOYSITCK_DEADBAND && rightSpeed == 0) {
+    if (Math.abs(RobotContainer.joyStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS)) < Constants.JOYSITCK_DEADBAND && leftSpeed == 0) {
+      if (Math.abs(RobotContainer.joyStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS)) < Constants.JOYSITCK_DEADBAND && rightSpeed == 0) {
         finished = true;
       }
     }
@@ -37,15 +37,15 @@ public class Tankdrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double left_input = RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS);
-    double right_input = RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS);
+    double left_input = RobotContainer.joyStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS);
+    double right_input = RobotContainer.joyStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS);
     int multiplier = controlToMultiplier(RobotContainer.opBoard.getRawAxis(2));
     int slewMultiplier = (6-multiplier);
     
-    if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS)) < Constants.JOYSITCK_DEADBAND) {
+    if (Math.abs(RobotContainer.joyStick.getRawAxis(Constants.JOYSTICK_LEFT_AXIS)) < Constants.JOYSITCK_DEADBAND) {
       left_input = 0;
     }
-    if (Math.abs(RobotContainer.driveStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS)) < Constants.JOYSITCK_DEADBAND) {
+    if (Math.abs(RobotContainer.joyStick.getRawAxis(Constants.JOYSTICK_RIGHT_AXIS)) < Constants.JOYSITCK_DEADBAND) {
       right_input = 0;
     }
     if (multiplier != -1) {

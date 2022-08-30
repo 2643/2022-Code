@@ -72,9 +72,10 @@ public final class Constants {
     //AUTONOMOUS
     public static final double MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS = 2048*3.503*DRIVETRAIN_GEARBOX_RATIO;
     public static final double MOVE_BACK_POSITION_TO_SHOOT = 2048*-1*DRIVETRAIN_GEARBOX_RATIO;
-    public static int ROUTINE_SELECTOR = 1;
+    public static int ROUTINE_SELECTOR = 2;
     public static double AUTONOMOUS_DELAY = 0;
-    public static final double AUTONOMOUS_SHOOTER_SPEED = 0.625;
+        //NEEDS TO BE CONFIGURED
+    public static final double AUTONOMOUS_SHOOTER_SPEED = 0;
 
     //TURRET
     public static final int TURRET_MOTOR_PORT = 7;
@@ -90,7 +91,7 @@ public final class Constants {
     public static final int HOOD_MOTOR_PORT = 8;
     public static final double HOOD_SPEED = 0.07;
     
-    public static double HOOD_UP_SOFT_LIMIT = 10000;
+    public static double HOOD_UP_SOFT_LIMIT = 100000;
     public static final double HOOD_DOWN_SOFT_LIMIT = 0;
     public static final double HOOD_UP_HARD_LIMIT = HOOD_UP_SOFT_LIMIT + 4096;
     public static double HOOD_DOWN_HARD_LIMIT = HOOD_DOWN_SOFT_LIMIT - 4096;
@@ -128,6 +129,12 @@ public final class Constants {
     public static final double CLOSE_SHOOTER_SPEED = 0.5;
     public static final double MEDIUM_SHOOTER_SPEED = 0.625;
     public static final double FAR_SHOOTER_SPEED = 0.9;
+
+        //NEEDS TO BE CONFIGURED
+    public static final double MAX_VEL = 0;
+    public static final double CLOSE_SHOOT_VEL = 0;
+    public static final double MEDIUM_SHOOTER_VEL = 0;
+    public static final double FAR_SHOOTER_VEL = 0;
 
     //PIGEON
     public static final int PIGEON_PORT = 13;

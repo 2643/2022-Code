@@ -8,7 +8,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.networktables.NetworkTableEntry;
+//import edu.wpi.first.networktables.NetworkTableEntry;
 // import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 // import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -20,9 +20,9 @@ public class Shooter extends SubsystemBase {
   public static CANSparkMax rightShooter = new CANSparkMax(Constants.RIGHT_SHOOTER_PORT, MotorType.kBrushless);
 
 
-  double motorP = 0.001;
-  double motorI = 0.0000012;
-  double motorD = 0.0009;
+  double motorP = 0.000702;
+  double motorI = 0.0000008;
+  double motorD = 0.000175;
   // P,I,D,Target,Velocity (RPM),Explanantion
   // 0.0009,0,0,200,142-157,Oscilating
   // 0.0009,0,0.01,200,140-160,Oscilating

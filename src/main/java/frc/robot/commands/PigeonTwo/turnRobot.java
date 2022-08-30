@@ -13,6 +13,7 @@ public class turnRobot extends CommandBase {
   public turnRobot(double degrees) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.m_gyro);
+    addRequirements(RobotContainer.m_drivetrain);
     turnDegrees = degrees;
   }
 
@@ -30,7 +31,9 @@ public class turnRobot extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    RobotContainer.m_drivetrain.setMotorVelocity(0);
+  }
 
   // Returns true when the command should end.
   @Override

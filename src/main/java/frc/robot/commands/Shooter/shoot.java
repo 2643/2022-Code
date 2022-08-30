@@ -34,7 +34,7 @@ public class shoot extends CommandBase {
       RobotContainer.m_conveyorBelt.setSpeed(Constants.CONVEYOR_REVERSE_MOTOR_SPEED);
     } else {
       RobotContainer.m_conveyorBelt.setSpeed(0);
-      RobotContainer.m_shooter.setSpeed(percent);
+      RobotContainer.m_shooter.setVelSpeed(percent);
     }
     if (a >= 100) {
       RobotContainer.m_conveyorBelt.setSpeed(Constants.CONVEYOR_MOTOR_SPEED);
@@ -46,7 +46,7 @@ public class shoot extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.m_shooter.setSpeed(0);
+    RobotContainer.m_shooter.setVelSpeed(0);
     RobotContainer.m_conveyorBelt.setSpeed(0);
     a = 0;
   }

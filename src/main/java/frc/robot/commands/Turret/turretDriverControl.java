@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.Constants;
 
-public class driverControl extends CommandBase {
+public class turretDriverControl extends CommandBase {
   public static double posDriverControl;
   /** Creates a new driverControl. */
-  public driverControl() {
+  public turretDriverControl() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.m_turret);
   }
@@ -27,11 +27,11 @@ public class driverControl extends CommandBase {
   public void execute() {
     posDriverControl = RobotContainer.m_turret.getPosition();
 
-    if(RobotContainer.driveStick.getPOV() == 270 && Constants.TURRET_TARGET_POSITION >= Constants.TURRET_LEFT_SOFT_LIMIT) {
+    if(RobotContainer.joyStick.getPOV() == 270 && Constants.TURRET_TARGET_POSITION >= Constants.TURRET_LEFT_SOFT_LIMIT) {
       Constants.TURRET_TARGET_POSITION = posDriverControl - 750;
       RobotContainer.m_turret.turretCanTurn(Constants.TURRET_TARGET_POSITION);
     }
-    else if(RobotContainer.driveStick.getPOV() == 90 && Constants.TURRET_TARGET_POSITION <= Constants.TURRET_RIGHT_SOFT_LIMIT) {
+    else if(RobotContainer.joyStick.getPOV() == 90 && Constants.TURRET_TARGET_POSITION <= Constants.TURRET_RIGHT_SOFT_LIMIT) {
       Constants.TURRET_TARGET_POSITION = posDriverControl + 750;
       RobotContainer.m_turret.turretCanTurn(Constants.TURRET_TARGET_POSITION);
     }
