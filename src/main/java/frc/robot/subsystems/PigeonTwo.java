@@ -20,26 +20,31 @@ public class PigeonTwo extends SubsystemBase {
   public PigeonTwo() {}
 
   public double gyroAngle(){
-    return imu.getYaw();
+    return -imu.getYaw();
   }
 
+  public void setDegrees(double degrees){
+    imu.setYaw(degrees);
+  }
   public void turnClockwiseDegrees(double degrees) {
     if(Math.round(gyroAngle()) == degrees) {
       RobotContainer.m_drivetrain.setRightMotorVelocity(0);
       RobotContainer.m_drivetrain.setLeftMotorVelocity(0);
     }
     else if(gyroAngle() > degrees) {
-      RobotContainer.m_drivetrain.setRightMotorVelocity(-0.5);
-      RobotContainer.m_drivetrain.setLeftMotorVelocity(0.5);
+      RobotContainer.m_drivetrain.setRightMotorVelocity(-0.1*Constants.TANKDRIVE_SETPOINT);
+      RobotContainer.m_drivetrain.setLeftMotorVelocity(0.1*Constants.TANKDRIVE_SETPOINT);
     }
     else if(gyroAngle() < degrees) {
-      RobotContainer.m_drivetrain.setRightMotorVelocity(0.5);
-      RobotContainer.m_drivetrain.setLeftMotorVelocity(-0.5);
+      RobotContainer.m_drivetrain.setRightMotorVelocity(0.1*Constants.TANKDRIVE_SETPOINT);
+      RobotContainer.m_drivetrain.setLeftMotorVelocity(-0.1*Constants.TANKDRIVE_SETPOINT);
     }
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    //turnClockwiseDegrees(180);
+    System.out.println(gyroAngle());
   }
 }
