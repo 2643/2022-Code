@@ -20,7 +20,6 @@ public class turnRobot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //RobotContainer.m_gyro.setDegrees(0);
     RobotContainer.m_gyro.turnClockwiseDegrees(turnDegrees);
   }
 

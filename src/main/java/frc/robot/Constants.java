@@ -132,7 +132,7 @@ public final class Constants {
 
         //NEEDS TO BE CONFIGURED
     public static final double MAX_VEL = 0;
-    public static final double CLOSE_SHOOT_VEL = 0;
+    public static final double CLOSE_SHOOTER_VEL = 0;
     public static final double MEDIUM_SHOOTER_VEL = 0;
     public static final double FAR_SHOOTER_VEL = 0;
 

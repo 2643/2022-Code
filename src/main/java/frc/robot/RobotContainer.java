@@ -122,9 +122,9 @@ public class RobotContainer {
     reverseIntake.whenHeld(new moveIntakeReverse());
     autoIntake.whenHeld(new ParallelCommandGroup(new moveIntake(), new conveyorForward()));
 
-    closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
-    mediumShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
-    farShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_SPEED).raceWith(new WaitCommand(4)));
+    closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_VEL).raceWith(new WaitCommand(4)));
+    mediumShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_VEL).raceWith(new WaitCommand(4)));
+    farShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_VEL).raceWith(new WaitCommand(4)));
     // superCloseShoot.whenHeld(new shoot(Constants.SUPER_CLOSE_SHOOTER_SPEED));
     // closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED));
     // manualShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_SPEED));

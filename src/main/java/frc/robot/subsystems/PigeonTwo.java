@@ -27,17 +27,17 @@ public class PigeonTwo extends SubsystemBase {
     imu.setYaw(degrees);
   }
   public void turnClockwiseDegrees(double degrees) {
-    if(Math.round(gyroAngle()) == degrees) {
+    if(Math.round(gyroAngle()) == Math.round(degrees)) {
       RobotContainer.m_drivetrain.setRightMotorVelocity(0);
       RobotContainer.m_drivetrain.setLeftMotorVelocity(0);
     }
     else if(gyroAngle() > degrees) {
-      RobotContainer.m_drivetrain.setRightMotorVelocity(-0.1*Constants.TANKDRIVE_SETPOINT);
-      RobotContainer.m_drivetrain.setLeftMotorVelocity(0.1*Constants.TANKDRIVE_SETPOINT);
+      RobotContainer.m_drivetrain.setRightMotorVelocity(-0.2*Constants.TANKDRIVE_SETPOINT);
+      RobotContainer.m_drivetrain.setLeftMotorVelocity(0.2*Constants.TANKDRIVE_SETPOINT);
     }
     else if(gyroAngle() < degrees) {
-      RobotContainer.m_drivetrain.setRightMotorVelocity(0.1*Constants.TANKDRIVE_SETPOINT);
-      RobotContainer.m_drivetrain.setLeftMotorVelocity(-0.1*Constants.TANKDRIVE_SETPOINT);
+      RobotContainer.m_drivetrain.setRightMotorVelocity(0.2*Constants.TANKDRIVE_SETPOINT);
+      RobotContainer.m_drivetrain.setLeftMotorVelocity(-0.2*Constants.TANKDRIVE_SETPOINT);
     }
   }
 
