@@ -70,8 +70,10 @@ public final class Constants {
     public static final double CLIMBER_SPEED = 500 * 100; // not really speed, but treat this like it
 
     //AUTONOMOUS
-    public static final double MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS = 2048*3.503*DRIVETRAIN_GEARBOX_RATIO;
+    public static final double ROUTINE_ONE_MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS = 2048*3.503*DRIVETRAIN_GEARBOX_RATIO;
     public static final double MOVE_BACK_POSITION_TO_SHOOT = 2048*-1*DRIVETRAIN_GEARBOX_RATIO;
+    public static final double ROUTINE_THREE_MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS = 2048*DRIVETRAIN_GEARBOX_RATIO;
+    public static final double ROUTINE_THREE_MOVE_POSITION_TO_GET_BALL = 2048*DRIVETRAIN_GEARBOX_RATIO;
     public static int ROUTINE_SELECTOR = 2;
     public static double AUTONOMOUS_DELAY = 0;
         //NEEDS TO BE CONFIGURED
