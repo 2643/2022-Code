@@ -8,18 +8,21 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
 public class turnRobot extends CommandBase {
-  static double turnDegrees;
+  double turnDegrees;
+  double degree;
   /** Creates a new turnRobot. */
   public turnRobot(double degrees) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.m_gyro);
     addRequirements(RobotContainer.m_drivetrain);
-    turnDegrees = degrees + RobotContainer.m_gyro.gyroAngle();
+    degree = degrees;
+
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    turnDegrees = degree + RobotContainer.m_gyro.gyroAngle();
     RobotContainer.m_gyro.turnClockwiseDegrees(turnDegrees);
   }
 
@@ -37,7 +40,7 @@ public class turnRobot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(Math.round(RobotContainer.m_gyro.gyroAngle()) == Math.round(turnDegrees)){
+    if(Math.round(RobotContainer.m_gyro.gyroAngle()) >= Math.round(turnDegrees)){
       return true;
     } else{
       return false;

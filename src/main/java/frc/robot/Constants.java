@@ -77,7 +77,7 @@ public final class Constants {
     public static int ROUTINE_SELECTOR = 2;
     public static double AUTONOMOUS_DELAY = 0;
         //NEEDS TO BE CONFIGURED
-    public static final double AUTONOMOUS_SHOOTER_SPEED = 0;
+    public static final double AUTONOMOUS_SHOOTER_SPEED = 0.65;
 
     //TURRET
     public static final int TURRET_MOTOR_PORT = 7;

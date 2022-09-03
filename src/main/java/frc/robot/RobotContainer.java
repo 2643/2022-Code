@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.commands.Autonomous.Routine1;
 import frc.robot.commands.Autonomous.Routine2;
 import frc.robot.commands.Autonomous.Routine3;
+import frc.robot.commands.Autonomous.Routine4;
+import frc.robot.commands.Autonomous.Routine5;
 // import frc.robot.commands.Autonomous.Routine4;
 //import frc.robot.commands.Autonomous.Rountine1;
 import frc.robot.commands.Climber.moveClimber;
@@ -60,6 +62,8 @@ public class RobotContainer {
   public final Command m_Routine1 = new Routine1(Constants.AUTONOMOUS_DELAY);
   public final Command m_Routine2 = new Routine2(Constants.AUTONOMOUS_DELAY);
   public final Command m_Routine3 = new Routine3(Constants.AUTONOMOUS_DELAY);
+  public final Command m_Routine4 = new Routine4(Constants.AUTONOMOUS_DELAY);
+  public final Command m_Routine5 = new Routine5();
 
   
   //SUBSYSTEMS INITIALIZED
@@ -103,6 +107,8 @@ public class RobotContainer {
     m_chooser.addOption("MOVE BACK AND SHOOT", m_Routine1);
     m_chooser.addOption("MOVE FORWARD, GET SECOND BALL, TURN, AND SHOOT", m_Routine2);
     m_chooser.addOption("MOVE BACK", m_Routine3);
+    m_chooser.addOption("Needs to be tested", m_Routine4);
+    m_chooser.addOption("Turn 180", m_Routine5);
   }
 
   /**
@@ -144,7 +150,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
      // An ExampleCommand will run in autonomous
-     //return m_chooser.getSelected();
-     return (new Routine2(0));
+     return m_chooser.getSelected();
+     //return (new Routine2(0));
    }
 }
