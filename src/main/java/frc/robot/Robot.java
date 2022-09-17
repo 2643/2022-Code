@@ -13,7 +13,9 @@ import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.AutoShoot.autoShoot;
 import frc.robot.commands.Climber.resetPosition;
+import frc.robot.commands.ConveyorBelt.autoConveyorShoot;
 // import frc.robot.commands.FindBall;
 import frc.robot.commands.Drivetrain.Tankdrive;
 import frc.robot.commands.Hood.hoodDriverControl;
@@ -156,6 +158,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_drivetrain, new Tankdrive());
     CommandScheduler.getInstance().schedule(true, new turretDriverControl());
     CommandScheduler.getInstance().schedule(true, new hoodDriverControl());
+    CommandScheduler.getInstance().schedule(true, new autoShoot());
   }
 
   @Override

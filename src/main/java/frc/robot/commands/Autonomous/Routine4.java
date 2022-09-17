@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 //import frc.robot.commands.hoodcm;
 import frc.robot.commands.PigeonTwo.turnRobot;
-import frc.robot.commands.Shooter.shoot;
+//import frc.robot.commands.Shooter.shoot;
 import frc.robot.commands.ConveyorBelt.conveyorForward;
 import frc.robot.commands.Drivetrain.MovePosition;
 import frc.robot.commands.Intake.moveIntake;
@@ -25,12 +25,13 @@ public class Routine4 extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(new WaitCommand(delaySeconds),
                 new conveyorForward().raceWith(new WaitCommand(2)),
-                new shoot(Constants.AUTONOMOUS_SHOOTER_SPEED).raceWith(new WaitCommand(3)), 
+                //new shoot(Constants.AUTONOMOUS_SHOOTER_SPEED).raceWith(new WaitCommand(3)), 
                 new MovePosition(Constants.ROUTINE_THREE_MOVE_POSITION_AUTONOMOUS_TO_GET_POINTS), 
                 new turnRobot(180), 
                 new ParallelCommandGroup(new MovePosition(-Constants.ROUTINE_THREE_MOVE_POSITION_TO_GET_BALL), 
                                          new moveIntake().raceWith(new WaitCommand(3))), 
-                new turnRobot(180), 
-                new shoot(Constants.AUTONOMOUS_SHOOTER_SPEED).raceWith(new WaitCommand(3)));
+                new turnRobot(180)//, 
+                //new shoot(Constants.AUTONOMOUS_SHOOTER_SPEED).raceWith(new WaitCommand(3))
+                );
   }
 }

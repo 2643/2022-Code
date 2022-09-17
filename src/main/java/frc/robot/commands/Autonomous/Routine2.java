@@ -17,7 +17,7 @@ import frc.robot.Constants;
 import frc.robot.commands.ConveyorBelt.autoConveyorIntake;
 import frc.robot.commands.Drivetrain.MovePosition;
 import frc.robot.commands.Intake.moveIntake;
-import frc.robot.commands.Shooter.shoot;
+//import frc.robot.commands.Shooter.shoot;
 
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -29,7 +29,7 @@ public class Routine2 extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());-
     //addCommands(new turnRobot(180));
-    addCommands(new WaitCommand(delay), new MovePosition(-2048*4.3*Constants.DRIVETRAIN_GEARBOX_RATIO), new ParallelCommandGroup(new moveIntake().raceWith(new WaitCommand(4))), new autoConveyorIntake().raceWith(new WaitCommand(2)), new MovePosition(2048*1.1*Constants.DRIVETRAIN_GEARBOX_RATIO), new turnRobot(176),new shoot(0.5).raceWith(new WaitCommand(4)), new shoot(0.6).raceWith(new WaitCommand(4))); 
+    addCommands(new WaitCommand(delay), new MovePosition(-2048*4.3*Constants.DRIVETRAIN_GEARBOX_RATIO), new ParallelCommandGroup(new moveIntake().raceWith(new WaitCommand(4))), new autoConveyorIntake().raceWith(new WaitCommand(2)), new MovePosition(2048*1.1*Constants.DRIVETRAIN_GEARBOX_RATIO), new turnRobot(176)/*new shoot(0.5).raceWith(new WaitCommand(4)), new* shoot(0.6).raceWith(new WaitCommand(4))*/); 
   }  
 }
 

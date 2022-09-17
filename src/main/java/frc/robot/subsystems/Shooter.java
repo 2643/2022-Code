@@ -66,7 +66,6 @@ public class Shooter extends SubsystemBase {
 
     //leftShooter.getPIDController().setSmartMotionMaxVelocity(500, 0);
     //leftShooter.getEncoder().setVelocityConversionFactor(1);
-    rightShooter.follow(leftShooter, true);
   }
 
   public void setSpeed(double percent)
@@ -109,6 +108,8 @@ public class Shooter extends SubsystemBase {
     //   currentTargetVelocity = targetVelocity.getDouble(0);
     //   leftShooter.getPIDController().setReference(targetVelocity.getDouble(0), ControlType.kVelocity, PIDSlot);
     // }
-    
+    System.out.println(getVelocity());
+    rightShooter.follow(leftShooter, true);
+
   }
 }

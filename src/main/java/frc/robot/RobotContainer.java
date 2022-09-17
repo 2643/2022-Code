@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import frc.robot.commands.AutoShoot.autoShoot;
 //import frc.robot.commands.Autonomous.MoveBackwards;
 import frc.robot.commands.Autonomous.Routine1;
 import frc.robot.commands.Autonomous.Routine2;
@@ -25,7 +26,7 @@ import frc.robot.commands.Climber.rightUp;
 import frc.robot.commands.ConveyorBelt.*;
 import frc.robot.commands.Intake.moveIntake;
 import frc.robot.commands.Intake.moveIntakeReverse;
-import frc.robot.commands.Shooter.shoot;
+//import frc.robot.commands.Shooter.shoot;
 //import frc.robot.commands.Drivetrain.DifferentialDrive;
 // import frc.robot.commands.Turret.turretShoot;
 import frc.robot.subsystems.PigeonTwo;
@@ -82,6 +83,7 @@ public class RobotContainer {
 
   //BUTTON INITIALIZATION
   public static JoystickButton driveButton = new JoystickButton(joyStick, 3);
+  public static JoystickButton shootButton = new JoystickButton(joyStick, 1);
 
   public static JoystickButton closeShoot = new JoystickButton(opBoard, 1);
   public static JoystickButton mediumShoot = new JoystickButton(opBoard, 2);
@@ -93,7 +95,9 @@ public class RobotContainer {
   public static JoystickButton raiseClimber = new JoystickButton(opBoard, 8);
   public static JoystickButton reverseIntake = new JoystickButton(opBoard, 9);  
   public static JoystickButton reverseConveyor = new JoystickButton(opBoard, 10); 
-  public static JoystickButton forwardConveyor = new JoystickButton(opBoard, 11); 
+  //public static JoystickButton forwardConveyor = new JoystickButton(opBoard, 11); 
+  public static JoystickButton forwardConveyor = new JoystickButton(joyStick, 2); 
+
   public static JoystickButton forwardIntake = new JoystickButton(opBoard, 12);
   public static JoystickButton rightUp = new JoystickButton(opBoard, 13);
   public static JoystickButton lowerClimber = new JoystickButton(opBoard, 15);
@@ -128,9 +132,9 @@ public class RobotContainer {
     reverseIntake.whenHeld(new moveIntakeReverse());
     autoIntake.whenHeld(new ParallelCommandGroup(new moveIntake(), new conveyorForward()));
 
-    closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_VEL).raceWith(new WaitCommand(4)));
-    mediumShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_VEL).raceWith(new WaitCommand(4)));
-    farShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_VEL).raceWith(new WaitCommand(4)));
+    // closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_VEL).raceWith(new WaitCommand(4)));
+    // mediumShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_VEL).raceWith(new WaitCommand(4)));
+    // farShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_VEL).raceWith(new WaitCommand(4)));
     // superCloseShoot.whenHeld(new shoot(Constants.SUPER_CLOSE_SHOOTER_SPEED));
     // closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED));
     // manualShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_SPEED));
@@ -141,6 +145,7 @@ public class RobotContainer {
 
     forwardConveyor.whileHeld(new conveyorForward());
     reverseConveyor.whileHeld(new conveyorReverse());
+    //shootButton.whenHeld(new autoShoot().raceWith(new WaitCommand(4)));
   }
 
   /**
