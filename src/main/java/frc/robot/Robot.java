@@ -156,9 +156,9 @@ public class Robot extends TimedRobot {
     ballAtBottomLimitSwitch.setBoolean(ConveyorBelt.conviRSens1.get());
 
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_drivetrain, new Tankdrive());
-    CommandScheduler.getInstance().schedule(true, new turretDriverControl());
+    //CommandScheduler.getInstance().schedule(true, new turretDriverControl());
     CommandScheduler.getInstance().schedule(true, new hoodDriverControl());
-    CommandScheduler.getInstance().schedule(true, new autoShoot());
+    //CommandScheduler.getInstance().schedule(true, new autoShoot());
   }
 
   @Override

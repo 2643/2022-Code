@@ -145,7 +145,7 @@ public class RobotContainer {
 
     forwardConveyor.whileHeld(new conveyorForward());
     reverseConveyor.whileHeld(new conveyorReverse());
-    //shootButton.whenHeld(new autoShoot().raceWith(new WaitCommand(4)));
+    shootButton.whenHeld(new autoShoot());
   }
 
   /**

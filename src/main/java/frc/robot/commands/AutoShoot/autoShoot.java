@@ -36,8 +36,13 @@ public class autoShoot extends CommandBase {
     if(RobotContainer.shootButton.get()){
       shooterRPM = 6.317 * (distance.getDouble(0)) + 1470;
       RobotContainer.m_shooter.setVelSpeed(shooterRPM);
-      if (RobotContainer.m_shooter.getVelocity() >= (shooterRPM-50)) {
+       
+      if(RobotContainer.m_shooter.getVelocity() >= shooterRPM+20 || RobotContainer.m_shooter.getVelocity() <= shooterRPM-21){
+        RobotContainer.m_conveyorBelt.setSpeed(0);
+      } else if (RobotContainer.m_shooter.getVelocity() >= (shooterRPM-20)) {
         RobotContainer.m_conveyorBelt.setSpeed(0.9);
+      } else {
+        RobotContainer.m_conveyorBelt.setSpeed(0);
       }
     }
   }

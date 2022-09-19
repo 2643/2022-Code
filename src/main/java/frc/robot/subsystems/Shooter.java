@@ -8,6 +8,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 //import edu.wpi.first.networktables.NetworkTableEntry;
 // import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 // import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -15,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
+  static NetworkTableEntry hi = Shuffleboard.getTab("Shooter Testing").add("RPM", 0).getEntry();
   /** Creates a new Shooter. */
   public static CANSparkMax leftShooter = new CANSparkMax(Constants.LEFT_SHOOTER_PORT, MotorType.kBrushless);
   public static CANSparkMax rightShooter = new CANSparkMax(Constants.RIGHT_SHOOTER_PORT, MotorType.kBrushless);
@@ -108,7 +111,7 @@ public class Shooter extends SubsystemBase {
     //   currentTargetVelocity = targetVelocity.getDouble(0);
     //   leftShooter.getPIDController().setReference(targetVelocity.getDouble(0), ControlType.kVelocity, PIDSlot);
     // }
-    System.out.println(getVelocity());
+    hi.setDouble(getVelocity());
     rightShooter.follow(leftShooter, true);
 
   }
