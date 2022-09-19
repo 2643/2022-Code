@@ -21,6 +21,7 @@ public class autoShoot extends CommandBase {
     addRequirements(RobotContainer.m_shooter);
     //addRequirements(RobotContainer.m_hood);
     addRequirements(RobotContainer.m_turret);
+    addRequirements(RobotContainer.m_conveyorBelt);
   }
 
   // Called when the command is initially scheduled.
@@ -37,9 +38,9 @@ public class autoShoot extends CommandBase {
       shooterRPM = 6.317 * (distance.getDouble(0)) + 1470;
       RobotContainer.m_shooter.setVelSpeed(shooterRPM);
        
-      if(RobotContainer.m_shooter.getVelocity() >= shooterRPM+20 || RobotContainer.m_shooter.getVelocity() <= shooterRPM-21){
+      if(RobotContainer.m_shooter.getVelocity() >= (shooterRPM+20) || RobotContainer.m_shooter.getVelocity() <= (shooterRPM-16)){
         RobotContainer.m_conveyorBelt.setSpeed(0);
-      } else if (RobotContainer.m_shooter.getVelocity() >= (shooterRPM-20)) {
+      } else if (RobotContainer.m_shooter.getVelocity() >= (shooterRPM-15)) {
         RobotContainer.m_conveyorBelt.setSpeed(0.9);
       } else {
         RobotContainer.m_conveyorBelt.setSpeed(0);
