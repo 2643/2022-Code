@@ -6,7 +6,9 @@
 package frc.robot;
 
 import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 // import edu.wpi.first.networktables.NetworkTable;
 // import edu.wpi.first.networktables.NetworkTableEntry;
@@ -143,5 +145,7 @@ public final class Constants {
 
     // VISION
     public static NetworkTable VISION_TABLE = NetworkTableInstance.getDefault().getTable("vision-movement");
+    //public static NetworkTableEntry DISTANCE = Shuffleboard.getTab("Shooter Testing").add("Distance(inches)", 0).getEntry();
+
 
 }

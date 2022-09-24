@@ -8,8 +8,13 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+//import edu.wpi.first.cameraserver.CameraServer;
+//import edu.wpi.first.cscore.CvSource;
+//import edu.wpi.first.cscore.MjpegServer;
 import edu.wpi.first.networktables.NetworkTableEntry;
+//import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+//import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 //import edu.wpi.first.networktables.NetworkTableEntry;
 // import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 // import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -19,9 +24,11 @@ import frc.robot.Constants;
 public class Shooter extends SubsystemBase {
   static NetworkTableEntry hi = Shuffleboard.getTab("Shooter Testing").add("RPM", 0).getEntry();
   /** Creates a new Shooter. */
+  // MjpegServer server = new MjpegServer("VisionCamera", "10.26.43.199" , 8080);
+  // SimpleWidget cameraServer = Shuffleboard.getTab("2022Robot").add("Camera", server).withWidget(BuiltInWidgets.kCameraStream);
+
   public static CANSparkMax leftShooter = new CANSparkMax(Constants.LEFT_SHOOTER_PORT, MotorType.kBrushless);
   public static CANSparkMax rightShooter = new CANSparkMax(Constants.RIGHT_SHOOTER_PORT, MotorType.kBrushless);
-
 
   double motorP = 0.000702;
   double motorI = 0.0000008;

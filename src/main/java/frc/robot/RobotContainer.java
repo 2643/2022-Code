@@ -46,7 +46,6 @@ import frc.robot.subsystems.Turret;
 // import frc.robot.subsystems.Hood;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 // import frc.robot.Robot;
 
@@ -145,7 +144,7 @@ public class RobotContainer {
 
     forwardConveyor.whileHeld(new conveyorForward());
     reverseConveyor.whileHeld(new conveyorReverse());
-    shootButton.whenHeld(new autoShoot());
+    //shootButton.whenHeld(new autoShoot(Constants.DISTANCE.getDouble(0)));
   }
 
   /**

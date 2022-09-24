@@ -4,24 +4,22 @@
 
 package frc.robot.commands.AutoShoot;
 
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+// import edu.wpi.first.networktables.NetworkTableEntry;
+// import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.RobotContainer;
 
 public class autoShoot extends CommandBase {
-  static ShuffleboardTab TalonFXTab = Shuffleboard.getTab("Shooter Testing");
-  static NetworkTableEntry distance = TalonFXTab.add("Distance(inches)", 0).getEntry();
+  double distance;
   static double shooterRPM;
   /** Creates a new autoShoot. */
-  public autoShoot() {
+  public autoShoot(double distance) {
     // Use addRequirements() here to declare subsystem dependencies
     addRequirements(RobotContainer.m_shooter);
-    //addRequirements(RobotContainer.m_hood);
     addRequirements(RobotContainer.m_turret);
     addRequirements(RobotContainer.m_conveyorBelt);
+    //In inches
+    this.distance = distance;
   }
 
   // Called when the command is initially scheduled.
@@ -35,7 +33,7 @@ public class autoShoot extends CommandBase {
   @Override
   public void execute() {
     if(RobotContainer.shootButton.get()){
-      shooterRPM = 6.317 * (distance.getDouble(0)) + 1470;
+      shooterRPM = 6.317 * (distance) + 1470;
       RobotContainer.m_shooter.setVelSpeed(shooterRPM);
        
       if(RobotContainer.m_shooter.getVelocity() >= (shooterRPM+20) || RobotContainer.m_shooter.getVelocity() <= (shooterRPM-16)){
@@ -58,7 +56,6 @@ public class autoShoot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    //new WaitCommand(5);
     return false;
   }
 }
