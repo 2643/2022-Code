@@ -13,13 +13,13 @@ public class autoShoot extends CommandBase {
   double distance;
   static double shooterRPM;
   /** Creates a new autoShoot. */
-  public autoShoot(double distance) {
+  public autoShoot(double distanceIn) {
     // Use addRequirements() here to declare subsystem dependencies
     addRequirements(RobotContainer.m_shooter);
     addRequirements(RobotContainer.m_turret);
     addRequirements(RobotContainer.m_conveyorBelt);
     //In inches
-    this.distance = distance;
+    distance = distanceIn;
   }
 
   // Called when the command is initially scheduled.
@@ -32,19 +32,18 @@ public class autoShoot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(RobotContainer.shootButton.get()){
-      shooterRPM = 6.317 * (distance) + 1470;
-      RobotContainer.m_shooter.setVelSpeed(shooterRPM);
-       
-      if(RobotContainer.m_shooter.getVelocity() >= (shooterRPM+20) || RobotContainer.m_shooter.getVelocity() <= (shooterRPM-16)){
-        RobotContainer.m_conveyorBelt.setSpeed(0);
-      } else if (RobotContainer.m_shooter.getVelocity() >= (shooterRPM-15)) {
-        RobotContainer.m_conveyorBelt.setSpeed(0.9);
-      } else {
-        RobotContainer.m_conveyorBelt.setSpeed(0);
-      }
+    shooterRPM = 6.317 * (distance) + 1470;
+    RobotContainer.m_shooter.setVelSpeed(shooterRPM);
+      
+    if(RobotContainer.m_shooter.getVelocity() >= (shooterRPM+15) || RobotContainer.m_shooter.getVelocity() <= (shooterRPM-11)){
+      RobotContainer.m_conveyorBelt.setSpeed(0);
+    } else if (RobotContainer.m_shooter.getVelocity() >= (shooterRPM-10)) {
+      RobotContainer.m_conveyorBelt.setSpeed(0.9);
+    } else {
+      RobotContainer.m_conveyorBelt.setSpeed(0);
     }
   }
+
 
   // Called once the command ends or is interrupted.
   @Override

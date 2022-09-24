@@ -120,6 +120,7 @@ public class Shooter extends SubsystemBase {
     // }
     hi.setDouble(getVelocity());
     rightShooter.follow(leftShooter, true);
+    //setSpeed(0.1);
 
   }
 }
