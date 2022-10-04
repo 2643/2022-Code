@@ -30,6 +30,7 @@ import frc.robot.commands.Intake.moveIntakeReverse;
 //import frc.robot.commands.Drivetrain.DifferentialDrive;
 // import frc.robot.commands.Turret.turretShoot;
 import frc.robot.subsystems.PigeonTwo;
+import frc.robot.subsystems.BallVision;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ConveyorBelt;
 // import frc.robot.subsystems.BallVision;
@@ -75,6 +76,7 @@ public class RobotContainer {
   public static final Intake m_intake = new Intake(); 
   public static final Shooter m_shooter = new Shooter();
   public static final PigeonTwo m_gyro = new PigeonTwo();
+  public static final BallVision m_ballvision = new BallVision(); 
 
   //JOYSTICK AND OPBOARD INITIALIZED
   public static Joystick joyStick = new Joystick(0);

@@ -44,7 +44,6 @@ public class Robot extends TimedRobot {
   NetworkTableEntry ShuffleBoardDelay = Shuffleboard.getTab("2022Robot").add("Autonomous Delay", 0).withSize(2, 2).getEntry();
   NetworkTableEntry ballAtTopLimitSwitch = Shuffleboard.getTab("2022Robot").getLayout("Conveyor(Green = Ball and Red = No Ball)", BuiltInLayouts.kGrid).withSize(3, 2).add("Ball at Top", false).withWidget(BuiltInWidgets.kBooleanBox).withSize(3, 3).withPosition(1, 1).getEntry();
   NetworkTableEntry ballAtBottomLimitSwitch = Shuffleboard.getTab("2022Robot").getLayout("Conveyor(Green = Ball and Red = No Ball)", BuiltInLayouts.kGrid).withSize(3, 2).add("Ball at Bottom", false).withWidget(BuiltInWidgets.kBooleanBox).withSize(3, 3).withPosition(1, 2).getEntry();
-
   private RobotContainer m_robotContainer;
   //public hoodcm m_hoodccm = new hoodcm(); 
 
