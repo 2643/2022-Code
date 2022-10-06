@@ -36,7 +36,7 @@ import frc.robot.subsystems.ConveyorBelt;
 // import frc.robot.commands.Climber.moveClimber;
 // import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Hood;
+//import frc.robot.subsystems.Hood;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Turret;
@@ -70,7 +70,7 @@ public class RobotContainer {
   public static final Drivetrain m_drivetrain = new Drivetrain();
   public static final Climber m_climber = new Climber();
   public static final Turret m_turret = new Turret();
-  public static final Hood m_hood = new Hood();
+  //public static final Hood m_hood = new Hood();
   public static final ConveyorBelt m_conveyorBelt = new ConveyorBelt();
   public static final Intake m_intake = new Intake(); 
   public static final Shooter m_shooter = new Shooter();
@@ -85,9 +85,9 @@ public class RobotContainer {
   public static JoystickButton shootButton = new JoystickButton(joyStick, 1);
 
   public static JoystickButton closeShoot = new JoystickButton(opBoard, 1);
-  public static JoystickButton mediumShoot = new JoystickButton(opBoard, 2);
-  public static JoystickButton farShoot = new JoystickButton(opBoard, 3);
-  //public static JoystickButton superMediumShoot = new JoystickButton(opBoard, 4);
+  public static JoystickButton mediumShoot = new JoystickButton(opBoard, 3);
+  public static JoystickButton farShoot = new JoystickButton(opBoard, 2);
+  public static JoystickButton autoShoot = new JoystickButton(opBoard, 4);
   //public static JoystickButton superSuperCloseShoot = new JoystickButton(opBoard, 5);
   //public static JoystickButton superCloseShoot = new JoystickButton(opBoard, 6);
   public static JoystickButton autoIntake = new JoystickButton(opBoard, 7);
@@ -131,20 +131,16 @@ public class RobotContainer {
     reverseIntake.whenHeld(new moveIntakeReverse());
     autoIntake.whenHeld(new ParallelCommandGroup(new moveIntake(), new conveyorForward()));
 
-    // closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_VEL).raceWith(new WaitCommand(4)));
-    // mediumShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_VEL).raceWith(new WaitCommand(4)));
-    // farShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_VEL).raceWith(new WaitCommand(4)));
-    // superCloseShoot.whenHeld(new shoot(Constants.SUPER_CLOSE_SHOOTER_SPEED));
-    // closeShoot.whenHeld(new shoot(Constants.CLOSE_SHOOTER_SPEED));
-    // manualShoot.whenHeld(new shoot(Constants.MEDIUM_SHOOTER_SPEED));
-    // autoShoot.whenHeld(new shoot(Constants.FAR_SHOOTER_SPEED));
+    closeShoot.whenHeld(new autoShoot(Constants.CLOSE_SHOOTER_SPEED));
+    mediumShoot.whenHeld(new autoShoot(Constants.MEDIUM_SHOOTER_SPEED));
+    farShoot.whenHeld(new autoShoot(Constants.FAR_SHOOTER_SPEED));
     // superCloseShoot.whenHeld(new shoot(Constants.SUPER_CLOSE_SHOOTER_SPEED));
     // superSuperCloseShoot.whenHeld(new shoot(Constants.SUPER_SUPER_CLOSE_SHOOTER_SPEED));
     // superMediumShoot.whenHeld(new shoot(Constants.SUPER_MEDIUM_SHOOTER_SPEED));
 
     forwardConveyor.whileHeld(new conveyorForward());
     reverseConveyor.whileHeld(new conveyorReverse());
-    //shootButton.whenHeld(new autoShoot(Constants.DISTANCE.getDouble(0)));
+    autoShoot.whenHeld(new autoShoot(Robot.visionDistance));
   }
 
   /**

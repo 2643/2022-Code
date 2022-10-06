@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.Climber.resetPosition;
 // import frc.robot.commands.FindBall;
 import frc.robot.commands.Drivetrain.Tankdrive;
-import frc.robot.commands.Hood.hoodDriverControl;
 import frc.robot.commands.Intake.releaseLatches;
 import frc.robot.subsystems.ConveyorBelt;
 
@@ -37,6 +36,7 @@ public class Robot extends TimedRobot {
   // private boolean resetTurretDone = false;
   private boolean releaseIntakeDone = false;
   private boolean resetClimberDone = false;
+  public static double visionDistance;
   
   // public static boolean canDriverControl = true;
   NetworkTableEntry shuffleboardVisionDeg = Shuffleboard.getTab("2022Robot").add("Vision degrees (accurate)", 0).withSize(2, 2).getEntry();
@@ -91,19 +91,15 @@ public class Robot extends TimedRobot {
     //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_turret, new SequentialCommandGroup(new resetPosition(), new driverControl()));
     //NetworkTableEntry lol = Shuffleboard.getTab("2022Robot").add("Hi", 1).
     Constants.AUTONOMOUS_DELAY = ShuffleBoardDelay.getDouble(0);
-    // if(!resetClimberDone) {
-    //   CommandScheduler.getInstance().schedule(new resetPosition());
-    //   resetClimberDone = true;
-    // }
+    if(!resetClimberDone) {
+      CommandScheduler.getInstance().schedule(new resetPosition());
+      resetClimberDone = true;
+    }
     if (!releaseIntakeDone) {
       CommandScheduler.getInstance().schedule(new releaseLatches(Constants.INTAKE_SERVO_LATCH_DEGREES));
       releaseIntakeDone = true;
     }
     RobotContainer.m_conveyorBelt.setSpeed(0);  
-
-    // else {
-    //   CommandScheduler.getInstance().schedule(true, new driverControl());
-    // }
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
@@ -147,6 +143,7 @@ public class Robot extends TimedRobot {
     NetworkTableValue visionDeg = Constants.VISION_TABLE.getEntry("Degree").getValue();
     shuffleboardVisionDeg.setValue(visionDeg);
     NetworkTableValue distanceVal = Constants.VISION_TABLE.getEntry("Distance").getValue();
+    visionDistance = ((double)Constants.VISION_TABLE.getEntry("Degree").getNumber(0));
     shuffleboardHubDistance.setValue(distanceVal);
     
     ballAtTopLimitSwitch.setBoolean(ConveyorBelt.conviRSens2.get());

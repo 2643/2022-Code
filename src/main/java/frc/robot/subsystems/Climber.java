@@ -70,7 +70,6 @@ public class Climber extends SubsystemBase {
 
     leftClimber.setInverted(TalonFXInvertType.Clockwise);
   }
-  
 
   public boolean limitswitchR(){
     return climberLimitSwitchR.get();
@@ -83,7 +82,7 @@ public class Climber extends SubsystemBase {
   public void setPositionR(double pos){
     rightClimber.setSelectedSensorPosition(pos);
   }
-
+  
   public void setPositionL(double pos){
     leftClimber.setSelectedSensorPosition(pos);
   }

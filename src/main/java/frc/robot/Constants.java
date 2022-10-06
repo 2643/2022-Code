@@ -6,9 +6,7 @@
 package frc.robot;
 
 import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 // import edu.wpi.first.networktables.NetworkTable;
 // import edu.wpi.first.networktables.NetworkTableEntry;
@@ -130,22 +128,15 @@ public final class Constants {
     public static final double SHOOTER_UP_SPEED = 0.15;
     public static final double SUPER_CLOSE_SHOOTER_SPEED = 0.25;
     public static final double SUPER_MEDIUM_SHOOTER_SPEED = 0.4;
-    public static final double CLOSE_SHOOTER_SPEED = 0.5;
-    public static final double MEDIUM_SHOOTER_SPEED = 0.625;
-    public static final double FAR_SHOOTER_SPEED = 0.9;
-
-        //NEEDS TO BE CONFIGURED
-    public static final double MAX_VEL = 0;
-    public static final double CLOSE_SHOOTER_VEL = 0;
-    public static final double MEDIUM_SHOOTER_VEL = 0;
-    public static final double FAR_SHOOTER_VEL = 0;
+    public static final double CLOSE_SHOOTER_SPEED = 1798;
+    public static final double MEDIUM_SHOOTER_SPEED = 2076;
+    public static final double FAR_SHOOTER_SPEED = 2379;
 
     //PIGEON
     public static final int PIGEON_PORT = 13;
 
     // VISION
     public static NetworkTable VISION_TABLE = NetworkTableInstance.getDefault().getTable("vision-movement");
-    //public static NetworkTableEntry DISTANCE = Shuffleboard.getTab("Shooter Testing").add("Distance(inches)", 0).getEntry();
 
 
 }

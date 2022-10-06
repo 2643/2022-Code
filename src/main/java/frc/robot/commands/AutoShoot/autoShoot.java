@@ -7,6 +7,7 @@ package frc.robot.commands.AutoShoot;
 // import edu.wpi.first.networktables.NetworkTableEntry;
 // import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class autoShoot extends CommandBase {
@@ -25,23 +26,24 @@ public class autoShoot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
-    
+    shooterRPM = 6.317 * (distance) + 1470;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooterRPM = 6.317 * (distance) + 1470;
-    RobotContainer.m_shooter.setVelSpeed(shooterRPM);
-      
-    if(RobotContainer.m_shooter.getVelocity() >= (shooterRPM+15) || RobotContainer.m_shooter.getVelocity() <= (shooterRPM-11)){
-      RobotContainer.m_conveyorBelt.setSpeed(0);
-    } else if (RobotContainer.m_shooter.getVelocity() >= (shooterRPM-10)) {
-      RobotContainer.m_conveyorBelt.setSpeed(0.9);
-    } else {
-      RobotContainer.m_conveyorBelt.setSpeed(0);
-    }
+    
+    if(shooterRPM<=4000 && shooterRPM>0){
+      RobotContainer.m_shooter.setVelSpeed(shooterRPM);
+      if(RobotContainer.m_shooter.getVelocity() >= (shooterRPM+15) || RobotContainer.m_shooter.getVelocity() <= (shooterRPM-11)){
+        RobotContainer.m_conveyorBelt.setSpeed(0);    
+      } else if (RobotContainer.m_shooter.getVelocity() >= (shooterRPM-10)) {
+        RobotContainer.m_conveyorBelt.setSpeed(0.9);
+      } else {
+        RobotContainer.m_conveyorBelt.setSpeed(0);
+      }
+    } 
+    
   }
 
 
