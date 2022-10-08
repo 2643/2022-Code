@@ -11,22 +11,28 @@ import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class autoShoot extends CommandBase {
-  double distance;
+  double distanceOrRPM;
   static double shooterRPM;
+  boolean isRPM;
   /** Creates a new autoShoot. */
-  public autoShoot(double distanceIn) {
+  public autoShoot(double distanceIn, boolean trueISRPM) {
     // Use addRequirements() here to declare subsystem dependencies
     addRequirements(RobotContainer.m_shooter);
     addRequirements(RobotContainer.m_turret);
     addRequirements(RobotContainer.m_conveyorBelt);
     //In inches
-    distance = distanceIn;
+    isRPM = trueISRPM;
+    distanceOrRPM = distanceIn;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooterRPM = 6.317 * (distance) + 1470;
+    if(isRPM){
+      shooterRPM = distanceOrRPM;
+    } else {
+      shooterRPM = 6.317 * (distanceOrRPM) + 1470;
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
