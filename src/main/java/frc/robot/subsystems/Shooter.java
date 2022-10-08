@@ -22,7 +22,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
-  static NetworkTableEntry hi = Shuffleboard.getTab("Shooter Testing").add("RPM", 0).getEntry();
   /** Creates a new Shooter. */
   // MjpegServer server = new MjpegServer("VisionCamera", "10.26.43.199" , 8080);
   // SimpleWidget cameraServer = Shuffleboard.getTab("2022Robot").add("Camera", server).withWidget(BuiltInWidgets.kCameraStream);
@@ -118,7 +117,6 @@ public class Shooter extends SubsystemBase {
     //   currentTargetVelocity = targetVelocity.getDouble(0);
     //   leftShooter.getPIDController().setReference(targetVelocity.getDouble(0), ControlType.kVelocity, PIDSlot);
     // }
-    hi.setDouble(getVelocity());
     rightShooter.follow(leftShooter, true);
     //setSpeed(0.1);
 

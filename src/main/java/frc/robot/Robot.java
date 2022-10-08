@@ -5,12 +5,21 @@
 package frc.robot;
 
 
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
+
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.CvSink;
+import edu.wpi.first.cscore.CvSource;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableValue;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.Climber.resetPosition;
@@ -39,11 +48,13 @@ public class Robot extends TimedRobot {
   public static double visionDistance;
   
   // public static boolean canDriverControl = true;
-  NetworkTableEntry shuffleboardVisionDeg = Shuffleboard.getTab("2022Robot").add("Vision degrees (accurate)", 0).withSize(2, 2).getEntry();
   NetworkTableEntry shuffleboardHubDistance = Shuffleboard.getTab("2022Robot").add("Distance to hub (inaccurate)", 0).withSize(2, 2).getEntry();
   NetworkTableEntry ShuffleBoardDelay = Shuffleboard.getTab("2022Robot").add("Autonomous Delay", 0).withSize(2, 2).getEntry();
   NetworkTableEntry ballAtTopLimitSwitch = Shuffleboard.getTab("2022Robot").getLayout("Conveyor(Green = Ball and Red = No Ball)", BuiltInLayouts.kGrid).withSize(3, 2).add("Ball at Top", false).withWidget(BuiltInWidgets.kBooleanBox).withSize(3, 3).withPosition(1, 1).getEntry();
   NetworkTableEntry ballAtBottomLimitSwitch = Shuffleboard.getTab("2022Robot").getLayout("Conveyor(Green = Ball and Red = No Ball)", BuiltInLayouts.kGrid).withSize(3, 2).add("Ball at Bottom", false).withWidget(BuiltInWidgets.kBooleanBox).withSize(3, 3).withPosition(1, 2).getEntry();
+  UsbCamera camera = CameraServer.startAutomaticCapture(0);
+  ComplexWidget CameraShuffleboard = Shuffleboard.getTab("2022Robot").add("Camera", camera).withWidget(BuiltInWidgets.kCameraStream).withSize(3, 2);
+
 
   private RobotContainer m_robotContainer;
   //public hoodcm m_hoodccm = new hoodcm(); 
@@ -59,6 +70,7 @@ public class Robot extends TimedRobot {
     RobotContainer.m_conveyorBelt.setSpeed(0);  
     m_robotContainer = new RobotContainer(); 
     //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.cm_Hood, new hoodcm());
+    
   }
 
   /**
@@ -141,7 +153,6 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     // CommandScheduler.getInstance().schedule(new FindBall());
     NetworkTableValue visionDeg = Constants.VISION_TABLE.getEntry("Degree").getValue();
-    shuffleboardVisionDeg.setValue(visionDeg);
     NetworkTableValue distanceVal = Constants.VISION_TABLE.getEntry("Distance").getValue();
     visionDistance = ((double)Constants.VISION_TABLE.getEntry("Degree").getNumber(0));
     shuffleboardHubDistance.setValue(distanceVal);
