@@ -11,9 +11,11 @@ import org.opencv.imgproc.Imgproc;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.CvSink;
 import edu.wpi.first.cscore.CvSource;
+import edu.wpi.first.cscore.MjpegServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableValue;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
@@ -48,12 +50,13 @@ public class Robot extends TimedRobot {
   public static double visionDistance;
   
   // public static boolean canDriverControl = true;
-  NetworkTableEntry shuffleboardHubDistance = Shuffleboard.getTab("2022Robot").add("Distance to hub (inaccurate)", 0).withSize(2, 2).getEntry();
-  NetworkTableEntry ShuffleBoardDelay = Shuffleboard.getTab("2022Robot").add("Autonomous Delay", 0).withSize(2, 2).getEntry();
-  NetworkTableEntry ballAtTopLimitSwitch = Shuffleboard.getTab("2022Robot").getLayout("Conveyor(Green = Ball and Red = No Ball)", BuiltInLayouts.kGrid).withSize(3, 2).add("Ball at Top", false).withWidget(BuiltInWidgets.kBooleanBox).withSize(3, 3).withPosition(1, 1).getEntry();
-  NetworkTableEntry ballAtBottomLimitSwitch = Shuffleboard.getTab("2022Robot").getLayout("Conveyor(Green = Ball and Red = No Ball)", BuiltInLayouts.kGrid).withSize(3, 2).add("Ball at Bottom", false).withWidget(BuiltInWidgets.kBooleanBox).withSize(3, 3).withPosition(1, 2).getEntry();
+  NetworkTableEntry ShuffleBoardDelay = Shuffleboard.getTab("2022Robot").add("Autonomous Delay", 0).withSize(2, 2).withPosition(0, 0).getEntry();
+  //NetworkTableEntry ballAtTopLimitSwitch = Shuffleboard.getTab("2022Robot").getLayout("Conveyor(Green = Ball and Red = No Ball)", BuiltInLayouts.kGrid).withSize(3, 2).add("Ball at Top", false).withWidget(BuiltInWidgets.kBooleanBox).withSize(7, 3).withPosition(1, 1).getEntry();
+  //NetworkTableEntry ballAtBottomLimitSwitch = Shuffleboard.getTab("2022Robot").getLayout("Conveyor(Green = Ball and Red = No Ball)", BuiltInLayouts.kGrid).withSize(3, 2).add("Ball at Bottom", false).withWidget(BuiltInWidgets.kBooleanBox).withSize(1, 3).withPosition(1, 2).getEntry();
   UsbCamera camera = CameraServer.startAutomaticCapture(0);
-  ComplexWidget CameraShuffleboard = Shuffleboard.getTab("2022Robot").add("Camera", camera).withWidget(BuiltInWidgets.kCameraStream).withSize(3, 2);
+  ComplexWidget CameraShuffleboard = Shuffleboard.getTab("2022Robot").add("Camera", camera).withWidget(BuiltInWidgets.kCameraStream).withPosition(4, 0).withSize(4, 3);
+  NetworkTableEntry distanceShuffle = Shuffleboard.getTab("2022Robot").add("Distance from Hub", 1).withPosition(2, 0).withSize(2, 2).getEntry();
+  NetworkTableEntry timeLeft = Shuffleboard.getTab("2022Robot").add("Time Left", 0).withPosition(2, 2).withSize(2, 2).getEntry();
 
 
   private RobotContainer m_robotContainer;
@@ -152,18 +155,17 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // CommandScheduler.getInstance().schedule(new FindBall());
-    NetworkTableValue visionDeg = Constants.VISION_TABLE.getEntry("Degree").getValue();
-    NetworkTableValue distanceVal = Constants.VISION_TABLE.getEntry("Distance").getValue();
     visionDistance = ((double)Constants.VISION_TABLE.getEntry("Degree").getNumber(0));
-    shuffleboardHubDistance.setValue(distanceVal);
+    timeLeft.setDouble(DriverStation.getMatchTime());
     
-    ballAtTopLimitSwitch.setBoolean(ConveyorBelt.conviRSens2.get());
-    ballAtBottomLimitSwitch.setBoolean(ConveyorBelt.conviRSens1.get());
+    // ballAtTopLimitSwitch.setBoolean(ConveyorBelt.conviRSens2.get());
+    // ballAtBottomLimitSwitch.setBoolean(ConveyorBelt.conviRSens1.get());
 
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_drivetrain, new Tankdrive());
     //CommandScheduler.getInstance().schedule(true, new turretDriverControl());
     //CommandScheduler.getInstance().schedule(true, new hoodDriverControl());
     //CommandScheduler.getInstance().schedule(true, new autoShoot());
+    distanceShuffle.setDouble(visionDistance);
   }
 
   @Override

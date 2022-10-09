@@ -58,7 +58,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static SendableChooser<Command> m_chooser = new SendableChooser<>();
-  ComplexWidget ShuffleBoardAutonomousRoutines = Shuffleboard.getTab("2022Robot").add("Autonoumous Routines Selector", m_chooser).withWidget(BuiltInWidgets.kComboBoxChooser).withSize(2, 2);
+  ComplexWidget ShuffleBoardAutonomousRoutines = Shuffleboard.getTab("2022Robot").add("Autonoumous Routines Selector", m_chooser).withWidget(BuiltInWidgets.kComboBoxChooser).withSize(2, 2).withPosition(0, 2);
   public final Command m_Routine1 = new Routine1(Constants.AUTONOMOUS_DELAY);
   public final Command m_Routine2 = new Routine2(Constants.AUTONOMOUS_DELAY);
   public final Command m_Routine3 = new Routine3(Constants.AUTONOMOUS_DELAY);
