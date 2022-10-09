@@ -106,10 +106,10 @@ public class Robot extends TimedRobot {
     //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_turret, new SequentialCommandGroup(new resetPosition(), new driverControl()));
     //NetworkTableEntry lol = Shuffleboard.getTab("2022Robot").add("Hi", 1).
     Constants.AUTONOMOUS_DELAY = ShuffleBoardDelay.getDouble(0);
-    if(!resetClimberDone) {
+    /* if(!resetClimberDone) {
       CommandScheduler.getInstance().schedule(new resetPosition());
       resetClimberDone = true;
-    }
+    } */
     if (!releaseIntakeDone) {
       CommandScheduler.getInstance().schedule(new releaseLatches(Constants.INTAKE_SERVO_LATCH_DEGREES));
       releaseIntakeDone = true;
