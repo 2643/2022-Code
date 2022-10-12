@@ -119,6 +119,7 @@ public class Shooter extends SubsystemBase {
     // }
     rightShooter.follow(leftShooter, true);
     //setSpeed(0.1);
+    System.out.println(((double)Constants.VISION_TABLE.getEntry("Distance").getNumber(0)));
 
   }
 }

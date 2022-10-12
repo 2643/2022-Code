@@ -90,25 +90,25 @@ public class Turret extends SubsystemBase {
   /** Creates a new Turret. */
   public Turret() {
     turretCanSparkMax.getEncoder().setPosition(zeroPosition);
-    turretCanSparkMax.getPIDController().setReference(0, ControlType.kSmartMotion);
-    turretCanSparkMax.getPIDController().setP(TurretSmartVelocityP, TurretVelocityPIDSlot);
-    turretCanSparkMax.getPIDController().setI(TurretSmartVelocityI, TurretVelocityPIDSlot);
-    turretCanSparkMax.getPIDController().setD(TurretSmartVelocityD, TurretVelocityPIDSlot);
+    //turretCanSparkMax.getPIDController().setReference(0, ControlType.kSmartMotion);
+    // turretCanSparkMax.getPIDController().setP(TurretSmartVelocityP, TurretVelocityPIDSlot);
+    // turretCanSparkMax.getPIDController().setI(TurretSmartVelocityI, TurretVelocityPIDSlot);
+    // turretCanSparkMax.getPIDController().setD(TurretSmartVelocityD, TurretVelocityPIDSlot);
 
-    turretCanSparkMax.getPIDController().setP(TurretSmartMotionP, TurretPositionPIDSlot);
-    turretCanSparkMax.getPIDController().setI(TurretSmartMotionI, TurretPositionPIDSlot);
-    turretCanSparkMax.getPIDController().setD(TurretSmartMotionD, TurretPositionPIDSlot);
+    // turretCanSparkMax.getPIDController().setP(TurretSmartMotionP, TurretPositionPIDSlot);
+    // turretCanSparkMax.getPIDController().setI(TurretSmartMotionI, TurretPositionPIDSlot);
+    // turretCanSparkMax.getPIDController().setD(TurretSmartMotionD, TurretPositionPIDSlot);
 
     turretCanSparkMax.getPIDController().setOutputRange(TurretOutputMin, TurretOutputMax);
     turretCanSparkMax.getEncoder().setPositionConversionFactor(ConversionFactor);
     turretCanSparkMax.setInverted(InvertMotor);
     turretCanSparkMax.setIdleMode(IdleMode.kBrake);
 
-    turretCanSparkMax.getPIDController().setSmartMotionMaxAccel(SmartMotionMaxAcceleration, TurretPositionPIDSlot);
-    turretCanSparkMax.getPIDController().setSmartMotionMaxVelocity(SmartMotionMaxVelocity, TurretPositionPIDSlot);
+    // turretCanSparkMax.getPIDController().setSmartMotionMaxAccel(SmartMotionMaxAcceleration, TurretPositionPIDSlot);
+    // turretCanSparkMax.getPIDController().setSmartMotionMaxVelocity(SmartMotionMaxVelocity, TurretPositionPIDSlot);
 
-    turretCanSparkMax.getPIDController().setSmartMotionMaxAccel(SmartVelocityMaxAcceleration, TurretVelocityPIDSlot);
-    turretCanSparkMax.getPIDController().setSmartMotionMaxVelocity(SmartVelocityMaxVelocity, TurretVelocityPIDSlot);
+    // turretCanSparkMax.getPIDController().setSmartMotionMaxAccel(SmartVelocityMaxAcceleration, TurretVelocityPIDSlot);
+    // turretCanSparkMax.getPIDController().setSmartMotionMaxVelocity(SmartVelocityMaxVelocity, TurretVelocityPIDSlot);
 
     // turretCanSparkMax.setIdleMode(IdleMode.kBrake);
   }

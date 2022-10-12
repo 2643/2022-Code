@@ -131,6 +131,7 @@ public class Climber extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     // Last resort safety measure for motors by measuring output current
+    //rightClimber.set(ControlMode.PercentOutput, -0.6);
     if (Math.abs(rightClimber.getStatorCurrent()) > 40) {
       rightClimber.set(ControlMode.Disabled, 0);
     }

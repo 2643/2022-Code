@@ -50,13 +50,13 @@ public class Robot extends TimedRobot {
   public static double visionDistance;
   
   // public static boolean canDriverControl = true;
-  NetworkTableEntry ShuffleBoardDelay = Shuffleboard.getTab("2022Robot").add("Autonomous Delay", 0).withSize(2, 2).withPosition(0, 0).getEntry();
-  //NetworkTableEntry ballAtTopLimitSwitch = Shuffleboard.getTab("2022Robot").getLayout("Conveyor(Green = Ball and Red = No Ball)", BuiltInLayouts.kGrid).withSize(3, 2).add("Ball at Top", false).withWidget(BuiltInWidgets.kBooleanBox).withSize(7, 3).withPosition(1, 1).getEntry();
-  //NetworkTableEntry ballAtBottomLimitSwitch = Shuffleboard.getTab("2022Robot").getLayout("Conveyor(Green = Ball and Red = No Ball)", BuiltInLayouts.kGrid).withSize(3, 2).add("Ball at Bottom", false).withWidget(BuiltInWidgets.kBooleanBox).withSize(1, 3).withPosition(1, 2).getEntry();
+  NetworkTableEntry ShuffleBoardDelay = Shuffleboard.getTab("2022Robot").add("Autonomous Delay", 0).withSize(2, 1).withPosition(0, 0).getEntry();
+  NetworkTableEntry ballAtTopLimitSwitch = Shuffleboard.getTab("2022Robot").add("Ball at Top", false).withWidget(BuiltInWidgets.kBooleanBox).withSize(1, 1).withPosition(0, 1).getEntry();
+  NetworkTableEntry ballAtBottomLimitSwitch = Shuffleboard.getTab("2022Robot").add("Ball at Bottom", false).withWidget(BuiltInWidgets.kBooleanBox).withSize(1, 1).withPosition(1, 1).getEntry();
   UsbCamera camera = CameraServer.startAutomaticCapture(0);
   ComplexWidget CameraShuffleboard = Shuffleboard.getTab("2022Robot").add("Camera", camera).withWidget(BuiltInWidgets.kCameraStream).withPosition(4, 0).withSize(4, 3);
-  NetworkTableEntry distanceShuffle = Shuffleboard.getTab("2022Robot").add("Distance from Hub", 1).withPosition(2, 0).withSize(2, 2).getEntry();
-  NetworkTableEntry timeLeft = Shuffleboard.getTab("2022Robot").add("Time Left", 0).withPosition(2, 2).withSize(2, 2).getEntry();
+  NetworkTableEntry distanceShuffle = Shuffleboard.getTab("2022Robot").add("Distance from Hub", 1).withPosition(2, 0).withSize(2, 1).getEntry();
+  NetworkTableEntry timeLeft = Shuffleboard.getTab("2022Robot").add("Time Left", 0).withPosition(2, 2).withSize(2, 1).getEntry();
 
 
   private RobotContainer m_robotContainer;
@@ -90,6 +90,7 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    visionDistance = ((double)Constants.VISION_TABLE.getEntry("Distance").getNumber(0));
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -155,11 +156,10 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // CommandScheduler.getInstance().schedule(new FindBall());
-    visionDistance = ((double)Constants.VISION_TABLE.getEntry("Degree").getNumber(0));
     timeLeft.setDouble(DriverStation.getMatchTime());
     
-    // ballAtTopLimitSwitch.setBoolean(ConveyorBelt.conviRSens2.get());
-    // ballAtBottomLimitSwitch.setBoolean(ConveyorBelt.conviRSens1.get());
+    ballAtTopLimitSwitch.setBoolean(ConveyorBelt.conviRSens2.get());
+    ballAtBottomLimitSwitch.setBoolean(ConveyorBelt.conviRSens1.get());
 
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_drivetrain, new Tankdrive());
     //CommandScheduler.getInstance().schedule(true, new turretDriverControl());
