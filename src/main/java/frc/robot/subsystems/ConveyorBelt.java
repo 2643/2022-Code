@@ -224,6 +224,6 @@ public class ConveyorBelt extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     updateBallsHeld();
-    System.out.println("Switch 1" + conviRSens2.get() + "Switch 2" + conviRSens1.get());
+    //System.out.println("Switch 1" + conviRSens2.get() + "Switch 2" + conviRSens1.get());
   }
 }

@@ -16,10 +16,13 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.commands.AutoShoot.autoShoot;
 import frc.robot.commands.ConveyorBelt.autoConveyorIntake;
+import frc.robot.commands.ConveyorBelt.conveyorForward;
+import frc.robot.commands.ConveyorBelt.conveyorReverse;
 import frc.robot.commands.Drivetrain.MovePosition;
 import frc.robot.commands.Intake.moveIntake;
 //import frc.robot.commands.Shooter.shoot;
 import frc.robot.commands.PigeonTwo.turnRobot;
+import frc.robot.subsystems.ConveyorBelt;
 
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -32,10 +35,12 @@ public class Routine2 extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());-
     //addCommands(new turnRobot(180));
     addCommands(new WaitCommand(delay), 
-    new MovePosition(-2048*5*Constants.DRIVETRAIN_GEARBOX_RATIO), 
-    new ParallelCommandGroup(new autoConveyorIntake().raceWith(new WaitCommand(2), new MovePosition(-2048*2*Constants.DRIVETRAIN_GEARBOX_RATIO))),  
+    new MovePosition(-2048*3*Constants.DRIVETRAIN_GEARBOX_RATIO),
+    new ParallelCommandGroup(new moveIntake().raceWith(new WaitCommand(2)), new MovePosition(-2048*2*Constants.DRIVETRAIN_GEARBOX_RATIO)),
+    new conveyorForward().raceWith(new WaitCommand(1),  
     new turnRobot(176),
-    new autoShoot(84, false).raceWith(new WaitCommand(5)));
+    new conveyorReverse().raceWith(new WaitCommand(0.25)), 
+    new autoShoot(150, false).raceWith(new WaitCommand(5))));
   }  
 }
 

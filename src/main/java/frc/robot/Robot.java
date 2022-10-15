@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.Climber.resetPosition;
+//import frc.robot.commands.Climber.resetPosition;
 // import frc.robot.commands.FindBall;
 import frc.robot.commands.Drivetrain.Tankdrive;
 import frc.robot.commands.Intake.releaseLatches;
@@ -46,13 +46,13 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   // private boolean resetTurretDone = false;
   private boolean releaseIntakeDone = false;
-  private boolean resetClimberDone = false;
+  //private boolean resetClimberDone = false;
   public static double visionDistance;
   
   // public static boolean canDriverControl = true;
   NetworkTableEntry ShuffleBoardDelay = Shuffleboard.getTab("2022Robot").add("Autonomous Delay", 0).withSize(2, 1).withPosition(0, 0).getEntry();
-  NetworkTableEntry ballAtTopLimitSwitch = Shuffleboard.getTab("2022Robot").add("Ball at Top", false).withWidget(BuiltInWidgets.kBooleanBox).withSize(1, 1).withPosition(0, 1).getEntry();
-  NetworkTableEntry ballAtBottomLimitSwitch = Shuffleboard.getTab("2022Robot").add("Ball at Bottom", false).withWidget(BuiltInWidgets.kBooleanBox).withSize(1, 1).withPosition(1, 1).getEntry();
+  // NetworkTableEntry ballAtTopLimitSwitch = Shuffleboard.getTab("2022Robot").add("Ball at Top", false).withWidget(BuiltInWidgets.kBooleanBox).withSize(1, 1).withPosition(0, 1).getEntry();
+  // NetworkTableEntry ballAtBottomLimitSwitch = Shuffleboard.getTab("2022Robot").add("Ball at Bottom", false).withWidget(BuiltInWidgets.kBooleanBox).withSize(1, 1).withPosition(1, 1).getEntry();
   UsbCamera camera = CameraServer.startAutomaticCapture(0);
   ComplexWidget CameraShuffleboard = Shuffleboard.getTab("2022Robot").add("Camera", camera).withWidget(BuiltInWidgets.kCameraStream).withPosition(4, 0).withSize(4, 3);
   NetworkTableEntry distanceShuffle = Shuffleboard.getTab("2022Robot").add("Distance from Hub", 1).withPosition(2, 0).withSize(2, 1).getEntry();
@@ -90,7 +90,6 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    visionDistance = ((double)Constants.VISION_TABLE.getEntry("Distance").getNumber(0));
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -158,14 +157,16 @@ public class Robot extends TimedRobot {
     // CommandScheduler.getInstance().schedule(new FindBall());
     timeLeft.setDouble(DriverStation.getMatchTime());
     
-    ballAtTopLimitSwitch.setBoolean(ConveyorBelt.conviRSens2.get());
-    ballAtBottomLimitSwitch.setBoolean(ConveyorBelt.conviRSens1.get());
+    // ballAtTopLimitSwitch.setBoolean(ConveyorBelt.conviRSens2.get());
+    // ballAtBottomLimitSwitch.setBoolean(ConveyorBelt.conviRSens1.get());
 
     CommandScheduler.getInstance().setDefaultCommand(RobotContainer.m_drivetrain, new Tankdrive());
     //CommandScheduler.getInstance().schedule(true, new turretDriverControl());
     //CommandScheduler.getInstance().schedule(true, new hoodDriverControl());
     //CommandScheduler.getInstance().schedule(true, new autoShoot());
+    visionDistance = ((double)Constants.VISION_TABLE.getEntry("Distance").getNumber(0));
     distanceShuffle.setDouble(visionDistance);
+
   }
 
   @Override

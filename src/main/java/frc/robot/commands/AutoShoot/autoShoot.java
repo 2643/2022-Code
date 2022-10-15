@@ -4,6 +4,7 @@
 
 package frc.robot.commands.AutoShoot;
 
+import edu.wpi.first.wpilibj.Timer;
 // import edu.wpi.first.networktables.NetworkTableEntry;
 // import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -18,7 +19,7 @@ public class autoShoot extends CommandBase {
   public autoShoot(double distanceIn, boolean trueISRPM) {
     // Use addRequirements() here to declare subsystem dependencies
     addRequirements(RobotContainer.m_shooter);
-    addRequirements(RobotContainer.m_turret);
+    //addRequirements(RobotContainer.m_turret);
     addRequirements(RobotContainer.m_conveyorBelt);
     //In inches
     isRPM = trueISRPM;
@@ -28,6 +29,9 @@ public class autoShoot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.m_conveyorBelt.setSpeed(-0.1);
+    Timer.delay(0.2);
+    RobotContainer.m_conveyorBelt.setSpeed(0);
     if(isRPM){
       shooterRPM = distanceOrRPM;
     } else {

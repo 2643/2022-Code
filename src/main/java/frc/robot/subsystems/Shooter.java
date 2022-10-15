@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 // import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
@@ -67,11 +68,13 @@ public class Shooter extends SubsystemBase {
     leftShooter.restoreFactoryDefaults();
     rightShooter.restoreFactoryDefaults();
     //leftShooter.setInverted(true);
+    rightShooter.follow(leftShooter, true);
     leftShooter.getEncoder().setPosition(0);
     leftShooter.getPIDController().setOutputRange(outputMin, outputMax, PIDSlot);
     leftShooter.getPIDController().setP(motorP, PIDSlot);
     leftShooter.getPIDController().setI(motorI, PIDSlot);
     leftShooter.getPIDController().setD(motorD, PIDSlot);
+    
 
     //leftShooter.getPIDController().setSmartMotionMaxVelocity(500, 0);
     //leftShooter.getEncoder().setVelocityConversionFactor(1);
@@ -117,9 +120,10 @@ public class Shooter extends SubsystemBase {
     //   currentTargetVelocity = targetVelocity.getDouble(0);
     //   leftShooter.getPIDController().setReference(targetVelocity.getDouble(0), ControlType.kVelocity, PIDSlot);
     // }
-    rightShooter.follow(leftShooter, true);
     //setSpeed(0.1);
-    System.out.println(((double)Constants.VISION_TABLE.getEntry("Distance").getNumber(0)));
+    //System.out.println(((double)Constants.VISION_TABLE.getEntry("Distance").getNumber(0)));
+
+      
 
   }
 }
