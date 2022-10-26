@@ -37,10 +37,10 @@ public class Routine2 extends SequentialCommandGroup {
     addCommands(new WaitCommand(delay), 
     new MovePosition(-2048*3*Constants.DRIVETRAIN_GEARBOX_RATIO),
     new ParallelCommandGroup(new moveIntake().raceWith(new WaitCommand(2)), new MovePosition(-2048*2*Constants.DRIVETRAIN_GEARBOX_RATIO)),
-    new conveyorForward().raceWith(new WaitCommand(1),  
+    new conveyorForward().raceWith(new WaitCommand(1)),  
     new turnRobot(176),
     new conveyorReverse().raceWith(new WaitCommand(0.25)), 
-    new autoShoot(150, false).raceWith(new WaitCommand(5))));
+    new autoShoot(150, false).raceWith(new WaitCommand(5)));
   }  
 }
 
