@@ -65,15 +65,15 @@ public class Tankdrive extends CommandBase {
         rightSpeed = right_input;
       }
 
-      RobotContainer.m_drivetrain.setLeftMotorVelocity(leftSpeed*multiplier*twentyPercentSetpoint);
-      RobotContainer.m_drivetrain.setRightMotorVelocity(rightSpeed*multiplier*twentyPercentSetpoint);
+      RobotContainer.m_drivetrain.setLeftMotorVelocity((leftSpeed*multiplier*twentyPercentSetpoint)/4);
+      RobotContainer.m_drivetrain.setRightMotorVelocity((rightSpeed*multiplier*twentyPercentSetpoint)/4);
 
       // if (++loopcounter % 5 == 0) {
       //   System.out.println();
       // }
     } else {
-      RobotContainer.m_drivetrain.setLeftMotorPercentOutput(left_input);
-      RobotContainer.m_drivetrain.setRightMotorPercentOutput(right_input);
+      RobotContainer.m_drivetrain.setLeftMotorPercentOutput(left_input/4);
+      RobotContainer.m_drivetrain.setRightMotorPercentOutput(right_input/4);
     }
   }
 
