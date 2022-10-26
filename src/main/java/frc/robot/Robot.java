@@ -27,8 +27,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 //import frc.robot.commands.Climber.resetPosition;
 // import frc.robot.commands.FindBall;
 import frc.robot.commands.Drivetrain.Tankdrive;
-import frc.robot.commands.Intake.releaseLatches;
-import frc.robot.subsystems.ConveyorBelt;
+// import frc.robot.commands.Intake.releaseLatches;
+// import frc.robot.subsystems.ConveyorBelt;
 
 // import frc.robot.commands.hoodcm;
 // import frc.robot.subsystems.Hood;
@@ -70,7 +70,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    RobotContainer.m_conveyorBelt.setSpeed(0);  
+    // RobotContainer.m_conveyorBelt.setSpeed(0);  
     m_robotContainer = new RobotContainer(); 
     //CommandScheduler.getInstance().setDefaultCommand(RobotContainer.cm_Hood, new hoodcm());
     
@@ -110,11 +110,11 @@ public class Robot extends TimedRobot {
       CommandScheduler.getInstance().schedule(new resetPosition());
       resetClimberDone = true;
     } */
-    if (!releaseIntakeDone) {
-      CommandScheduler.getInstance().schedule(new releaseLatches(Constants.INTAKE_SERVO_LATCH_DEGREES));
-      releaseIntakeDone = true;
-    }
-    RobotContainer.m_conveyorBelt.setSpeed(0);  
+    // if (!releaseIntakeDone) {
+    //   CommandScheduler.getInstance().schedule(new releaseLatches(Constants.INTAKE_SERVO_LATCH_DEGREES));
+    //   releaseIntakeDone = true;
+    // }
+    // RobotContainer.m_conveyorBelt.setSpeed(0);  
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
@@ -140,14 +140,14 @@ public class Robot extends TimedRobot {
     //   CommandScheduler.getInstance().schedule(new resetPosition());
     //   resetClimberDone = true;
     // }
-    if (!releaseIntakeDone) {
-      CommandScheduler.getInstance().schedule(new releaseLatches(Constants.INTAKE_SERVO_LATCH_DEGREES));
-      releaseIntakeDone = true;
-    }
-    RobotContainer.m_conveyorBelt.setSpeed(0);  
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
-    }
+    // if (!releaseIntakeDone) {
+    //   CommandScheduler.getInstance().schedule(new releaseLatches(Constants.INTAKE_SERVO_LATCH_DEGREES));
+    //   releaseIntakeDone = true;
+    // }
+    // RobotContainer.m_conveyorBelt.setSpeed(0);  
+    // if (m_autonomousCommand != null) {
+    //   m_autonomousCommand.cancel();
+    // }
     // CommandScheduler.getInstance().schedule(new FindBall());
   }
 

@@ -12,33 +12,33 @@ import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.ComplexWidget;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import frc.robot.commands.AutoShoot.autoShoot;
-//import frc.robot.commands.Autonomous.MoveBackwards;
-import frc.robot.commands.Autonomous.Routine1;
-import frc.robot.commands.Autonomous.Routine2;
-import frc.robot.commands.Autonomous.Routine3;
-import frc.robot.commands.Autonomous.Routine4;
-import frc.robot.commands.Autonomous.Routine5;
+// import frc.robot.commands.AutoShoot.autoShoot;
+// //import frc.robot.commands.Autonomous.MoveBackwards;
+// import frc.robot.commands.Autonomous.Routine1;
+// import frc.robot.commands.Autonomous.Routine2;
+// import frc.robot.commands.Autonomous.Routine3;
+// import frc.robot.commands.Autonomous.Routine4;
+// import frc.robot.commands.Autonomous.Routine5;
 // import frc.robot.commands.Autonomous.Routine4;
 //import frc.robot.commands.Autonomous.Rountine1;
 // import frc.robot.commands.Climber.moveClimber;
 //import frc.robot.commands.Climber.rightUp;
-import frc.robot.commands.ConveyorBelt.*;
-import frc.robot.commands.Intake.moveIntake;
-import frc.robot.commands.Intake.moveIntakeReverse;
+// import frc.robot.commands.ConveyorBelt.*;
+// import frc.robot.commands.Intake.moveIntake;
+// import frc.robot.commands.Intake.moveIntakeReverse;
 //import frc.robot.commands.Shooter.shoot;
 //import frc.robot.commands.Drivetrain.DifferentialDrive;
 // import frc.robot.commands.Turret.turretShoot;
-import frc.robot.subsystems.PigeonTwo;
-//import frc.robot.subsystems.Climber;
-import frc.robot.subsystems.ConveyorBelt;
+// import frc.robot.subsystems.PigeonTwo;
+// //import frc.robot.subsystems.Climber;
+// import frc.robot.subsystems.ConveyorBelt;
 // import frc.robot.subsystems.BallVision;
 // import frc.robot.commands.Climber.moveClimber;
 // import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 //import frc.robot.subsystems.Hood;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Shooter;
+// import frc.robot.subsystems.Intake;
+// import frc.robot.subsystems.Shooter;
 // import frc.robot.subsystems.Turret;
 // import frc.robot.subsystems.TurretSubsystem;
 // import frc.robot.commands.hoodcm;
@@ -59,11 +59,11 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static SendableChooser<Command> m_chooser = new SendableChooser<>();
   ComplexWidget ShuffleBoardAutonomousRoutines = Shuffleboard.getTab("2022Robot").add("Autonoumous Routines Selector", m_chooser).withWidget(BuiltInWidgets.kComboBoxChooser).withSize(2, 2).withPosition(0, 2);
-  public final Command m_Routine1 = new Routine1(Constants.AUTONOMOUS_DELAY);
-  public final Command m_Routine2 = new Routine2(Constants.AUTONOMOUS_DELAY);
-  public final Command m_Routine3 = new Routine3(Constants.AUTONOMOUS_DELAY);
-  public final Command m_Routine4 = new Routine4(Constants.AUTONOMOUS_DELAY);
-  public final Command m_Routine5 = new Routine5();
+  // public final Command m_Routine1 = new Routine1(Constants.AUTONOMOUS_DELAY);
+  // public final Command m_Routine2 = new Routine2(Constants.AUTONOMOUS_DELAY);
+  // public final Command m_Routine3 = new Routine3(Constants.AUTONOMOUS_DELAY);
+  // public final Command m_Routine4 = new Routine4(Constants.AUTONOMOUS_DELAY);
+  // public final Command m_Routine5 = new Routine5();
 
   
   //SUBSYSTEMS INITIALIZED
@@ -71,10 +71,10 @@ public class RobotContainer {
   //public static final Climber m_climber = new Climber();
   //public static final Turret m_turret = new Turret();
   //public static final Hood m_hood = new Hood();
-  public static final ConveyorBelt m_conveyorBelt = new ConveyorBelt();
-  public static final Intake m_intake = new Intake(); 
-  public static final Shooter m_shooter = new Shooter();
-  public static final PigeonTwo m_gyro = new PigeonTwo();
+  // public static final ConveyorBelt m_conveyorBelt = new ConveyorBelt();
+  // public static final Intake m_intake = new Intake(); 
+  // public static final Shooter m_shooter = new Shooter();
+  // public static final PigeonTwo m_gyro = new PigeonTwo();
 
   //JOYSTICK AND OPBOARD INITIALIZED
   public static Joystick joyStick = new Joystick(0);
@@ -106,12 +106,12 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    m_chooser.setDefaultOption("MOVE FORWARD, GET SECOND BALL, TURN, AND SHOOT", m_Routine2);
-    m_chooser.addOption("MOVE BACK AND SHOOT", m_Routine1);
-    m_chooser.addOption("MOVE FORWARD, GET SECOND BALL, TURN, AND SHOOT", m_Routine2);
-    m_chooser.addOption("MOVE BACK", m_Routine3);
-    m_chooser.addOption("Needs to be tested", m_Routine4);
-    m_chooser.addOption("Turn 180", m_Routine5);
+    // m_chooser.setDefaultOption("MOVE FORWARD, GET SECOND BALL, TURN, AND SHOOT", m_Routine2);
+    // m_chooser.addOption("MOVE BACK AND SHOOT", m_Routine1);
+    // m_chooser.addOption("MOVE FORWARD, GET SECOND BALL, TURN, AND SHOOT", m_Routine2);
+    // m_chooser.addOption("MOVE BACK", m_Routine3);
+    // m_chooser.addOption("Needs to be tested", m_Routine4);
+    // m_chooser.addOption("Turn 180", m_Routine5);
   }
 
   /**
@@ -127,20 +127,20 @@ public class RobotContainer {
     //raiseClimber.whenHeld(new moveClimber(Climber.climbDirection.Up));
     //lowerClimber.whenHeld(new moveClimber(Climber.climbDirection.Down));
     //rightUp.whenHeld(new rightUp());
-    forwardIntake.whenHeld(new moveIntake());
-    reverseIntake.whenHeld(new moveIntakeReverse());
-    autoIntake.whenHeld(new ParallelCommandGroup(new moveIntake(), new conveyorForward()));
+    // forwardIntake.whenHeld(new moveIntake());
+    // reverseIntake.whenHeld(new moveIntakeReverse());
+    // autoIntake.whenHeld(new ParallelCommandGroup(new moveIntake(), new conveyorForward()));
 
-    closeShoot.whenHeld(new autoShoot(Constants.CLOSE_SHOOTER_SPEED, true));
-    mediumShoot.whenHeld(new autoShoot(Constants.MEDIUM_SHOOTER_SPEED, true));
-    farShoot.whenHeld(new autoShoot(Constants.FAR_SHOOTER_SPEED, true));
-    // superCloseShoot.whenHeld(new shoot(Constants.SUPER_CLOSE_SHOOTER_SPEED));
-    // superSuperCloseShoot.whenHeld(new shoot(Constants.SUPER_SUPER_CLOSE_SHOOTER_SPEED));
-    // superMediumShoot.whenHeld(new shoot(Constants.SUPER_MEDIUM_SHOOTER_SPEED));
+    // closeShoot.whenHeld(new autoShoot(Constants.CLOSE_SHOOTER_SPEED, true));
+    // mediumShoot.whenHeld(new autoShoot(Constants.MEDIUM_SHOOTER_SPEED, true));
+    // farShoot.whenHeld(new autoShoot(Constants.FAR_SHOOTER_SPEED, true));
+    // // superCloseShoot.whenHeld(new shoot(Constants.SUPER_CLOSE_SHOOTER_SPEED));
+    // // superSuperCloseShoot.whenHeld(new shoot(Constants.SUPER_SUPER_CLOSE_SHOOTER_SPEED));
+    // // superMediumShoot.whenHeld(new shoot(Constants.SUPER_MEDIUM_SHOOTER_SPEED));
 
-    forwardConveyor.whileHeld(new conveyorForward());
-    reverseConveyor.whileHeld(new conveyorReverse());
-    autoShoot.whenHeld(new autoShoot(Robot.visionDistance, false));
+    // forwardConveyor.whileHeld(new conveyorForward());
+    // reverseConveyor.whileHeld(new conveyorReverse());
+    // autoShoot.whenHeld(new autoShoot(Robot.visionDistance, false));
   }
 
   /**
